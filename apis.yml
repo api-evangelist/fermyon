@@ -1,31 +1,37 @@
 aid: fermyon
-name: Fermyon
-description: >-
-  The simple, open source way to build and run apps powered by WebAssembly - the
-  next wave of cloud compute. 
-type: Index
-position: Consumer
-access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
-created: '2025-02-08'
-modified: '2025-02-08'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/fermyon/refs/heads/main/apis.yml
-specificationVersion: '0.19'
 apis:
   - aid: fermyon:fermyon
-    name: Fermyon
-    description: >-
-      The simple, open source way to build and run apps powered by WebAssembly -
-      the next wave of cloud compute. 
-    humanURL: ' https://developer.fermyon.com/'
+    name: Fermyon API
     tags:
-      - API
+      - WASM
+      - Compute
+      - Functions
+    humanURL: https://developer.fermyon.com/
     properties:
-      - type: Documentation
-        url: ' https://developer.fermyon.com/'
+      - url: https://developer.fermyon.com/
+        type: Documentation
+    description: >-
+      Fermyon Wasm Functions is a multi-tenant, hosted, globally distributed
+      engine for serverless functions running on Akamai Cloud, the most
+      distributed cloud network.
+name: Fermyon
+tags:
+  - WASM
+  - Compute
+  - Functions
+type: Contract
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2025-02-08'
+modified: '2025-04-02'
+position: Consuming
+description: >-
+  Fermyon Wasm Functions is a multi-tenant, hosted, globally distributed engine
+  for serverless functions running on Akamai Cloud, the most distributed cloud
+  network.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+specificationVersion: '0.19'
