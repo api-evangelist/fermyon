@@ -11,9 +11,9 @@ created: '2025-02-08'
 modified: '2026-03-16'
 position: Consumer
 tags:
-  - WASM
   - Compute
   - Functions
+  - WASM
 url: >-
   https://raw.githubusercontent.com/api-evangelist/fermyon/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -21,9 +21,9 @@ apis:
   - aid: fermyon:fermyon
     name: Fermyon API
     tags:
-      - WASM
       - Compute
       - Functions
+      - WASM
     humanURL: https://developer.fermyon.com/
     properties:
       - url: https://developer.fermyon.com/
