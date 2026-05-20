@@ -40,6 +40,10 @@ apis:
       - type: GettingStarted
         url: https://developer.fermyon.com/spin/v3/quickstart
 common:
+  - type: GitHubOrganization
+    url: https://github.com/fermyon
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/fermyon
   - type: Portal
     url: https://developer.fermyon.com/
   - type: Documentation
