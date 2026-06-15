@@ -1,0 +1,1704 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fermyon Cloud API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/accounts/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/accounts/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/accounts/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/accounts/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/accounts/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/accounts/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/apps",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "IsSortedAscending",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exactMatch",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/apps",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/apps/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/apps/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PUT /api/apps/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud.fermyon.com/api/apps/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/apps/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/apps/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/apps/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/apps/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/apps/{id}/request-count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/apps/:id/request-count",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/apps/{id}/logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/apps/:id/logs",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/apps/{id}/logs/raw",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/apps/:id/logs/raw",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/apps/{id}/events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/apps/:id/events",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "auth-tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/auth-tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/auth-tokens",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/auth-tokens/refresh",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/auth-tokens/refresh",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/channels",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "IsSortedAscending",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/channels",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/channels/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/channels/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PUT /api/channels/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud.fermyon.com/api/channels/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/channels/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/channels/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/channels/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/channels/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PUT /api/channels/{channelId}/desired-status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud.fermyon.com/api/channels/:channelId/desired-status",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "channelId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/channels/{id}/logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/channels/:id/logs",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/channels/{id}/logs/raw",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/channels/:id/logs/raw",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/channels/{id}/healthz",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/channels/:id/healthz",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "custom-domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/custom-domains/{domainName}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/custom-domains/:domainName",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "device-codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/device-codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/device-codes",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/device-codes/{userCode}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/device-codes/:userCode",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userCode",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/device-codes/activate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/device-codes/activate",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "key-value-pairs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/key-value-pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/key-value-pairs",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "key-value-stores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/key-value-stores/{store}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/key-value-stores/:store",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "store",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/key-value-stores/{store}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/key-value-stores/:store",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "store",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/key-value-stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/key-value-stores",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/key-value-stores/{store}/links",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/key-value-stores/:store/links",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "store",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/key-value-stores/{store}/links",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/key-value-stores/:store/links",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "store",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/key-value-stores/{store}/rename",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/key-value-stores/:store/rename",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "store",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "oci",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/oci",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/oci",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PUT /api/oci/{name}/manifests/{reference}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud.fermyon.com/api/oci/:name/manifests/:reference",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "HEAD /api/oci/{name}/manifests/{reference}",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://cloud.fermyon.com/api/oci/:name/manifests/:reference",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/oci/{name}/blobs/uploads",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/oci/:name/blobs/uploads",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/oci/{name}/blobs/uploads/{digest}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/oci/:name/blobs/uploads/:digest",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PUT /api/oci/{name}/blobs/uploads/{digest}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cloud.fermyon.com/api/oci/:name/blobs/uploads/:digest",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/oci/{name}/blobs/uploads/{digest}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/oci/:name/blobs/uploads/:digest",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/oci/{name}/blobs/uploads/{digest}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/oci/:name/blobs/uploads/:digest",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "digest",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/payments/setup-checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/payments/setup-checkout",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/payments/customer-portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/payments/customer-portal",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/payments/plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/payments/plans",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "personal-access-tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/personal-access-tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/personal-access-tokens",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isSortedAscending",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/personal-access-tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/personal-access-tokens",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/personal-access-tokens/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/personal-access-tokens/:id",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "revisions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/revisions",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/revisions",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "sql-databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/sql-databases/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/sql-databases/create",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/sql-databases/execute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/sql-databases/execute",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/sql-databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/sql-databases",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/sql-databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/sql-databases",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/sql-databases/{database}/links",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/sql-databases/:database/links",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/sql-databases/{database}/links",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/sql-databases/:database/links",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/sql-databases/{database}/rename",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/sql-databases/:database/rename",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "variable-pairs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /api/variable-pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/variable-pairs",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/variable-pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/variable-pairs",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/variable-pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/variable-pairs",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
