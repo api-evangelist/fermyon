@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/fermyon-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer
+    {token}"'
+  sources:
+  - openapi/fermyon-openapi.yml

@@ -40,6 +40,12 @@ apis:
       - type: GettingStarted
         url: https://developer.fermyon.com/spin/v3/quickstart
 common:
+  - type: VulnerabilityDisclosure
+    url: security/fermyon-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/fermyon-domain-security.yml
+  - type: Authentication
+    url: authentication/fermyon-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/fermyon
   - type: LinkedIn
