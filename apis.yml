@@ -40,6 +40,8 @@ apis:
       - type: GettingStarted
         url: https://developer.fermyon.com/spin/v3/quickstart
 common:
+  - type: AgenticAccess
+    url: agentic-access/fermyon-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/fermyon-vulnerability-disclosure.yml
   - type: DomainSecurity
