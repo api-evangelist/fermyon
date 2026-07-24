@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Fermyon Cloud accounts payments API
+  version: '1.0'
+  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
+servers:
+- url: https://cloud.fermyon.com
+  description: Fermyon Cloud production API
+security:
+- Bearer: []
+tags:
+- name: payments
+paths:
+  /api/payments/setup-checkout:
+    post:
+      tags:
+      - payments
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentIntegrationUrl'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntegrationUrl'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntegrationUrl'
+  /api/payments/customer-portal:
+    get:
+      tags:
+      - payments
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentIntegrationUrl'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntegrationUrl'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntegrationUrl'
+  /api/payments/plans:
+    get:
+      tags:
+      - payments
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanItem'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanItem'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlanItem'
+components:
+  schemas:
+    PaymentIntegrationUrl:
+      type: object
+      properties:
+        url:
+          type: string
+      additionalProperties: false
+    PlanItem:
+      required:
+      - accountPlanType
+      - price
+      type: object
+      properties:
+        accountPlanType:
+          minLength: 1
+          type: string
+        price:
+          type: number
+          format: double
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      name: Authorization
+      in: header

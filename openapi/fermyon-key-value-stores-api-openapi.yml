@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: Fermyon Cloud accounts key-value-stores API
+  version: '1.0'
+  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
+servers:
+- url: https://cloud.fermyon.com
+  description: Fermyon Cloud production API
+security:
+- Bearer: []
+tags:
+- name: key-value-stores
+paths:
+  /api/key-value-stores/{store}:
+    post:
+      tags:
+      - key-value-stores
+      parameters:
+      - name: store
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - key-value-stores
+      parameters:
+      - name: store
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+  /api/key-value-stores:
+    get:
+      tags:
+      - key-value-stores
+      parameters:
+      - name: appId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/KeyValueStoresList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyValueStoresList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/KeyValueStoresList'
+  /api/key-value-stores/{store}/links:
+    post:
+      tags:
+      - key-value-stores
+      parameters:
+      - name: store
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+        required: true
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - key-value-stores
+      parameters:
+      - name: store
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+        required: true
+      responses:
+        '200':
+          description: Success
+  /api/key-value-stores/{store}/rename:
+    patch:
+      tags:
+      - key-value-stores
+      parameters:
+      - name: store
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    KeyValueStoresList:
+      required:
+      - keyValueStores
+      type: object
+      properties:
+        keyValueStores:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueStoreItem'
+      additionalProperties: false
+    ResourceLabel:
+      required:
+      - appId
+      - label
+      type: object
+      properties:
+        label:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+        appName:
+          type: string
+      additionalProperties: false
+    KeyValueStoreItem:
+      required:
+      - links
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      name: Authorization
+      in: header

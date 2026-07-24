@@ -1,0 +1,736 @@
+openapi: 3.1.0
+info:
+  title: Fermyon Cloud accounts channels API
+  version: '1.0'
+  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
+servers:
+- url: https://cloud.fermyon.com
+  description: Fermyon Cloud production API
+security:
+- Bearer: []
+tags:
+- name: channels
+paths:
+  /api/channels:
+    get:
+      tags:
+      - channels
+      parameters:
+      - name: searchText
+        in: query
+        schema:
+          type: string
+          default: ''
+      - name: pageIndex
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          default: Name
+      - name: IsSortedAscending
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChannelItemPage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelItemPage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChannelItemPage'
+    post:
+      tags:
+      - channels
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateChannelCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+  /api/channels/{id}:
+    get:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChannelItem'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChannelItem'
+    put:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateChannelCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+    patch:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PatchChannelCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchChannelCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PatchChannelCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PatchChannelCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+  /api/channels/{channelId}/desired-status:
+    put:
+      tags:
+      - channels
+      parameters:
+      - name: channelId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDesiredStatusCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDesiredStatusCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDesiredStatusCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateDesiredStatusCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+  /api/channels/{id}/logs:
+    get:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: max
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: since
+        in: query
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetChannelLogsVm'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelLogsVm'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelLogsVm'
+  /api/channels/{id}/logs/raw:
+    get:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: max
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: since
+        in: query
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetChannelRawLogsVm'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelRawLogsVm'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelRawLogsVm'
+  /api/channels/{id}/healthz:
+    get:
+      tags:
+      - channels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResult'
+components:
+  schemas:
+    GuidNullableField:
+      type: string
+      properties:
+        value:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+    Meta:
+      type: object
+      properties:
+        appId:
+          type: string
+        channelId:
+          type: string
+        deploymentId:
+          type: string
+        requestId:
+          type: string
+        triggerId:
+          type: string
+        componentId:
+          type: string
+      additionalProperties: false
+    Entry:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        logLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogLine'
+      additionalProperties: false
+    UpdateDesiredStatusCommand:
+      required:
+      - channelId
+      - desiredStatus
+      type: object
+      properties:
+        channelId:
+          type: string
+          format: uuid
+        desiredStatus:
+          $ref: '#/components/schemas/DesiredStatus'
+      additionalProperties: false
+    ApiHealthStatus:
+      enum:
+      - Healthy
+      - Unhealthy
+      - Degraded
+      type: string
+    PatchChannelCommand:
+      type: object
+      properties:
+        channelId:
+          type: string
+          format: uuid
+        name:
+          $ref: '#/components/schemas/StringField'
+        domain:
+          $ref: '#/components/schemas/StringField'
+        revisionSelectionStrategy:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategyField'
+        rangeRule:
+          $ref: '#/components/schemas/StringField'
+        activeRevisionId:
+          $ref: '#/components/schemas/GuidNullableField'
+      additionalProperties: false
+    AppChannelListItem:
+      required:
+      - created
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        activeRevisionNumber:
+          type: string
+        domain:
+          type: string
+        created:
+          type: string
+          format: date-time
+        healthStatus:
+          $ref: '#/components/schemas/ApiHealthStatus'
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ChannelRevisionSelectionStrategy:
+      enum:
+      - UseRangeRule
+      - UseSpecifiedRevision
+      type: string
+    RevisionItem:
+      required:
+      - appId
+      - components
+      - id
+      - revisionNumber
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        appId:
+          type: string
+          format: uuid
+        revisionNumber:
+          minLength: 1
+          type: string
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/RevisionComponentDto'
+          readOnly: true
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    CreateChannelCommand:
+      required:
+      - appId
+      - name
+      - revisionSelectionStrategy
+      type: object
+      properties:
+        appId:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        revisionSelectionStrategy:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
+        rangeRule:
+          type: string
+          nullable: true
+        activeRevisionId:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+    RevisionComponentDto:
+      required:
+      - id
+      - name
+      - source
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        source:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+        route:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ChannelItemPage:
+      required:
+      - isLastPage
+      - items
+      - pageIndex
+      - pageSize
+      - totalItems
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelItem'
+        totalItems:
+          type: integer
+          format: int32
+        pageIndex:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        isLastPage:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    GetChannelRawLogsVm:
+      required:
+      - entries
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entry'
+      additionalProperties: false
+    LogLine:
+      type: object
+      properties:
+        time:
+          type: string
+        source:
+          type: string
+        line:
+          type: string
+      additionalProperties: false
+    DesiredStatus:
+      enum:
+      - Running
+      - Dead
+      type: string
+    EnvironmentVariableItem:
+      required:
+      - channelId
+      - key
+      - value
+      type: object
+      properties:
+        channelId:
+          type: string
+          format: uuid
+        key:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ChannelRevisionSelectionStrategyField:
+      type: string
+      properties:
+        value:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
+      additionalProperties: false
+    HealthCheckResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ApiHealthStatus'
+      additionalProperties: false
+    UpdateChannelCommand:
+      required:
+      - id
+      - name
+      - revisionSelectionStrategy
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        revisionSelectionStrategy:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
+        rangeRule:
+          type: string
+          nullable: true
+        activeRevisionId:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+    StringField:
+      type: string
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+    AppSummaryDto:
+      required:
+      - channels
+      - id
+      - name
+      - storageId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        storageId:
+          minLength: 1
+          type: string
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppChannelListItem'
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    GetChannelLogsVm:
+      required:
+      - logs
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    ChannelItem:
+      required:
+      - appId
+      - desiredStatus
+      - domain
+      - environmentVariables
+      - id
+      - name
+      - revisionSelectionStrategy
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        appId:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        domain:
+          minLength: 1
+          type: string
+        revisionSelectionStrategy:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
+        desiredStatus:
+          minLength: 1
+          type: string
+        activeRevision:
+          $ref: '#/components/schemas/RevisionItem'
+        lastPublishAt:
+          type: string
+          format: date-time
+          nullable: true
+        rangeRule:
+          type: string
+          nullable: true
+        lastModified:
+          type: string
+          format: date-time
+        appSummary:
+          $ref: '#/components/schemas/AppSummaryDto'
+        environmentVariables:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentVariableItem'
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      name: Authorization
+      in: header

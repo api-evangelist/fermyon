@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: Fermyon Cloud accounts auth-tokens API
+  version: '1.0'
+  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
+servers:
+- url: https://cloud.fermyon.com
+  description: Fermyon Cloud production API
+security:
+- Bearer: []
+tags:
+- name: auth-tokens
+paths:
+  /api/auth-tokens:
+    post:
+      tags:
+      - auth-tokens
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+  /api/auth-tokens/refresh:
+    post:
+      tags:
+      - auth-tokens
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+components:
+  schemas:
+    CreateTokenCommand:
+      type: object
+      properties:
+        providerCode:
+          type: string
+        clientId:
+          type: string
+        provider:
+          $ref: '#/components/schemas/AccountProvider'
+        isMarketingEmailOn:
+          type: boolean
+      additionalProperties: false
+    AccountProvider:
+      enum:
+      - GitHub
+      - DeviceFlow
+      type: string
+    RefreshTokenCommand:
+      required:
+      - refreshToken
+      - token
+      type: object
+      properties:
+        token:
+          minLength: 1
+          type: string
+        refreshToken:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    TokenInfo:
+      required:
+      - expiration
+      - refreshToken
+      - token
+      type: object
+      properties:
+        token:
+          minLength: 1
+          type: string
+        refreshToken:
+          minLength: 1
+          type: string
+        expiration:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      name: Authorization
+      in: header

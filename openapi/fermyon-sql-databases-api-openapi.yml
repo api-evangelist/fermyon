@@ -1,0 +1,341 @@
+openapi: 3.1.0
+info:
+  title: Fermyon Cloud accounts sql-databases API
+  version: '1.0'
+  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
+servers:
+- url: https://cloud.fermyon.com
+  description: Fermyon Cloud production API
+security:
+- Bearer: []
+tags:
+- name: sql-databases
+paths:
+  /api/sql-databases/create:
+    post:
+      tags:
+      - sql-databases
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateSqlDatabaseCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSqlDatabaseCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateSqlDatabaseCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateSqlDatabaseCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+  /api/sql-databases/execute:
+    post:
+      tags:
+      - sql-databases
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ExecuteSqlStatementCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteSqlStatementCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteSqlStatementCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExecuteSqlStatementCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+  /api/sql-databases:
+    delete:
+      tags:
+      - sql-databases
+      parameters:
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DeleteSqlDatabaseCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSqlDatabaseCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DeleteSqlDatabaseCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DeleteSqlDatabaseCommand'
+        required: true
+      responses:
+        '200':
+          description: Success
+    get:
+      tags:
+      - sql-databases
+      parameters:
+      - name: appId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/GetSqlDatabasesQuery'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetSqlDatabasesQuery'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/GetSqlDatabasesQuery'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/GetSqlDatabasesQuery'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DatabasesList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabasesList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DatabasesList'
+  /api/sql-databases/{database}/links:
+    post:
+      tags:
+      - sql-databases
+      parameters:
+      - name: database
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+        required: true
+      responses:
+        '200':
+          description: Success
+    delete:
+      tags:
+      - sql-databases
+      parameters:
+      - name: database
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResourceLabel'
+        required: true
+      responses:
+        '200':
+          description: Success
+  /api/sql-databases/{database}/rename:
+    patch:
+      tags:
+      - sql-databases
+      parameters:
+      - name: database
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Api-Version
+        in: header
+        description: The requested API version
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    CreateSqlDatabaseCommand:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+          nullable: true
+        label:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DatabasesList:
+      required:
+      - databases
+      type: object
+      properties:
+        databases:
+          type: array
+          items:
+            $ref: '#/components/schemas/Database'
+      additionalProperties: false
+    ExecuteSqlStatementCommand:
+      required:
+      - database
+      - default
+      - statement
+      type: object
+      properties:
+        database:
+          minLength: 1
+          type: string
+        default:
+          type: boolean
+        statement:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ResourceLabel:
+      required:
+      - appId
+      - label
+      type: object
+      properties:
+        label:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+        appName:
+          type: string
+      additionalProperties: false
+    GetSqlDatabasesQuery:
+      type: object
+      properties:
+        appId:
+          type: string
+          format: uuid
+          nullable: true
+      additionalProperties: false
+    Database:
+      required:
+      - links
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        default:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+    DeleteSqlDatabaseCommand:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
+      name: Authorization
+      in: header
