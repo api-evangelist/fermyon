@@ -7,9 +7,22 @@ description: >-
   providing tools and runtimes for building and operating WebAssembly-based
   serverless applications.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fermyon.png
 tags:
   - Compute
   - Functions
@@ -21,24 +34,149 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/fermyon/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: fermyon:fermyon
-    name: Fermyon Wasm Functions
-    description: >-
-      Fermyon Wasm Functions is a multi-tenant, hosted, globally distributed
-      engine for serverless functions running on Akamai Cloud. Developers
-      author functions with the Spin Framework and deploy them to a globally
-      distributed runtime.
-    humanURL: https://developer.fermyon.com/
-    tags:
-      - Compute
-      - Functions
-      - WebAssembly
-      - Serverless
-    properties:
-      - type: Documentation
-        url: https://developer.fermyon.com/
-      - type: GettingStarted
-        url: https://developer.fermyon.com/spin/v3/quickstart
+- aid: fermyon:fermyon
+  name: Fermyon Wasm Functions
+  description: >-
+    Fermyon Wasm Functions is a multi-tenant, hosted, globally distributed engine for serverless functions
+    running on Akamai Cloud. Developers author functions with the Spin Framework and deploy them to a
+    globally distributed runtime.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - Compute
+  - Functions
+  - WebAssembly
+  - Serverless
+  properties:
+  - type: Documentation
+    url: https://developer.fermyon.com/
+  - type: GettingStarted
+    url: https://developer.fermyon.com/spin/v3/quickstart
+- aid: fermyon:fermyon-accounts-api
+  name: Fermyon accounts API
+  description: The accounts API from Fermyon — 1 operation(s) for accounts.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-accounts-api-openapi.yml
+- aid: fermyon:fermyon-apps-api
+  name: Fermyon apps API
+  description: The apps API from Fermyon — 6 operation(s) for apps.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - apps
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-apps-api-openapi.yml
+- aid: fermyon:fermyon-auth-tokens-api
+  name: Fermyon auth-tokens API
+  description: The auth-tokens API from Fermyon — 2 operation(s) for auth-tokens.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - auth-tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-auth-tokens-api-openapi.yml
+- aid: fermyon:fermyon-channels-api
+  name: Fermyon channels API
+  description: The channels API from Fermyon — 6 operation(s) for channels.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - channels
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-channels-api-openapi.yml
+- aid: fermyon:fermyon-custom-domains-api
+  name: Fermyon custom-domains API
+  description: The custom-domains API from Fermyon — 1 operation(s) for custom-domains.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - custom-domains
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-custom-domains-api-openapi.yml
+- aid: fermyon:fermyon-device-codes-api
+  name: Fermyon device-codes API
+  description: The device-codes API from Fermyon — 3 operation(s) for device-codes.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - device-codes
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-device-codes-api-openapi.yml
+- aid: fermyon:fermyon-key-value-pairs-api
+  name: Fermyon key-value-pairs API
+  description: The key-value-pairs API from Fermyon — 1 operation(s) for key-value-pairs.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - key-value-pairs
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-key-value-pairs-api-openapi.yml
+- aid: fermyon:fermyon-key-value-stores-api
+  name: Fermyon key-value-stores API
+  description: The key-value-stores API from Fermyon — 4 operation(s) for key-value-stores.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - key-value-stores
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-key-value-stores-api-openapi.yml
+- aid: fermyon:fermyon-oci-api
+  name: Fermyon oci API
+  description: The oci API from Fermyon — 4 operation(s) for oci.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - oci
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-oci-api-openapi.yml
+- aid: fermyon:fermyon-payments-api
+  name: Fermyon payments API
+  description: The payments API from Fermyon — 3 operation(s) for payments.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - payments
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-payments-api-openapi.yml
+- aid: fermyon:fermyon-personal-access-tokens-api
+  name: Fermyon personal-access-tokens API
+  description: The personal-access-tokens API from Fermyon — 2 operation(s) for personal-access-tokens.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - personal-access-tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-personal-access-tokens-api-openapi.yml
+- aid: fermyon:fermyon-revisions-api
+  name: Fermyon revisions API
+  description: The revisions API from Fermyon — 1 operation(s) for revisions.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-revisions-api-openapi.yml
+- aid: fermyon:fermyon-sql-databases-api
+  name: Fermyon sql-databases API
+  description: The sql-databases API from Fermyon — 5 operation(s) for sql-databases.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - sql-databases
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-sql-databases-api-openapi.yml
+- aid: fermyon:fermyon-variable-pairs-api
+  name: Fermyon variable-pairs API
+  description: The variable-pairs API from Fermyon — 1 operation(s) for variable-pairs.
+  humanURL: https://developer.fermyon.com/
+  tags:
+  - variable-pairs
+  properties:
+  - type: OpenAPI
+    url: openapi/fermyon-variable-pairs-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/fermyon-agentic-access.yml
