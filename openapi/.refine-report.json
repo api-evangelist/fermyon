@@ -1,0 +1,40 @@
+{
+  "provider": "fermyon",
+  "sources": [
+    "fermyon-accounts-api-openapi.yml",
+    "fermyon-apps-api-openapi.yml",
+    "fermyon-auth-tokens-api-openapi.yml",
+    "fermyon-channels-api-openapi.yml",
+    "fermyon-custom-domains-api-openapi.yml",
+    "fermyon-device-codes-api-openapi.yml",
+    "fermyon-key-value-pairs-api-openapi.yml",
+    "fermyon-key-value-stores-api-openapi.yml",
+    "fermyon-oci-api-openapi.yml",
+    "fermyon-payments-api-openapi.yml",
+    "fermyon-personal-access-tokens-api-openapi.yml",
+    "fermyon-revisions-api-openapi.yml",
+    "fermyon-sql-databases-api-openapi.yml",
+    "fermyon-variable-pairs-api-openapi.yml"
+  ],
+  "outputs": [
+    "fermyon-accounts-api-openapi.yml",
+    "fermyon-apps-api-openapi.yml",
+    "fermyon-auth-tokens-api-openapi.yml",
+    "fermyon-channels-api-openapi.yml",
+    "fermyon-custom-domains-api-openapi.yml",
+    "fermyon-device-codes-api-openapi.yml",
+    "fermyon-key-value-pairs-api-openapi.yml",
+    "fermyon-key-value-stores-api-openapi.yml",
+    "fermyon-oci-api-openapi.yml",
+    "fermyon-payments-api-openapi.yml",
+    "fermyon-personal-access-tokens-api-openapi.yml",
+    "fermyon-revisions-api-openapi.yml",
+    "fermyon-sql-databases-api-openapi.yml",
+    "fermyon-variable-pairs-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
