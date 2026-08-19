@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fermyon Cloud accounts sql-databases API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "sql-databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/sql-databases/create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/sql-databases/create",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/sql-databases/execute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/sql-databases/execute",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/sql-databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/sql-databases",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/sql-databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/sql-databases",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/sql-databases/{database}/links",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/sql-databases/:database/links",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /api/sql-databases/{database}/links",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.fermyon.com/api/sql-databases/:database/links",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "PATCH /api/sql-databases/{database}/rename",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cloud.fermyon.com/api/sql-databases/:database/rename",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

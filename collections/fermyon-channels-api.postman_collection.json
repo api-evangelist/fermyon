@@ -1,0 +1,1232 @@
+{
+  "item": [
+    {
+      "id": "8fa54782-63cb-4fc7-a18e-f055c10fa8be",
+      "name": "channels",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d54f166-bbbc-41bf-a0e6-0d28f975ab0d",
+          "name": "/api/channels",
+          "request": {
+            "name": "/api/channels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "pageIndex",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "Name"
+                },
+                {
+                  "disabled": false,
+                  "key": "IsSortedAscending",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98d2b4ad-61df-4e71-b9ae-6a5d4101670b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "Name"
+                    },
+                    {
+                      "key": "IsSortedAscending",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isLastPage\": false,\n  \"items\": [\n    {\n      \"appId\": \"288badbe-95d7-64cd-bf91-9e8d046b1562\",\n      \"desiredStatus\": \"string\",\n      \"domain\": \"string\",\n      \"environmentVariables\": [\n        {\n          \"channelId\": \"33e22441-e927-d965-eab6-c5aac6f3986b\",\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"channelId\": \"67920cf2-02dc-d9f3-8604-67b24858324c\",\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": \"3d80aadb-8f12-00d0-6fc4-658d49f9ee16\",\n      \"name\": \"string\",\n      \"revisionSelectionStrategy\": \"UseRangeRule\",\n      \"activeRevision\": {\n        \"appId\": \"f007f567-de1c-8190-9cd4-759250f23dd9\",\n        \"components\": [\n          {\n            \"id\": \"41d5f1a1-7ee4-60f5-783c-5a588d3ded9e\",\n            \"name\": \"string\",\n            \"source\": \"string\",\n            \"route\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"id\": \"6ad11422-1770-393f-6ba2-b5985172c850\",\n            \"name\": \"string\",\n            \"source\": \"string\",\n            \"route\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"id\": \"173517c6-1232-1904-751a-7032319f3b82\",\n        \"revisionNumber\": \"string\",\n        \"lastModified\": \"1954-02-07T00:36:08.517Z\"\n      },\n      \"lastPublishAt\": \"2014-12-02T12:28:42.625Z\",\n      \"rangeRule\": \"string\",\n      \"lastModified\": \"1998-12-10T18:43:08.380Z\",\n      \"appSummary\": {\n        \"channels\": [\n          {\n            \"created\": \"1995-11-20T18:25:07.213Z\",\n            \"id\": \"9c3ac6b2-266d-27fc-b9c7-a1dcfcca9e05\",\n            \"name\": \"string\",\n            \"activeRevisionNumber\": \"string\",\n            \"domain\": \"string\",\n            \"healthStatus\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastModified\": \"1947-02-02T22:37:01.289Z\"\n          },\n          {\n            \"created\": \"1965-01-09T06:11:26.653Z\",\n            \"id\": \"0983a774-69c0-871d-c049-b25fc9a2ac68\",\n            \"name\": \"string\",\n            \"activeRevisionNumber\": \"string\",\n            \"domain\": \"string\",\n            \"healthStatus\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastModified\": \"1974-01-22T07:44:03.206Z\"\n          }\n        ],\n        \"id\": \"57177bac-a6b8-f121-9f6a-e111cf35595b\",\n        \"name\": \"string\",\n        \"storageId\": \"string\",\n        \"lastModified\": \"2017-11-26T21:10:48.766Z\"\n      }\n    },\n    {\n      \"appId\": \"482d418f-c1f5-beba-d488-3f0760076563\",\n      \"desiredStatus\": \"strin\",\n      \"domain\": \"string\",\n      \"environmentVariables\": [\n        {\n          \"channelId\": \"8451d051-9f13-5d4d-496c-f7820600f5e9\",\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"channelId\": \"e1dee221-2149-0292-db7c-0bf4d469abc8\",\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": \"2d4e9ff1-84ca-cff0-a130-1be528147924\",\n      \"name\": \"string\",\n      \"revisionSelectionStrategy\": \"UseRangeRule\",\n      \"activeRevision\": {\n        \"appId\": \"18010bb3-0c0b-2e83-2f44-717c93248f0f\",\n        \"components\": [\n          {\n            \"id\": \"e6bbd40c-b653-aef2-715f-39a902f7746d\",\n            \"name\": \"string\",\n            \"source\": \"string\",\n            \"route\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"id\": \"b7b5e86b-6954-fc50-c241-1f2edfb875df\",\n            \"name\": \"string\",\n            \"source\": \"string\",\n            \"route\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"id\": \"54472def-fdfd-d5d2-b7be-bf2bf5d50785\",\n        \"revisionNumber\": \"string\",\n        \"lastModified\": \"2004-01-12T00:55:17.872Z\"\n      },\n      \"lastPublishAt\": \"1999-05-17T17:18:35.104Z\",\n      \"rangeRule\": \"string\",\n      \"lastModified\": \"2017-09-17T03:12:38.459Z\",\n      \"appSummary\": {\n        \"channels\": [\n          {\n            \"created\": \"1954-12-24T03:00:15.295Z\",\n            \"id\": \"c26bf41b-954f-1799-4aea-f3e0725957a3\",\n            \"name\": \"string\",\n            \"activeRevisionNumber\": \"string\",\n            \"domain\": \"string\",\n            \"healthStatus\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastModified\": \"2025-09-14T10:37:30.304Z\"\n          },\n          {\n            \"created\": \"1947-11-05T19:11:44.338Z\",\n            \"id\": \"204a0e1e-441f-f4e4-4c6c-09040ed38ce7\",\n            \"name\": \"string\",\n            \"activeRevisionNumber\": \"string\",\n            \"domain\": \"string\",\n            \"healthStatus\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastModified\": \"2009-10-13T04:21:42.248Z\"\n          }\n        ],\n        \"id\": \"910ba0a5-3dfd-6804-b196-c3e5b1c0fb62\",\n        \"name\": \"string\",\n        \"storageId\": \"string\",\n        \"lastModified\": \"1982-11-10T09:36:02.826Z\"\n      }\n    }\n  ],\n  \"pageIndex\": 665,\n  \"pageSize\": 4576,\n  \"totalItems\": 650\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "066189ac-5f7e-4174-8c00-ac745bb97a6c",
+          "name": "/api/channels",
+          "request": {
+            "name": "/api/channels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"revisionSelectionStrategy\": \"<string>\",\n  \"rangeRule\": \"<string>\",\n  \"activeRevisionId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4d93d52-b30f-45c5-b925-b79e9f3d3b0f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"revisionSelectionStrategy\": \"UseRangeRule\",\n  \"rangeRule\": \"<string>\",\n  \"activeRevisionId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"eac0d479-9bea-988b-9715-413878ae7659\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3147d809-7624-4e59-a490-433f3da8c2e2",
+          "name": "/api/channels/:id",
+          "request": {
+            "name": "/api/channels/:id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b540a0b2-a01a-4b55-b6a0-f8c9301905b9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appId\": \"60f47065-a426-cd26-ab87-4b241b345397\",\n  \"desiredStatus\": \"string\",\n  \"domain\": \"string\",\n  \"environmentVariables\": [\n    {\n      \"channelId\": \"2deaa2dd-3f2a-f74c-6e94-1f7e50d439bd\",\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"channelId\": \"9d514ebf-d09f-14db-319c-cdf349a004d2\",\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"id\": \"0b7f3f38-9fd6-7616-b843-a6cee3410b62\",\n  \"name\": \"string\",\n  \"revisionSelectionStrategy\": \"UseRangeRule\",\n  \"activeRevision\": {\n    \"appId\": \"0c2b8ac1-bb49-1fa6-18e8-77015fd357ba\",\n    \"components\": [\n      {\n        \"id\": \"47da36c3-c577-b0e3-9c54-2da0bd391663\",\n        \"name\": \"string\",\n        \"source\": \"string\",\n        \"route\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"id\": \"29571cb5-1059-a207-e654-6374d61136d1\",\n        \"name\": \"string\",\n        \"source\": \"string\",\n        \"route\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"id\": \"415ad057-5889-2bd4-8617-8fcb65c808fa\",\n    \"revisionNumber\": \"string\",\n    \"lastModified\": \"1975-07-23T01:45:06.848Z\"\n  },\n  \"lastPublishAt\": \"1961-05-22T18:42:22.569Z\",\n  \"rangeRule\": \"string\",\n  \"lastModified\": \"1989-12-13T02:37:04.598Z\",\n  \"appSummary\": {\n    \"channels\": [\n      {\n        \"created\": \"1982-06-15T05:24:08.979Z\",\n        \"id\": \"d894d97a-8baf-d6dd-cc0b-ec906c4d269d\",\n        \"name\": \"string\",\n        \"activeRevisionNumber\": \"string\",\n        \"domain\": \"string\",\n        \"healthStatus\": \"Degraded\",\n        \"lastModified\": \"1972-06-01T09:34:21.359Z\"\n      },\n      {\n        \"created\": \"1993-11-04T12:04:54.496Z\",\n        \"id\": \"6019adb4-2f15-0a0c-fa49-5b19772aa504\",\n        \"name\": \"string\",\n        \"activeRevisionNumber\": \"string\",\n        \"domain\": \"string\",\n        \"healthStatus\": \"Degraded\",\n        \"lastModified\": \"1976-03-22T03:42:32.558Z\"\n      }\n    ],\n    \"id\": \"7e384d7e-8331-17c9-e128-a076e92ccb4b\",\n    \"name\": \"string\",\n    \"storageId\": \"string\",\n    \"lastModified\": \"1978-04-18T15:45:04.903Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "833b9b08-932d-4b7c-9809-ed240b01b4f4",
+          "name": "/api/channels/:id",
+          "request": {
+            "name": "/api/channels/:id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"revisionSelectionStrategy\": \"<string>\",\n  \"rangeRule\": \"<string>\",\n  \"activeRevisionId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4bd574e-f1cb-4405-85d6-d86d351d2481",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"revisionSelectionStrategy\": \"UseSpecifiedRevision\",\n  \"rangeRule\": \"<string>\",\n  \"activeRevisionId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07299835-df52-4b90-aba1-050b733f6589",
+          "name": "/api/channels/:id",
+          "request": {
+            "name": "/api/channels/:id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<uuid>\",\n  \"name\": {\n    \"value\": \"<string>\"\n  },\n  \"domain\": {\n    \"value\": \"<string>\"\n  },\n  \"revisionSelectionStrategy\": {\n    \"value\": \"<string>\"\n  },\n  \"rangeRule\": {\n    \"value\": \"<string>\"\n  },\n  \"activeRevisionId\": {\n    \"value\": \"<uuid>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3c206c1-af1b-48fc-a046-17e95c8ab22d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<uuid>\",\n  \"name\": {\n    \"value\": \"string\"\n  },\n  \"domain\": {\n    \"value\": \"string\"\n  },\n  \"revisionSelectionStrategy\": {\n    \"value\": \"UseSpecifiedRevision\"\n  },\n  \"rangeRule\": {\n    \"value\": \"string\"\n  },\n  \"activeRevisionId\": {\n    \"value\": \"cf3214d0-1ea0-eb67-bf8d-56a336c4de09\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85dc2e73-4c14-4a59-b291-94d2ccb37c3f",
+          "name": "/api/channels/:id",
+          "request": {
+            "name": "/api/channels/:id",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf347caf-f176-4d10-8786-175dca3921a4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c4e6041-c537-424c-ae2c-f815dd441dcd",
+          "name": "/api/channels/:channelId/desired-status",
+          "request": {
+            "name": "/api/channels/:channelId/desired-status",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":channelId",
+                "desired-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "channelId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<uuid>\",\n  \"desiredStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3b00066-ec83-4699-9006-00d929774fe5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":channelId",
+                    "desired-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "channelId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<uuid>\",\n  \"desiredStatus\": \"Running\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9314dff4-8882-4275-8728-50a8335f16df",
+          "name": "/api/channels/:id/logs",
+          "request": {
+            "name": "/api/channels/:id/logs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68a0dc99-e214-41a9-8947-c4cb0c979064",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e30f0dde-0c23-424d-b16a-5f2d84368ee5",
+          "name": "/api/channels/:id/logs/raw",
+          "request": {
+            "name": "/api/channels/:id/logs/raw",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id",
+                "logs",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81a9034c-389e-4599-a46e-a4e3f867c2d2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id",
+                    "logs",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entries\": [\n    {\n      \"meta\": {\n        \"appId\": \"string\",\n        \"channelId\": \"string\",\n        \"deploymentId\": \"string\",\n        \"requestId\": \"string\",\n        \"triggerId\": \"string\",\n        \"componentId\": \"string\"\n      },\n      \"logLines\": [\n        {\n          \"time\": \"string\",\n          \"source\": \"string\",\n          \"line\": \"string\"\n        },\n        {\n          \"time\": \"string\",\n          \"source\": \"string\",\n          \"line\": \"string\"\n        }\n      ]\n    },\n    {\n      \"meta\": {\n        \"appId\": \"string\",\n        \"channelId\": \"string\",\n        \"deploymentId\": \"string\",\n        \"requestId\": \"string\",\n        \"triggerId\": \"string\",\n        \"componentId\": \"string\"\n      },\n      \"logLines\": [\n        {\n          \"time\": \"string\",\n          \"source\": \"string\",\n          \"line\": \"string\"\n        },\n        {\n          \"time\": \"string\",\n          \"source\": \"string\",\n          \"line\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cbcc888-9a52-4dde-ada8-7447c443e4cd",
+          "name": "/api/channels/:id/healthz",
+          "request": {
+            "name": "/api/channels/:id/healthz",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "channels",
+                ":id",
+                "healthz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ea9f8c4-728f-4295-a093-310c8f069020",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "channels",
+                    ":id",
+                    "healthz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"Unhealthy\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.fermyon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad37b4f6-8bc7-4d9c-956c-0bdfd5cdde9e",
+    "name": "Fermyon Cloud accounts channels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.",
+      "type": "text/plain"
+    }
+  }
+}

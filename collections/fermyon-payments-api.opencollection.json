@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fermyon Cloud accounts payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/payments/setup-checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.fermyon.com/api/payments/setup-checkout",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/payments/customer-portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/payments/customer-portal",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /api/payments/plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.fermyon.com/api/payments/plans",
+            "headers": [
+              {
+                "name": "Api-Version",
+                "value": ""
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "ddf16499-0dbc-4980-8a44-d2d28c6fe41c",
+      "name": "revisions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bba9a23c-1366-4df3-a1dd-85fc6b0460c5",
+          "name": "/api/revisions",
+          "request": {
+            "name": "/api/revisions",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "revisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageIndex",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e7bd58f-b0a7-4de5-b7f3-a84b6f23820c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isLastPage\": false,\n  \"items\": [\n    {\n      \"appId\": \"fdd62b2f-2332-6e5f-4a00-56e66b285a46\",\n      \"components\": [\n        {\n          \"id\": \"20d95c88-7c61-9683-f51f-afae96ad79fb\",\n          \"name\": \"string\",\n          \"source\": \"string\",\n          \"route\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"c0d88c0e-298c-d4ec-1cd0-a76eded2ce0c\",\n          \"name\": \"string\",\n          \"source\": \"string\",\n          \"route\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"id\": \"1f216426-b9b0-b90e-9900-b4c916dd5830\",\n      \"revisionNumber\": \"string\",\n      \"lastModified\": \"1971-11-15T11:34:43.997Z\"\n    },\n    {\n      \"appId\": \"39807c3e-45b6-49fb-5815-09f4f312f823\",\n      \"components\": [\n        {\n          \"id\": \"319e4a0d-75bd-4157-371b-d979571d6de3\",\n          \"name\": \"string\",\n          \"source\": \"string\",\n          \"route\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"id\": \"22a32343-9cc7-b030-56fe-0ce1b2fa94e9\",\n          \"name\": \"string\",\n          \"source\": \"string\",\n          \"route\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"id\": \"254520e7-ace9-d8e9-4d3c-76b946aa062b\",\n      \"revisionNumber\": \"string\",\n      \"lastModified\": \"1970-08-21T17:11:29.326Z\"\n    }\n  ],\n  \"pageIndex\": 1890,\n  \"pageSize\": 617,\n  \"totalItems\": 4051\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6720e9f9-8f39-44c3-bd94-fec7c215cae2",
+          "name": "/api/revisions",
+          "request": {
+            "name": "/api/revisions",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "revisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The requested API version",
+                "key": "Api-Version",
+                "value": "1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appStorageId\": \"<string>\",\n  \"revisionNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f24988c-203d-4886-bfbb-2e34cb80a00a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "revisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The requested API version",
+                    "key": "Api-Version",
+                    "value": "1.0"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appStorageId\": \"<string>\",\n  \"revisionNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cloud.fermyon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b3c2882-2924-4205-a83e-9fa7269b440c",
+    "name": "Fermyon Cloud accounts revisions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.",
+      "type": "text/plain"
+    }
+  }
+}
