@@ -56,6 +56,8 @@ apis:
   description: The accounts API from Fermyon — 1 operation(s) for accounts.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -65,6 +67,8 @@ apis:
   description: The apps API from Fermyon — 6 operation(s) for apps.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Application
+  tags_raw:
   - apps
   properties:
   - type: OpenAPI
@@ -74,6 +78,8 @@ apis:
   description: The auth-tokens API from Fermyon — 2 operation(s) for auth-tokens.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Auth Tokens
+  tags_raw:
   - auth-tokens
   properties:
   - type: OpenAPI
@@ -83,6 +89,8 @@ apis:
   description: The channels API from Fermyon — 6 operation(s) for channels.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Channels
+  tags_raw:
   - channels
   properties:
   - type: OpenAPI
@@ -92,6 +100,8 @@ apis:
   description: The custom-domains API from Fermyon — 1 operation(s) for custom-domains.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Custom Domains
+  tags_raw:
   - custom-domains
   properties:
   - type: OpenAPI
@@ -110,6 +120,8 @@ apis:
   description: The key-value-pairs API from Fermyon — 1 operation(s) for key-value-pairs.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Key-Value Pairs
+  tags_raw:
   - key-value-pairs
   properties:
   - type: OpenAPI
@@ -119,6 +131,8 @@ apis:
   description: The key-value-stores API from Fermyon — 4 operation(s) for key-value-stores.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Key-Value Stores
+  tags_raw:
   - key-value-stores
   properties:
   - type: OpenAPI
@@ -128,6 +142,8 @@ apis:
   description: The oci API from Fermyon — 4 operation(s) for oci.
   humanURL: https://developer.fermyon.com/
   tags:
+  - OCI
+  tags_raw:
   - oci
   properties:
   - type: OpenAPI
@@ -137,6 +153,8 @@ apis:
   description: The payments API from Fermyon — 3 operation(s) for payments.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Payments
+  tags_raw:
   - payments
   properties:
   - type: OpenAPI
@@ -146,6 +164,8 @@ apis:
   description: The personal-access-tokens API from Fermyon — 2 operation(s) for personal-access-tokens.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Personal Access Tokens
+  tags_raw:
   - personal-access-tokens
   properties:
   - type: OpenAPI
@@ -155,6 +175,8 @@ apis:
   description: The revisions API from Fermyon — 1 operation(s) for revisions.
   humanURL: https://developer.fermyon.com/
   tags:
+  - Revisions
+  tags_raw:
   - revisions
   properties:
   - type: OpenAPI
@@ -164,6 +186,8 @@ apis:
   description: The sql-databases API from Fermyon — 5 operation(s) for sql-databases.
   humanURL: https://developer.fermyon.com/
   tags:
+  - SqlDatabases
+  tags_raw:
   - sql-databases
   properties:
   - type: OpenAPI
