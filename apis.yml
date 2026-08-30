@@ -89,7 +89,7 @@ apis:
   description: The auth-tokens API from Fermyon — 2 operation(s) for auth-tokens.
   humanURL: https://developer.fermyon.com/
   tags:
-  - Auth Tokens
+  - auth-tokens
   tags_raw:
   - auth-tokens
   properties:
@@ -111,7 +111,7 @@ apis:
   description: The custom-domains API from Fermyon — 1 operation(s) for custom-domains.
   humanURL: https://developer.fermyon.com/
   tags:
-  - Custom Domains
+  - custom-domains
   tags_raw:
   - custom-domains
   properties:
@@ -131,7 +131,7 @@ apis:
   description: The key-value-pairs API from Fermyon — 1 operation(s) for key-value-pairs.
   humanURL: https://developer.fermyon.com/
   tags:
-  - Key-Value Pairs
+  - key-value-pairs
   tags_raw:
   - key-value-pairs
   properties:
@@ -142,7 +142,7 @@ apis:
   description: The key-value-stores API from Fermyon — 4 operation(s) for key-value-stores.
   humanURL: https://developer.fermyon.com/
   tags:
-  - Key-Value Stores
+  - key-value-stores
   tags_raw:
   - key-value-stores
   properties:
@@ -153,7 +153,7 @@ apis:
   description: The oci API from Fermyon — 4 operation(s) for oci.
   humanURL: https://developer.fermyon.com/
   tags:
-  - OCI
+  - oci
   tags_raw:
   - oci
   properties:
@@ -175,7 +175,7 @@ apis:
   description: The personal-access-tokens API from Fermyon — 2 operation(s) for personal-access-tokens.
   humanURL: https://developer.fermyon.com/
   tags:
-  - Personal Access Tokens
+  - personal-access-tokens
   tags_raw:
   - personal-access-tokens
   properties:
@@ -186,7 +186,7 @@ apis:
   description: The revisions API from Fermyon — 1 operation(s) for revisions.
   humanURL: https://developer.fermyon.com/
   tags:
-  - Revisions
+  - revisions
   tags_raw:
   - revisions
   properties:
@@ -197,7 +197,7 @@ apis:
   description: The sql-databases API from Fermyon — 5 operation(s) for sql-databases.
   humanURL: https://developer.fermyon.com/
   tags:
-  - SqlDatabases
+  - sql-databases
   tags_raw:
   - sql-databases
   properties:
