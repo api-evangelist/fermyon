@@ -4,140 +4,207 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Fermyon
 providerId: fermyon
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-09'
+generated: '2026-09-09'
+method: searched
+source: https://www.fermyon.com/pricing
+docs:
+  - https://www.fermyon.com/pricing
+  - https://developer.fermyon.com/cloud/pricing-and-billing
+  - https://developer.fermyon.com/cloud/faq
+note: >-
+  Replaces the 2026-05-04 scaffold, whose tier names, prices and quota numbers were
+  bulk-sweep defaults and did not match anything Fermyon publishes. Every figure below is
+  read from the provider's own pricing page (https://www.fermyon.com/pricing, HTTP 200 on
+  2026-09-09) and the quota table in the Fermyon Cloud FAQ. These are FERMYON CLOUD plans.
+  Fermyon Wasm Functions / Akamai Functions publishes no price list at all — it is in
+  limited availability behind a sign-up form and its limits page says higher limits require
+  contacting an Akamai representative — so it is recorded below as an unpriced tier rather
+  than omitted.
 tags:
   - Compute
   - Functions
   - WebAssembly
   - Serverless
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: >-
+  Fermyon Cloud subscription plans as published by the provider: a permanently free Starter
+  tier, a single self-serve paid tier at $19.38/month, and a contact-sales Enterprise tier.
+  Limits are per-account quotas rather than per-request rate limits; see
+  rate-limits/fermyon-rate-limits.yml.
+currency: USD
+billing_period: monthly
 plans:
-  - id: fermyon-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Fermyon API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: starter
+    name: Starter
+    type: free
+    price: 0
+    currency: USD
+    period: month
+    description: >-
+      Free, no expiration. The provider describes it as "a great way to get started running
+      your apps", with usage limits.
+    onboarding: self-serve
+    support: Community Discord, documentation, email support
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - name: applications
+        label: Applications (Spin application count)
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Fermyon Wasm Functions
-  - id: fermyon-pro
-    name: Professional
+        value: 5
+        unit: applications
+      - name: request_execution
+        label: Request execution
+        type: quota
+        value: 100000
+        unit: requests/month
+      - name: custom_domains
+        label: Custom domains
+        type: quota
+        value: 5
+        unit: domains
+      - name: subdomains
+        label: Custom Fermyon subdomains
+        type: quota
+        value: 5
+        unit: subdomains
+      - name: key_value_stores
+        label: Key Value data stores
+        type: quota
+        value: 5
+        unit: stores
+      - name: key_value_storage
+        label: Key Value storage
+        type: quota
+        value: 1
+        unit: GB
+      - name: sqlite_storage
+        label: SQLite database storage
+        type: quota
+        value: 1
+        unit: GB
+      - name: bandwidth_egress
+        label: Bandwidth (egress)
+        type: quota
+        value: 5
+        unit: GB
+      - name: region_deployments
+        label: Region deployments
+        type: quota
+        value: 1
+        unit: regions
+  - id: growth
+    name: Growth
     type: paid
-    description: Production tier for Fermyon. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+    price: 19.38
+    currency: USD
+    period: month
+    description: >-
+      "An upgrade package to raise your usage limits and do more with Fermyon Cloud."
+      Billed monthly, recurring, first charge shortly after signup and the next on the
+      monthly anniversary.
+    onboarding: self-serve
+    support: Community Discord, documentation, email support, Help & Support
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
+      - name: applications
+        label: Applications (Spin application count)
         type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Fermyon Wasm Functions
-  - id: fermyon-enterprise
+        value: 100
+        unit: applications
+      - name: request_execution
+        label: Request execution
+        type: quota
+        value: 1000000
+        unit: requests/month
+      - name: custom_domains
+        label: Custom domains
+        type: quota
+        value: 100
+        unit: domains
+      - name: subdomains
+        label: Custom Fermyon subdomains
+        type: quota
+        value: 100
+        unit: subdomains
+      - name: key_value_stores
+        label: Key Value data stores
+        type: quota
+        value: 100
+        unit: stores
+      - name: key_value_storage
+        label: Key Value storage
+        type: quota
+        value: 2
+        unit: GB
+      - name: sqlite_storage
+        label: SQLite database storage
+        type: quota
+        value: 2
+        unit: GB
+      - name: bandwidth_egress
+        label: Bandwidth (egress)
+        type: quota
+        value: 50
+        unit: GB
+      - name: region_deployments
+        label: Region deployments
+        type: quota
+        value: 1
+        unit: regions
+  - id: enterprise
     name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Fermyon. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    type: custom
+    price: null
+    currency: USD
+    period: month
+    description: >-
+      "Tailor-made to suit your organization's requirements." No published price; every
+      quota is listed as "Contact us" in the provider's own quota table.
+    onboarding: contact-sales
+    support: Custom support, contact sales
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
+      - name: all_quotas
+        label: All quotas
         type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Fermyon Wasm Functions
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+        value: null
+        unit: negotiated
+        note: Listed as "Contact us" for every line item on developer.fermyon.com/cloud/faq.
+  - id: wasm-functions-limited-availability
+    name: Fermyon Wasm Functions / Akamai Functions (Limited availability)
+    type: unpriced
+    price: null
+    currency: USD
+    period: null
+    description: >-
+      The Akamai-hosted product has no published price list and no self-serve checkout.
+      Access is via a sign-up form; the docs say limits "are subject to change as part of
+      public preview" and that higher limits require contacting an Akamai representative.
+    onboarding: waitlist-form
+    signup: https://fibsu0jcu2g.typeform.com/fwf-preview
+    entries:
+      - name: memory
+        label: Memory (RAM allocated per function execution)
+        type: limit
+        value: 128
+        unit: MiB
+      - name: app_size
+        label: App size
+        type: limit
+        value: 50
+        unit: MiB
+      - name: handler_duration
+        label: Request handler duration
+        type: limit
+        value: 30
+        unit: seconds
+      - name: request_response_size
+        label: Request/response size
+        type: limit
+        value: 10
+        unit: MiB
+      - name: kv_storage
+        label: KV storage across all store instances
+        type: limit
+        value: 2
+        unit: GB
+plan_count: 4
+paid_plan_count: 1
+free_plan_available: true

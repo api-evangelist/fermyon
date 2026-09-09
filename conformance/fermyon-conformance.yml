@@ -1,0 +1,122 @@
+generated: '2026-09-09'
+method: derived
+source: >-
+  openapi/_original/fermyon-openapi.yml (harvested verbatim from
+  https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json),
+  plus developer.fermyon.com and techdocs.akamai.com/akamai-functions docs read 2026-09-09.
+provider: Fermyon
+providerId: fermyon
+description: >-
+  Cross-cutting and domain-standard conformance for the Fermyon Cloud REST API and the
+  Fermyon Wasm Functions / Akamai Functions runtime. Every entry below cites the exact
+  location in the contract or the docs that supports it; absences are recorded as
+  conforms:false rather than omitted.
+conformance:
+  - id: oci-distribution
+    name: OCI Distribution Specification (registry push/pull API)
+    conforms: true
+    category: domain-standard
+    evidence: >-
+      openapi/_original/fermyon-openapi.yml declares the OCI Distribution push/pull state
+      machine as first-class API operations: HEAD and PUT /api/oci/{name}/manifests/{reference},
+      POST /api/oci/{name}/blobs/uploads (upload session start), and GET/PUT/PATCH/DELETE
+      /api/oci/{name}/blobs/uploads/{digest} (chunked upload, completion by digest, cancel),
+      plus GET /api/oci to list. The name/reference/digest path template and the blob-upload
+      lifecycle are the OCI Distribution Specification's, not a bespoke shape. Fermyon's own
+      changelog states the switch: "As of spin cloud v0.3.0, Fermyon Cloud has removed its
+      dependency on bindle and is now using OCI as the default registry"
+      (https://developer.fermyon.com/cloud/changelog).
+    deviations:
+      - >-
+        The registry is mounted at /api/oci rather than the specification's /v2 prefix, and
+        the OpenAPI does not declare the /v2/ version-check endpoint, so an off-the-shelf
+        OCI client cannot be pointed at the base URL unmodified.
+    spec: https://github.com/opencontainers/distribution-spec
+  - id: oauth2-device-authorization-grant
+    name: OAuth 2.0 Device Authorization Grant (RFC 8628)
+    conforms: false
+    category: authentication
+    evidence: >-
+      The API implements a device-code login flow whose response object is field-for-field
+      the RFC 8628 device authorization response, camelCased: DeviceCodeItem requires
+      deviceCode, userCode, verificationUrl, expiresIn and interval (RFC 8628 device_code,
+      user_code, verification_uri, expires_in, interval), served by POST /api/device-codes
+      with GET /api/device-codes/{userCode} and POST /api/device-codes/activate. It is
+      recorded as non-conformant because the wire contract is not RFC 8628: the endpoints
+      are not /device_authorization and the token is issued by POST /api/auth-tokens taking
+      a CreateTokenCommand {providerCode, clientId, provider}, not by the token endpoint with
+      grant_type=urn:ietf:params:oauth:grant-type:device_code. A generic RFC 8628 client
+      cannot complete this flow.
+    spec: https://www.rfc-editor.org/rfc/rfc8628
+  - id: oauth2
+    name: OAuth 2.0 authorization framework
+    conforms: false
+    evidence: >-
+      The only securityScheme in the published contract is `Bearer`, declared as
+      type apiKey in the Authorization header carrying a JWT. No oauth2 securityScheme,
+      no authorization or token endpoint, and no scopes are declared anywhere in the
+      61 operations.
+  - id: oidc
+    name: OpenID Connect
+    conforms: false
+    evidence: >-
+      No OpenID Provider Metadata is served. cloud.fermyon.com/.well-known/openid-configuration
+      returns HTTP 200 but the body is the Angular SPA shell (text/html), not a discovery
+      document — see well-known/fermyon-well-known.yml.
+  - id: rfc9457
+    name: RFC 9457 Problem Details for HTTP APIs
+    conforms: false
+    evidence: >-
+      No application/problem+json media type appears anywhere in the contract. The document
+      declares only 200 responses across all 61 operations; no 4xx or 5xx response, and no
+      error schema, is published.
+  - id: pagination
+    name: Documented pagination
+    conforms: true
+    evidence: >-
+      Offset/page pagination is declared in the schemas, not just in prose:
+      AppItemPage, ChannelItemPage and PersonalAccessTokenItemPage each require
+      items, totalItems, pageIndex, pageSize and a read-only isLastPage. The
+      corresponding list operations take page and pageSize query parameters.
+  - id: idempotency
+    name: Idempotency keys on mutating operations
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header, idempotency parameter, or replay-protection language appears
+      in the contract or in the Fermyon Cloud documentation. 38 of the 61 operations mutate
+      state. See conventions/fermyon-conventions.yml.
+  - id: api-versioning
+    name: Explicit request-level API versioning
+    conforms: true
+    evidence: >-
+      Every operation in the contract accepts an `Api-Version` request header with a declared
+      default of "1.0", making the version an explicit, per-request part of the wire contract
+      rather than a URL convention.
+  - id: webassembly-component-model
+    name: WebAssembly Component Model / WASI
+    conforms: true
+    category: domain-standard
+    evidence: >-
+      The product under management is Spin, a CNCF sandbox project built on the WebAssembly
+      Component Model and WASI. Fermyon publishes a runtime conformance suite for it
+      (https://github.com/fermyon/conformance-tests, "A suite of conformance tests for Spin
+      compliant runtimes") and the Akamai Functions docs carry a WebAssembly standards page
+      (https://techdocs.akamai.com/akamai-functions/docs/related-standards) and a language
+      support matrix. This is a runtime/platform conformance, not a conformance of the REST
+      contract above.
+  - id: scim
+    name: SCIM 2.0
+    conforms: false
+    evidence: >-
+      No SCIM schema URNs and no /Users or /Groups surface. The Akamai Functions docs state
+      plainly that the platform "does not support Role-Based Access Control (RBAC)" and that
+      every member of a team account has identical permissions
+      (https://techdocs.akamai.com/akamai-functions/docs/manage-accounts).
+  - id: odata
+    name: OData
+    conforms: false
+    evidence: No $metadata surface and no OData query options in any operation.
+counts:
+  total: 11
+  conforming: 4
+  domain_standards_declared: 2

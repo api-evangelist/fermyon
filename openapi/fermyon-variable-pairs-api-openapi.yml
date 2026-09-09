@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts variable-pairs API
+  title: Fermyon Cloud accounts Variable Pairs API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -108,28 +108,6 @@ paths:
                 $ref: '#/components/schemas/VariablesList'
 components:
   schemas:
-    GetVariablesQuery:
-      required:
-      - appId
-      type: object
-      properties:
-        appId:
-          type: string
-          format: uuid
-      additionalProperties: false
-    DeleteVariablePairCommand:
-      required:
-      - appId
-      - variable
-      type: object
-      properties:
-        appId:
-          type: string
-          format: uuid
-        variable:
-          minLength: 1
-          type: string
-      additionalProperties: false
     CreateVariablePairCommand:
       required:
       - appId
@@ -156,6 +134,28 @@ components:
           type: array
           items:
             type: string
+      additionalProperties: false
+    DeleteVariablePairCommand:
+      required:
+      - appId
+      - variable
+      type: object
+      properties:
+        appId:
+          type: string
+          format: uuid
+        variable:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    GetVariablesQuery:
+      required:
+      - appId
+      type: object
+      properties:
+        appId:
+          type: string
+          format: uuid
       additionalProperties: false
   securitySchemes:
     Bearer:

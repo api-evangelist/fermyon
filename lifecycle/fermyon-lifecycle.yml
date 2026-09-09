@@ -1,0 +1,137 @@
+generated: '2026-09-09'
+method: searched
+source: >-
+  developer.fermyon.com (Cloud docs + changelog), techdocs.akamai.com/akamai-functions
+  (docs + changelog), www.akamaistatus.com/api/v2/components.json, and
+  openapi/_original/fermyon-openapi.yml. All read 2026-09-09.
+provider: Fermyon
+providerId: fermyon
+description: >-
+  Versioning, deprecation, availability and support-lifecycle posture for the Fermyon
+  surface. The defining lifecycle fact is corporate: Akamai acquired Fermyon, fermyon.com
+  now redirects to akamai.com/products/akamai-functions, the Wasm Functions product ships
+  as "Akamai Functions", and Spin and SpinKube have been donated to the CNCF and moved to
+  the spinframework GitHub organization. The Fermyon Cloud service and its API remain live
+  and unretired as of this check.
+versioning:
+  scheme: request-header
+  header: Api-Version
+  current_version: '1.0'
+  default: '1.0'
+  note: >-
+    Every operation in the contract accepts Api-Version with a declared default of "1.0".
+    Only one version has ever existed. No version-negotiation, sunset or migration policy is
+    published.
+  docs: https://developer.fermyon.com/cloud/rest-api
+deprecation_policy:
+  published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  evidence: >-
+    No deprecation or sunset policy page exists on developer.fermyon.com or in the Akamai
+    Functions docs. No RFC 8594 Sunset or Deprecation response header is documented, and no
+    operation or schema in the contract carries `deprecated: true`.
+  deprecated_operations: 0
+observed_deprecations:
+  - subject: Bindle (aggregate object storage)
+    status: removed
+    replaced_by: OCI Image and OCI Distribution Specifications
+    announced: '2023-10-12'
+    evidence: >-
+      "As of spin cloud v0.3.0, Fermyon Cloud has removed its dependency on bindle and is
+      now using OCI as the default registry. No action is needed on your part."
+      (https://developer.fermyon.com/cloud/changelog). The deployment-concepts page carries
+      a "Deprecating Bindle" section.
+    note: >-
+      Announced in the changelog only — never surfaced through a Deprecation header or a
+      machine-readable policy.
+  - subject: '"NoOps database" naming'
+    status: renamed
+    replaced_by: Fermyon Cloud SQLite database
+    announced: '2023-11-02'
+    evidence: https://developer.fermyon.com/cloud/changelog
+    note: A rename with no action required; not a breaking change.
+availability:
+  - product: Fermyon Cloud
+    stage: open-beta
+    evidence: >-
+      "Open Beta" is stated on https://developer.fermyon.com/cloud/index. Self-serve signup
+      and paid Growth plan are live.
+  - product: Fermyon Wasm Functions / Akamai Functions
+    stage: limited-availability
+    evidence: >-
+      The docs title is "Welcome to Akamai Functions (Limited availability)" and the quotas
+      page says "Limits are subject to change as part of public preview."
+      (https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits). Access is via a
+      sign-up form, not self-serve.
+  - product: Spin / SpinKube
+    stage: cncf-sandbox
+    evidence: >-
+      Both are CNCF sandbox projects; source moved from github.com/fermyon to
+      github.com/spinframework.
+status_page:
+  published: false
+  evidence: >-
+    Probed 2026-09-09. status.fermyon.com does not resolve (NXDOMAIN).
+    fermyon.statuspage.io redirects to Atlassian's marketing page, i.e. it was never
+    provisioned. The Akamai Functions docs footer links www.akamaistatus.com, but that page's
+    own component list (48 components, fetched from /api/v2/components.json) contains no
+    Akamai Functions, Fermyon or Wasm entry — so no status page covers this product.
+  candidates_probed:
+    - url: https://status.fermyon.com/
+      status: null
+      result: dns-nxdomain
+    - url: https://fermyon.statuspage.io/
+      status: 200
+      result: redirects-to-atlassian-marketing
+    - url: https://www.akamaistatus.com/api/v2/components.json
+      status: 200
+      result: no-matching-component
+sla:
+  published: false
+  evidence: >-
+    No SLA, uptime commitment or credit schedule is published for Fermyon Cloud or for
+    Akamai Functions. The pricing page offers "Community Discord, documentation, email
+    support" on every tier and "Custom Support — contact our team" for Enterprise.
+support:
+  channels:
+    - type: docs
+      url: https://developer.fermyon.com/cloud/support
+    - type: discord
+      url: https://discord.gg/AAFNfS7NGf
+    - type: github-issues
+      url: https://github.com/fermyon/feedback
+    - type: akamai-support
+      url: https://www.akamai.com/cloud/support/contact-support
+      note: For the Akamai Functions product.
+changelogs:
+  - name: Fermyon Cloud changelog
+    url: https://developer.fermyon.com/cloud/changelog
+  - name: Akamai Functions changelog
+    url: https://techdocs.akamai.com/akamai-functions/changelog
+corporate_lifecycle:
+  event: acquisition
+  acquirer: Akamai Technologies
+  evidence:
+    - url: https://www.fermyon.com/
+      status: 301
+      note: Redirects to https://www.akamai.com/products/akamai-functions (probed 2026-09-09).
+    - url: https://www.fermyon.com/blog/index
+      status: 301
+      note: Redirects to https://www.akamai.com/blog/developers.
+    - url: https://www.fermyon.com/.well-known/security.txt
+      status: 200
+      note: >-
+        Serves Akamai's corporate security.txt, naming Akamai's HackerOne programs and
+        security@akamai.com.
+    - url: https://www.fermyon.com/pricing
+      status: 200
+      note: >-
+        Still serves the Fermyon Cloud price list and carries the banner "Announcement:
+        Fermyon Joins Akamai".
+  surviving_surfaces:
+    - https://developer.fermyon.com/
+    - https://cloud.fermyon.com/
+    - https://github.com/fermyon
+    - https://github.com/spinframework

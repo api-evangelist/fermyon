@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts key-value-stores API
+  title: Fermyon Cloud accounts Key Value Stores API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -194,16 +194,6 @@ paths:
           description: Success
 components:
   schemas:
-    KeyValueStoresList:
-      required:
-      - keyValueStores
-      type: object
-      properties:
-        keyValueStores:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueStoreItem'
-      additionalProperties: false
     ResourceLabel:
       required:
       - appId
@@ -218,6 +208,16 @@ components:
           format: uuid
         appName:
           type: string
+      additionalProperties: false
+    KeyValueStoresList:
+      required:
+      - keyValueStores
+      type: object
+      properties:
+        keyValueStores:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueStoreItem'
       additionalProperties: false
     KeyValueStoreItem:
       required:

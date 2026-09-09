@@ -35,6 +35,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "fermyon-accounts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-apps-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-auth-tokens-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-channels-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-custom-domains-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-device-codes-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-key-value-pairs-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-key-value-stores-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-oci-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-payments-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-personal-access-tokens-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-revisions-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-sql-databases-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "fermyon-variable-pairs-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

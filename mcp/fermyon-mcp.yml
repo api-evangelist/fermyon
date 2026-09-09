@@ -1,0 +1,996 @@
+generated: '2026-09-09'
+method: derived
+status: candidate
+source: >-
+  Derived from the Fermyon Cloud OpenAPI (openapi/_original/fermyon-openapi.yml,
+  harvested from https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json).
+  No Fermyon-published MCP server exists.
+provider: Fermyon
+providerId: fermyon
+description: >-
+  A CANDIDATE MCP tool surface for the Fermyon Cloud REST API, computed one-to-one from
+  the 61 operations the provider's own OpenAPI declares. Fermyon publishes no MCP server;
+  nothing here is offered by Fermyon and no endpoint below is callable as MCP.
+deployment:
+  mode: none
+  auth: api-key
+  verified: derived
+  note: >-
+    No hosted/remote MCP endpoint and no stdio package. Probed 2026-09-09:
+    mcp.fermyon.com does not resolve (NXDOMAIN); POST tools/list to
+    https://cloud.fermyon.com/mcp returned 405 (the Kestrel SPA rejecting the method,
+    not an MCP server); https://developer.fermyon.com/mcp returned 404. No MCP package
+    under the @fermyon npm scope, the fermyon GitHub org, or the spinframework GitHub org.
+    If a server were built from this contract it would authenticate the same way the API
+    does — a Bearer JWT from a Fermyon Cloud personal access token.
+discovery_probes:
+  - url: https://mcp.fermyon.com/mcp
+    status: null
+    result: dns-nxdomain
+  - url: https://cloud.fermyon.com/mcp
+    status: 405
+    result: not-mcp
+  - url: https://developer.fermyon.com/mcp
+    status: 404
+    result: miss
+surfaces:
+  openapi: openapi/_original/fermyon-openapi.yml
+  base_url: https://cloud.fermyon.com
+  authentication: Bearer JWT (Authorization header), per the OpenAPI securityScheme
+caveats:
+  - >-
+    The source OpenAPI declares no operationId on any operation, so each candidate tool
+    name below is a deterministic function of HTTP method + path computed by this pipeline,
+    not a name Fermyon publishes. See overlays/ for the same mapping expressed as an
+    OpenAPI Overlay.
+  - >-
+    The source OpenAPI declares only 200 responses. A real server built from it would have
+    no documented error shape to surface to an agent.
+  - >-
+    Ten of the 61 operations are destructive (DELETE apps, channels, key-value stores,
+    SQL databases, variable pairs, personal access tokens and OCI blob uploads) and the
+    contract documents no reversal path for any of them. See conventions/ reversibility.
+counts:
+  tools: 61
+  by_method:
+    GET: 23
+    POST: 17
+    PUT: 5
+    PATCH: 6
+    DELETE: 10
+tools:
+  - name: get_accounts_by_id
+    category: accounts
+    http:
+      method: GET
+      path: /api/accounts/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: update_accounts_by_id
+    category: accounts
+    http:
+      method: PATCH
+      path: /api/accounts/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: PatchAccountDetailsCommand
+  - name: delete_accounts_by_id
+    category: accounts
+    http:
+      method: DELETE
+      path: /api/accounts/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_apps
+    category: apps
+    http:
+      method: GET
+      path: /api/apps
+    parameters:
+    - name: searchText
+      in: query
+      required: false
+      type: string
+    - name: pageIndex
+      in: query
+      required: false
+      type: integer
+    - name: pageSize
+      in: query
+      required: false
+      type: integer
+    - name: sortBy
+      in: query
+      required: false
+      type: string
+    - name: IsSortedAscending
+      in: query
+      required: false
+      type: boolean
+    - name: exactMatch
+      in: query
+      required: false
+      type: boolean
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_apps
+    category: apps
+    http:
+      method: POST
+      path: /api/apps
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateAppCommand
+  - name: get_apps_by_id
+    category: apps
+    http:
+      method: GET
+      path: /api/apps/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: replace_apps_by_id
+    category: apps
+    http:
+      method: PUT
+      path: /api/apps/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: UpdateAppCommand
+  - name: update_apps_by_id
+    category: apps
+    http:
+      method: PATCH
+      path: /api/apps/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: PatchAppCommand
+  - name: delete_apps_by_id
+    category: apps
+    http:
+      method: DELETE
+      path: /api/apps/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_apps_by_id_request_count
+    category: apps
+    http:
+      method: GET
+      path: /api/apps/{id}/request-count
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: from
+      in: query
+      required: false
+      type: string
+    - name: to
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_apps_by_id_logs
+    category: apps
+    http:
+      method: GET
+      path: /api/apps/{id}/logs
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: max
+      in: query
+      required: false
+      type: integer
+    - name: since
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_apps_by_id_logs_raw
+    category: apps
+    http:
+      method: GET
+      path: /api/apps/{id}/logs/raw
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: max
+      in: query
+      required: false
+      type: integer
+    - name: since
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_apps_by_id_events
+    category: apps
+    http:
+      method: GET
+      path: /api/apps/{id}/events
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: from
+      in: query
+      required: false
+      type: string
+    - name: to
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_auth_tokens
+    category: auth-tokens
+    http:
+      method: POST
+      path: /api/auth-tokens
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateTokenCommand
+  - name: create_auth_tokens_refresh
+    category: auth-tokens
+    http:
+      method: POST
+      path: /api/auth-tokens/refresh
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: RefreshTokenCommand
+  - name: get_channels
+    category: channels
+    http:
+      method: GET
+      path: /api/channels
+    parameters:
+    - name: searchText
+      in: query
+      required: false
+      type: string
+    - name: pageIndex
+      in: query
+      required: false
+      type: integer
+    - name: pageSize
+      in: query
+      required: false
+      type: integer
+    - name: sortBy
+      in: query
+      required: false
+      type: string
+    - name: IsSortedAscending
+      in: query
+      required: false
+      type: boolean
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_channels
+    category: channels
+    http:
+      method: POST
+      path: /api/channels
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateChannelCommand
+  - name: get_channels_by_id
+    category: channels
+    http:
+      method: GET
+      path: /api/channels/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: replace_channels_by_id
+    category: channels
+    http:
+      method: PUT
+      path: /api/channels/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: UpdateChannelCommand
+  - name: update_channels_by_id
+    category: channels
+    http:
+      method: PATCH
+      path: /api/channels/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: PatchChannelCommand
+  - name: delete_channels_by_id
+    category: channels
+    http:
+      method: DELETE
+      path: /api/channels/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: replace_channels_by_channelid_desired_status
+    category: channels
+    http:
+      method: PUT
+      path: /api/channels/{channelId}/desired-status
+    parameters:
+    - name: channelId
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: UpdateDesiredStatusCommand
+  - name: get_channels_by_id_logs
+    category: channels
+    http:
+      method: GET
+      path: /api/channels/{id}/logs
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: max
+      in: query
+      required: false
+      type: integer
+    - name: since
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_channels_by_id_logs_raw
+    category: channels
+    http:
+      method: GET
+      path: /api/channels/{id}/logs/raw
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: max
+      in: query
+      required: false
+      type: integer
+    - name: since
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_channels_by_id_healthz
+    category: channels
+    http:
+      method: GET
+      path: /api/channels/{id}/healthz
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_custom_domains_by_domainname
+    category: custom-domains
+    http:
+      method: GET
+      path: /api/custom-domains/{domainName}
+    parameters:
+    - name: domainName
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_device_codes
+    category: device-codes
+    http:
+      method: POST
+      path: /api/device-codes
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateDeviceCodeCommand
+  - name: get_device_codes_by_usercode
+    category: device-codes
+    http:
+      method: GET
+      path: /api/device-codes/{userCode}
+    parameters:
+    - name: userCode
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_device_codes_activate
+    category: device-codes
+    http:
+      method: POST
+      path: /api/device-codes/activate
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ActivateDeviceCodeCommand
+  - name: create_key_value_pairs
+    category: key-value-pairs
+    http:
+      method: POST
+      path: /api/key-value-pairs
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateKeyValuePairCommand
+  - name: create_key_value_stores_by_store
+    category: key-value-stores
+    http:
+      method: POST
+      path: /api/key-value-stores/{store}
+    parameters:
+    - name: store
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ResourceLabel
+  - name: delete_key_value_stores_by_store
+    category: key-value-stores
+    http:
+      method: DELETE
+      path: /api/key-value-stores/{store}
+    parameters:
+    - name: store
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_key_value_stores
+    category: key-value-stores
+    http:
+      method: GET
+      path: /api/key-value-stores
+    parameters:
+    - name: appId
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_key_value_stores_by_store_links
+    category: key-value-stores
+    http:
+      method: POST
+      path: /api/key-value-stores/{store}/links
+    parameters:
+    - name: store
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ResourceLabel
+  - name: delete_key_value_stores_by_store_links
+    category: key-value-stores
+    http:
+      method: DELETE
+      path: /api/key-value-stores/{store}/links
+    parameters:
+    - name: store
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ResourceLabel
+  - name: update_key_value_stores_by_store_rename
+    category: key-value-stores
+    http:
+      method: PATCH
+      path: /api/key-value-stores/{store}/rename
+    parameters:
+    - name: store
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: inline
+  - name: get_oci
+    category: oci
+    http:
+      method: GET
+      path: /api/oci
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: replace_oci_by_name_manifests_by_reference
+    category: oci
+    http:
+      method: PUT
+      path: /api/oci/{name}/manifests/{reference}
+    parameters:
+    - name: name
+      in: path
+      required: true
+      type: string
+    - name: reference
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_oci_by_name_blobs_uploads
+    category: oci
+    http:
+      method: POST
+      path: /api/oci/{name}/blobs/uploads
+    parameters:
+    - name: name
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_oci_by_name_blobs_uploads_by_digest
+    category: oci
+    http:
+      method: GET
+      path: /api/oci/{name}/blobs/uploads/{digest}
+    parameters:
+    - name: digest
+      in: path
+      required: true
+      type: string
+    - name: name
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: replace_oci_by_name_blobs_uploads_by_digest
+    category: oci
+    http:
+      method: PUT
+      path: /api/oci/{name}/blobs/uploads/{digest}
+    parameters:
+    - name: digest
+      in: path
+      required: true
+      type: string
+    - name: name
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: update_oci_by_name_blobs_uploads_by_digest
+    category: oci
+    http:
+      method: PATCH
+      path: /api/oci/{name}/blobs/uploads/{digest}
+    parameters:
+    - name: digest
+      in: path
+      required: true
+      type: string
+    - name: name
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: delete_oci_by_name_blobs_uploads_by_digest
+    category: oci
+    http:
+      method: DELETE
+      path: /api/oci/{name}/blobs/uploads/{digest}
+    parameters:
+    - name: digest
+      in: path
+      required: true
+      type: string
+    - name: name
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_payments_setup_checkout
+    category: payments
+    http:
+      method: POST
+      path: /api/payments/setup-checkout
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_payments_customer_portal
+    category: payments
+    http:
+      method: GET
+      path: /api/payments/customer-portal
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_payments_plans
+    category: payments
+    http:
+      method: GET
+      path: /api/payments/plans
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_personal_access_tokens
+    category: personal-access-tokens
+    http:
+      method: POST
+      path: /api/personal-access-tokens
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreatePersonalAccessTokenCommand
+  - name: get_personal_access_tokens
+    category: personal-access-tokens
+    http:
+      method: GET
+      path: /api/personal-access-tokens
+    parameters:
+    - name: searchText
+      in: query
+      required: false
+      type: string
+    - name: pageIndex
+      in: query
+      required: false
+      type: integer
+    - name: pageSize
+      in: query
+      required: false
+      type: integer
+    - name: sortBy
+      in: query
+      required: false
+      type: string
+    - name: isSortedAscending
+      in: query
+      required: false
+      type: boolean
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: delete_personal_access_tokens_by_id
+    category: personal-access-tokens
+    http:
+      method: DELETE
+      path: /api/personal-access-tokens/{id}
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: get_revisions
+    category: revisions
+    http:
+      method: GET
+      path: /api/revisions
+    parameters:
+    - name: pageIndex
+      in: query
+      required: false
+      type: integer
+    - name: pageSize
+      in: query
+      required: false
+      type: integer
+    - name: searchText
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+  - name: create_revisions
+    category: revisions
+    http:
+      method: POST
+      path: /api/revisions
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: RegisterRevisionCommand
+  - name: create_sql_databases_create
+    category: sql-databases
+    http:
+      method: POST
+      path: /api/sql-databases/create
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateSqlDatabaseCommand
+  - name: create_sql_databases_execute
+    category: sql-databases
+    http:
+      method: POST
+      path: /api/sql-databases/execute
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ExecuteSqlStatementCommand
+  - name: delete_sql_databases
+    category: sql-databases
+    http:
+      method: DELETE
+      path: /api/sql-databases
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: DeleteSqlDatabaseCommand
+  - name: get_sql_databases
+    category: sql-databases
+    http:
+      method: GET
+      path: /api/sql-databases
+    parameters:
+    - name: appId
+      in: query
+      required: false
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: GetSqlDatabasesQuery
+  - name: create_sql_databases_by_database_links
+    category: sql-databases
+    http:
+      method: POST
+      path: /api/sql-databases/{database}/links
+    parameters:
+    - name: database
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ResourceLabel
+  - name: delete_sql_databases_by_database_links
+    category: sql-databases
+    http:
+      method: DELETE
+      path: /api/sql-databases/{database}/links
+    parameters:
+    - name: database
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: ResourceLabel
+  - name: update_sql_databases_by_database_rename
+    category: sql-databases
+    http:
+      method: PATCH
+      path: /api/sql-databases/{database}/rename
+    parameters:
+    - name: database
+      in: path
+      required: true
+      type: string
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: inline
+  - name: create_variable_pairs
+    category: variable-pairs
+    http:
+      method: POST
+      path: /api/variable-pairs
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: CreateVariablePairCommand
+  - name: delete_variable_pairs
+    category: variable-pairs
+    http:
+      method: DELETE
+      path: /api/variable-pairs
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: DeleteVariablePairCommand
+  - name: get_variable_pairs
+    category: variable-pairs
+    http:
+      method: GET
+      path: /api/variable-pairs
+    parameters:
+    - name: Api-Version
+      in: header
+      required: false
+      type: string
+    request_body_schema: GetVariablesQuery

@@ -1,0 +1,102 @@
+generated: '2026-09-09'
+method: probed
+source: >-
+  Live anonymous HTTP probes of every host this record knows — the registrable domain
+  and www, the OpenAPI servers[] host, and the docs host — run 2026-09-09.
+provider: Fermyon
+providerId: fermyon
+note: >-
+  One real document across the estate: /.well-known/security.txt, served identically on
+  fermyon.com and www.fermyon.com. It is Akamai's corporate security.txt, not a Fermyon
+  one — Akamai acquired Fermyon and now terminates fermyon.com, so the disclosure program
+  named there is Akamai's HackerOne. IMPORTANT NEGATIVE: cloud.fermyon.com answers 200 to
+  every /.well-known/* path, but every one of those responses is the byte-identical
+  3,641-byte Angular SPA shell (content-type text/html, same ETag "1dcde4931937539",
+  title "Fermyon Cloud"). Those are catch-all misses, not documents, and are recorded
+  here as such so they are never credited as served discovery files.
+hosts:
+  - host: fermyon.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: fermyon-security.txt
+        content_type: text/plain
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: www.fermyon.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: fermyon-security.txt
+        content_type: text/plain
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: cloud.fermyon.com
+    note: >-
+      Angular SPA catch-all. Every path below returned HTTP 200 with the identical
+      text/html application shell (3,641 bytes, ETag "1dcde4931937539", server Kestrel).
+      No discovery document is served; all four are misses.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        result: spa-shell
+        note: HTML application shell, not an OpenID Provider Metadata document.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        result: spa-shell
+        note: HTML application shell, not RFC 8414 authorization server metadata.
+      - path: /.well-known/api-catalog
+        status: 200
+        result: spa-shell
+        note: HTML application shell, not an RFC 9727 api-catalog document.
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: developer.fermyon.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+summary:
+  hosts_probed: 4
+  documents_served: 1
+  served:
+    - url: https://www.fermyon.com/.well-known/security.txt
+      status: 200
+  spa_shell_false_positives: 3

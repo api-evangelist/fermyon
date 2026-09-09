@@ -1,0 +1,43 @@
+generated: '2026-09-09'
+method: generated
+source: >-
+  openapi/_original/fermyon-openapi.yml (61 operations, harvested from
+  https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json) plus the
+  Fermyon Cloud documentation at developer.fermyon.com.
+provider: Fermyon
+providerId: fermyon
+api: Fermyon Cloud REST API
+description: >-
+  Packaged Agent Skills for the marquee flows of the Fermyon Cloud API. Each is grounded in
+  operations that exist in the published contract, expressed as HTTP method + path because
+  the contract declares no operationId anywhere. Every skill repeats the two facts that
+  govern safe automation on this API: there is no idempotency mechanism, and there is no
+  documented error shape.
+skills:
+  - name: fermyon-deploy-a-spin-application
+    file: fermyon-deploy-a-spin-application.md
+    summary: Push a build to the Cloud OCI registry, register a revision, and point a channel at it.
+    operations: 9
+  - name: fermyon-roll-back-a-deployment
+    file: fermyon-roll-back-a-deployment.md
+    summary: Re-point a channel at a previous revision; stop a channel while you decide.
+    operations: 6
+  - name: fermyon-authenticate-to-fermyon-cloud
+    file: fermyon-authenticate-to-fermyon-cloud.md
+    summary: Device-code login or personal access token, plus refresh and revocation.
+    operations: 8
+  - name: fermyon-provision-and-link-cloud-state
+    file: fermyon-provision-and-link-cloud-state.md
+    summary: Create key-value stores, SQLite databases and variables, and link them to apps.
+    operations: 14
+counts:
+  skills: 4
+caveats:
+  - >-
+    No provider-published Agent Skills, AGENTS.md or skills manifest exists on any Fermyon
+    host. These are API Evangelist generations from the provider's own contract, not
+    Fermyon material.
+  - >-
+    Skills cover Fermyon CLOUD only. Fermyon Wasm Functions / Akamai Functions publishes no
+    REST contract — its control plane is reachable only through the `spin aka` CLI plugin
+    (see cli/fermyon-cli.yml), so there is nothing to ground a skill in.

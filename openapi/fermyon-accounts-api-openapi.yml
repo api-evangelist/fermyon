@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts API
+  title: Fermyon Cloud Accounts API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -94,18 +94,6 @@ paths:
           description: Success
 components:
   schemas:
-    PatchAccountDetailsCommand:
-      type: object
-      properties:
-        isMarketingEmailOn:
-          $ref: '#/components/schemas/BooleanField'
-      additionalProperties: false
-    BooleanField:
-      type: string
-      properties:
-        value:
-          type: boolean
-      additionalProperties: false
     AccountDetails:
       type: object
       properties:
@@ -117,6 +105,12 @@ components:
           type: string
           format: date-time
           nullable: true
+      additionalProperties: false
+    BooleanField:
+      type: string
+      properties:
+        value:
+          type: boolean
       additionalProperties: false
     AccountPlanRecord:
       type: object
@@ -139,6 +133,12 @@ components:
           type: string
           format: date-time
           nullable: true
+      additionalProperties: false
+    PatchAccountDetailsCommand:
+      type: object
+      properties:
+        isMarketingEmailOn:
+          $ref: '#/components/schemas/BooleanField'
       additionalProperties: false
     AccountPlanType:
       enum:

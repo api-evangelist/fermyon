@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts auth-tokens API
+  title: Fermyon Cloud accounts Auth Tokens API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -91,6 +91,19 @@ paths:
                 $ref: '#/components/schemas/TokenInfo'
 components:
   schemas:
+    RefreshTokenCommand:
+      required:
+      - refreshToken
+      - token
+      type: object
+      properties:
+        token:
+          minLength: 1
+          type: string
+        refreshToken:
+          minLength: 1
+          type: string
+      additionalProperties: false
     CreateTokenCommand:
       type: object
       properties:
@@ -108,19 +121,6 @@ components:
       - GitHub
       - DeviceFlow
       type: string
-    RefreshTokenCommand:
-      required:
-      - refreshToken
-      - token
-      type: object
-      properties:
-        token:
-          minLength: 1
-          type: string
-        refreshToken:
-          minLength: 1
-          type: string
-      additionalProperties: false
     TokenInfo:
       required:
       - expiration

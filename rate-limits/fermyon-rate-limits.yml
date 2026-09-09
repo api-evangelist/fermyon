@@ -4,10 +4,14 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Fermyon
 providerId: fermyon
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
+modified: '2026-09-09'
+generated: '2026-09-09'
+method: searched
+source: https://developer.fermyon.com/cloud/faq
+docs:
+  - https://developer.fermyon.com/cloud/faq
+  - https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
+  - https://www.fermyon.com/pricing
 tags:
   - Compute
   - Functions
@@ -15,77 +19,173 @@ tags:
   - Serverless
   - Rate Limiting
   - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Fermyon API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
+description: >-
+  Published rate limits and quotas for Fermyon Cloud and for Fermyon Wasm Functions /
+  Akamai Functions. These are limits on the APPLICATIONS you deploy and on control-plane
+  actions, stratified by subscription plan.
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  documented: false
+  note: >-
+    CORRECTION OF A PRIOR SCAFFOLD. The 2026-05-04 version of this file asserted
+    X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset / RateLimit-Policy
+    response headers and a 429 status. Those were bulk-sweep defaults, not observations.
+    Fermyon documents NO rate-limit response headers anywhere, and the published OpenAPI
+    (openapi/_original/fermyon-openapi.yml) declares only 200 responses across all 61
+    operations — there is no 429 in the contract at all. An agent has no runtime signal to
+    read here; it can only compare its own usage against the per-plan quotas below.
+  limit: null
+  remaining: null
+  reset: null
+  retry_after: null
+  policy: null
+response_codes:
+  throttled: null
+  note: >-
+    No throttling status code is documented and none appears in the contract. Not asserted.
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
+  - id: fermyon-cloud-request-execution
+    surface: Fermyon Cloud (deployed applications)
+    scope: per-account
+    window: month
+    description: Total request executions across all applications in the account.
+    tiers:
+      starter: 100000
+      growth: 1000000
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-requests-per-second
+    surface: Fermyon Cloud (deployed applications)
+    scope: per-account
+    window: second
+    limit: 1000
+    description: >-
+      Request executions per second. Same ceiling on Starter and Growth; eligible for a
+      quota increase on Growth and Enterprise on request.
+    tiers:
+      starter: 1000
+      growth: 1000
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-deploys-per-minute
+    surface: Fermyon Cloud (control plane)
+    scope: per-account
+    window: minute
     limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Fermyon Wasm Functions
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Fermyon Wasm Functions
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
+    description: Spin application deployments per minute.
+    tiers:
+      starter: 10
+      growth: 10
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-deploys-per-hour
+    surface: Fermyon Cloud (control plane)
+    scope: per-account
+    window: hour
     limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Fermyon Wasm Functions
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Fermyon Wasm Functions
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
+    description: Spin application deployments per hour.
+    tiers:
+      starter: 100
+      growth: 100
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-outbound-requests
+    surface: Fermyon Cloud (deployed applications)
+    scope: per-application
+    window: hour
+    limit: 500
+    description: Outbound HTTP requests per hour per Spin app.
+    tiers:
+      starter: 500
+      growth: 500
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-ai-inferencing
+    surface: Fermyon Cloud Serverless AI
+    scope: per-account
+    window: hour
+    limit: 75
+    description: Serverless AI inferencing requests per hour.
+    tiers:
+      starter: 75
+      growth: 75
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-ai-embedding
+    surface: Fermyon Cloud Serverless AI
+    scope: per-account
+    window: hour
+    limit: 200
+    description: Serverless AI embedding requests per hour.
+    tiers:
+      starter: 200
+      growth: 200
+      enterprise: contact-us
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-handler-duration
+    surface: Fermyon Cloud (deployed applications)
+    scope: per-request
+    limit: 30
+    unit: seconds
+    description: Maximum request handler duration before the execution is cut off.
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-body-size
+    surface: Fermyon Cloud (deployed applications)
+    scope: per-request
+    limit: 10
+    unit: MB
+    description: HTTP body size limit.
+    source: https://developer.fermyon.com/cloud/faq
+  - id: fermyon-cloud-bandwidth-egress
+    surface: Fermyon Cloud
+    scope: per-account
+    window: month
+    description: Bandwidth egress.
+    tiers:
+      starter: 5 GB
+      growth: 50 GB
+      enterprise: contact-us
+    source: https://www.fermyon.com/pricing
+  - id: akamai-functions-kv-read
+    surface: Fermyon Wasm Functions / Akamai Functions (Key Value store)
+    scope: per-application
+    window: second
     limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Fermyon Wasm Functions
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+    unit: RPS
+    description: Key Value read requests supported per app.
+    source: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
+  - id: akamai-functions-kv-write
+    surface: Fermyon Wasm Functions / Akamai Functions (Key Value store)
+    scope: per-application
+    window: second
+    limit: 50
+    unit: RPS
+    description: Key Value write requests supported per app.
+    source: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
+  - id: akamai-functions-handler-duration
+    surface: Fermyon Wasm Functions / Akamai Functions
+    scope: per-request
+    limit: 30
+    unit: seconds
+    description: Request handler duration.
+    source: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
+  - id: akamai-functions-memory
+    surface: Fermyon Wasm Functions / Akamai Functions
+    scope: per-execution
+    limit: 128
+    unit: MiB
+    description: Memory (RAM) allocated per function execution.
+    source: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
+  - id: akamai-functions-request-response-size
+    surface: Fermyon Wasm Functions / Akamai Functions
+    scope: per-request
+    limit: 10
+    unit: MiB
+    description: Request/response size.
+    source: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
+limit_count: 15
+control_plane_limits_documented: false
+control_plane_note: >-
+  None of the limits above is a limit on the Fermyon Cloud REST API itself. Fermyon
+  publishes no request-rate limit for calls to cloud.fermyon.com and no throttling
+  behaviour for the 61 documented operations; the only control-plane limits published are
+  deployment counts per minute and per hour.

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts sql-databases API
+  title: Fermyon Cloud accounts Sql Databases API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -243,31 +243,21 @@ paths:
           description: Success
 components:
   schemas:
-    CreateSqlDatabaseCommand:
+    Database:
       required:
+      - links
       - name
       type: object
       properties:
         name:
           minLength: 1
           type: string
-        appId:
-          type: string
-          format: uuid
-          nullable: true
-        label:
-          type: string
-          nullable: true
-      additionalProperties: false
-    DatabasesList:
-      required:
-      - databases
-      type: object
-      properties:
-        databases:
+        default:
+          type: boolean
+        links:
           type: array
           items:
-            $ref: '#/components/schemas/Database'
+            $ref: '#/components/schemas/ResourceLabel'
       additionalProperties: false
     ExecuteSqlStatementCommand:
       required:
@@ -282,6 +272,15 @@ components:
         default:
           type: boolean
         statement:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    DeleteSqlDatabaseCommand:
+      required:
+      - name
+      type: object
+      properties:
+        name:
           minLength: 1
           type: string
       additionalProperties: false
@@ -308,23 +307,17 @@ components:
           format: uuid
           nullable: true
       additionalProperties: false
-    Database:
+    DatabasesList:
       required:
-      - links
-      - name
+      - databases
       type: object
       properties:
-        name:
-          minLength: 1
-          type: string
-        default:
-          type: boolean
-        links:
+        databases:
           type: array
           items:
-            $ref: '#/components/schemas/ResourceLabel'
+            $ref: '#/components/schemas/Database'
       additionalProperties: false
-    DeleteSqlDatabaseCommand:
+    CreateSqlDatabaseCommand:
       required:
       - name
       type: object
@@ -332,6 +325,13 @@ components:
         name:
           minLength: 1
           type: string
+        appId:
+          type: string
+          format: uuid
+          nullable: true
+        label:
+          type: string
+          nullable: true
       additionalProperties: false
   securitySchemes:
     Bearer:

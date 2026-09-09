@@ -1,0 +1,222 @@
+generated: '2026-09-09'
+method: derived
+source: >-
+  openapi/_original/fermyon-openapi.yml — $ref edges and id-reference fields across the
+  73 component schemas, harvested from
+  https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json.
+provider: Fermyon
+providerId: fermyon
+api: Fermyon Cloud REST API
+description: >-
+  The entity graph the Fermyon Cloud API actually models. The spine is
+  Account -> App -> Channel -> Revision: an App is the unit you own, a Revision is an
+  immutable build pushed to the OCI registry, and a Channel is the named, addressable
+  deployment that selects WHICH revision is live. Stateful resources (key-value stores,
+  SQL databases, variable pairs) are separate entities attached to Apps through a
+  ResourceLabel link rather than owned by them, which is why they survive independently
+  and are shareable across applications.
+identifiers:
+  primary_format: uuid
+  note: >-
+    id, appId, channelId and activeRevisionId are all `string` with `format: uuid`. There
+    are no typed/prefixed identifiers (no `app_...` style prefix) anywhere in the contract,
+    so an identifier carries no clue about which resource it addresses. Two non-uuid
+    identifiers exist and are meaningful: storageId on App/Revision (the OCI storage
+    reference) and revisionNumber on RevisionItem (a human-readable build number).
+entities:
+  - name: Account
+    schema: AccountDetails
+    operations:
+      - 'GET /api/accounts/{id}'
+      - 'PATCH /api/accounts/{id}'
+      - 'DELETE /api/accounts/{id}'
+    fields: [plan, isMarketingEmailOn, createdAt]
+  - name: AccountPlan
+    schema: AccountPlanRecord
+    fields: [accountType, cancelAt, cycleStartDate, cycleEndDate, lastModified]
+    note: Subscription state. accountType is the AccountPlanType enum; see plans/.
+  - name: App
+    schema: AppItem
+    operations:
+      - 'GET /api/apps'
+      - 'POST /api/apps'
+      - 'GET /api/apps/{id}'
+      - 'PUT /api/apps/{id}'
+      - 'PATCH /api/apps/{id}'
+      - 'DELETE /api/apps/{id}'
+    fields: [id, name, storageId, description, subdomain, healthStatus, channels, domain, lastModified, lastDeployed]
+  - name: Channel
+    schema: ChannelItem
+    operations:
+      - 'GET /api/channels'
+      - 'POST /api/channels'
+      - 'GET /api/channels/{id}'
+      - 'PUT /api/channels/{id}'
+      - 'PATCH /api/channels/{id}'
+      - 'DELETE /api/channels/{id}'
+      - 'PUT /api/channels/{channelId}/desired-status'
+    fields: [id, appId, name, domain, revisionSelectionStrategy, desiredStatus, activeRevision, environmentVariables, rangeRule, lastPublishAt, lastModified]
+  - name: Revision
+    schema: RevisionItem
+    operations: [GET /api/revisions, POST /api/revisions]
+    fields: [id, appId, revisionNumber, components, lastModified]
+  - name: AppDomain
+    schema: AppDomainItem
+    operations:
+      - 'GET /api/custom-domains/{domainName}'
+    fields: [validationStatus]
+  - name: KeyValueStore
+    schema: KeyValueStoreItem
+    operations:
+      - 'GET /api/key-value-stores'
+      - 'POST /api/key-value-stores/{store}'
+      - 'DELETE /api/key-value-stores/{store}'
+      - 'PATCH /api/key-value-stores/{store}/rename'
+      - 'POST /api/key-value-stores/{store}/links'
+      - 'DELETE /api/key-value-stores/{store}/links'
+    fields: [name, links]
+  - name: KeyValuePair
+    schema: CreateKeyValuePairCommand
+    operations: [POST /api/key-value-pairs]
+    fields: [appId, key, value]
+  - name: SqlDatabase
+    schema: Database
+    operations:
+      - 'GET /api/sql-databases'
+      - 'POST /api/sql-databases/create'
+      - 'DELETE /api/sql-databases'
+      - 'POST /api/sql-databases/execute'
+      - 'PATCH /api/sql-databases/{database}/rename'
+      - 'POST /api/sql-databases/{database}/links'
+      - 'DELETE /api/sql-databases/{database}/links'
+    fields: [name, default, links]
+  - name: VariablePair
+    schema: CreateVariablePairCommand
+    operations: [GET /api/variable-pairs, POST /api/variable-pairs, DELETE /api/variable-pairs]
+    fields: [appId, variable, value]
+  - name: ResourceLabel
+    schema: ResourceLabel
+    fields: [label, appId, appName]
+    note: >-
+      The join entity. A KeyValueStore or SqlDatabase carries a links[] of ResourceLabels,
+      each naming the App that consumes it under a local label — which is how one store is
+      shared by several applications.
+  - name: PersonalAccessToken
+    schema: PersonalAccessTokenItem
+    operations:
+      - 'GET /api/personal-access-tokens'
+      - 'POST /api/personal-access-tokens'
+      - 'DELETE /api/personal-access-tokens/{id}'
+    fields: [id, name, createdAt]
+  - name: DeviceCode
+    schema: DeviceCodeItem
+    operations:
+      - 'POST /api/device-codes'
+      - 'GET /api/device-codes/{userCode}'
+      - 'POST /api/device-codes/activate'
+    fields: [deviceCode, userCode, verificationUrl, expiresIn, interval]
+  - name: LogEntry
+    schema: Entry
+    operations:
+      - 'GET /api/apps/{id}/logs'
+      - 'GET /api/apps/{id}/logs/raw'
+      - 'GET /api/channels/{id}/logs'
+      - 'GET /api/channels/{id}/logs/raw'
+    fields: [meta, logLines]
+  - name: AppEvent
+    schema: AppEventItem
+    operations:
+      - 'GET /api/apps/{id}/events'
+    fields: [date, type, name, metadata]
+    note: type is the AppEventType enum — Unknown, Create, Update, Delete.
+  - name: AppRequestCount
+    schema: AppRequestCountItem
+    operations:
+      - 'GET /api/apps/{id}/request-count'
+    fields: [points]
+  - name: Plan
+    schema: PlanItem
+    operations: [GET /api/payments/plans]
+    fields: [accountPlanType, price]
+relationships:
+  - from: Account
+    to: AccountPlan
+    type: has_one
+    via: AccountDetails.plan
+  - from: App
+    to: Channel
+    type: has_many
+    via: AppItem.channels (AppChannelListItem) / ChannelItem.appId
+  - from: Channel
+    to: App
+    type: belongs_to
+    via: ChannelItem.appId
+  - from: Channel
+    to: Revision
+    type: has_one
+    via: ChannelItem.activeRevision / PatchChannelCommand.activeRevisionId
+    note: >-
+      This edge is the deployment. Repointing activeRevisionId with
+      revisionSelectionStrategy=UseSpecifiedRevision is the rollback path recorded in
+      conventions/fermyon-conventions.yml.
+  - from: Revision
+    to: App
+    type: belongs_to
+    via: RevisionItem.appId
+  - from: Channel
+    to: EnvironmentVariable
+    type: has_many
+    via: ChannelItem.environmentVariables (EnvironmentVariableItem.channelId)
+  - from: App
+    to: AppDomain
+    type: has_one
+    via: AppItem.domain
+  - from: AppDomain
+    to: DnsRecord
+    type: has_many
+    via: DomainItem.dnsRecords
+  - from: KeyValueStore
+    to: App
+    type: has_many
+    via: KeyValueStoreItem.links[] (ResourceLabel.appId)
+    note: Many-to-many through ResourceLabel; a store may serve several apps.
+  - from: SqlDatabase
+    to: App
+    type: has_many
+    via: Database.links[] (ResourceLabel.appId)
+  - from: VariablePair
+    to: App
+    type: belongs_to
+    via: CreateVariablePairCommand.appId
+  - from: KeyValuePair
+    to: App
+    type: belongs_to
+    via: CreateKeyValuePairCommand.appId
+  - from: LogEntry
+    to: App
+    type: belongs_to
+    via: Entry.meta.appId
+  - from: LogEntry
+    to: Channel
+    type: belongs_to
+    via: Entry.meta.channelId
+  - from: App
+    to: AppEvent
+    type: has_many
+    via: GET /api/apps/{id}/events
+  - from: App
+    to: Revision
+    type: has_many
+    via: RevisionItem.appId
+counts:
+  schemas_in_contract: 73
+  entities: 17
+  relationships: 16
+notes:
+  - >-
+    Cascade behaviour is documented in prose, not in the contract: deleting an App also
+    destroys its default key-value store and every application variable, permanently
+    (https://developer.fermyon.com/cloud/delete). The OpenAPI gives no hint of this.
+  - >-
+    There is no user or team entity in the Fermyon Cloud contract. Identity is an Account
+    plus a token; there is no membership, role or permission object anywhere.

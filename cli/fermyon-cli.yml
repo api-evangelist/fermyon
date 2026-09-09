@@ -1,0 +1,122 @@
+generated: '2026-09-09'
+method: searched
+source: >-
+  https://developer.fermyon.com/cloud/cloud-command-reference and
+  https://techdocs.akamai.com/akamai-functions/docs/aka-command-reference, read 2026-09-09.
+provider: Fermyon
+providerId: fermyon
+description: >-
+  Fermyon ships no standalone CLI binary of its own. Everything is a PLUGIN to the Spin
+  CLI — `spin cloud` for Fermyon Cloud and `spin aka` for Fermyon Wasm Functions / Akamai
+  Functions. The Spin CLI itself is the CNCF sandbox project the plugins extend. For an
+  agent this matters: the CLI, not the REST API, is the documented path to every deploy,
+  and the two plugins have DIFFERENT command surfaces because they drive different
+  control planes.
+clis:
+  - id: spin
+    name: Spin CLI
+    role: host CLI that both Fermyon plugins extend
+    project: CNCF sandbox (spinframework)
+    version: v4.1.0
+    released: '2026-08-26'
+    repository: https://github.com/spinframework/spin
+    docs: https://spinframework.dev/
+    install:
+      - method: script
+        command: 'curl -fsSL https://spinframework.dev/downloads/install.sh | bash'
+      - method: homebrew
+        command: brew install fermyon/tap/spin
+        note: Also published from the spinframework/homebrew-tap.
+      - method: github-release
+        url: https://github.com/spinframework/spin/releases
+  - id: spin-cloud
+    name: '`spin cloud` plugin'
+    role: Fermyon Cloud control plane
+    target: https://cloud.fermyon.com
+    version: v0.11.0
+    released: '2025-03-25'
+    repository: https://github.com/fermyon/cloud-plugin
+    docs: https://developer.fermyon.com/cloud/cloud-command-reference
+    spin_compatibility: '>= v1.3'
+    install:
+      - method: spin-plugin
+        command: spin plugins install cloud
+      - method: spin-plugin-upgrade
+        command: spin plugins upgrade cloud
+    command_groups:
+      - group: root
+        commands: [deploy, login, logout, logs, help]
+      - group: apps
+        commands: [apps list, apps info, apps delete]
+      - group: key-value
+        commands: [key-value create, key-value delete, key-value list, key-value rename, key-value set]
+      - group: sqlite
+        commands: [sqlite create, sqlite delete, sqlite execute, sqlite list, sqlite rename, sqlite help]
+      - group: link
+        commands: [link key-value, link sqlite, unlink key-value, unlink sqlite]
+      - group: variables
+        commands: [variables set, variables list, variables delete, variables help]
+    key_flows:
+      - name: Authenticate
+        command: spin cloud login
+        note: Drives the device-code flow behind POST /api/device-codes.
+      - name: Deploy an application
+        command: spin cloud deploy
+        note: >-
+          Packages the app, pushes it to the Cloud OCI registry and creates a revision and
+          channel. Backed by /api/oci/*, /api/revisions and /api/channels.
+      - name: Provision and link state
+        command: spin cloud sqlite create / spin cloud link sqlite
+        note: Backed by /api/sql-databases/create and /api/sql-databases/{database}/links.
+      - name: Stream logs
+        command: spin cloud logs
+        note: Backed by /api/apps/{id}/logs and /logs/raw.
+  - id: spin-aka
+    name: '`spin aka` plugin'
+    role: Fermyon Wasm Functions / Akamai Functions control plane
+    version: 0.7.0
+    released: '2026-03-20'
+    docs: https://techdocs.akamai.com/akamai-functions/docs/aka-command-reference
+    spin_compatibility: '>= v3.0.0'
+    install:
+      - method: spin-plugin
+        command: spin plugins install aka
+        docs: https://techdocs.akamai.com/akamai-functions/docs/quickstart
+    command_groups:
+      - group: root
+        commands: [deploy, login, logs, info, help, send-feedback]
+      - group: app
+        commands: [app create, app deploy, app delete, app list, app status, app history, app logs, app link, app unlink, app help]
+      - group: app cron
+        commands: [app cron create, app cron delete, app cron list]
+        stability: tech-preview
+      - group: auth
+        commands: [auth login, auth help]
+      - group: auth token
+        commands: [auth token create, auth token list, auth token delete, auth token regenerate, auth token help]
+      - group: cron
+        commands: [cron create, cron delete, cron list, cron help]
+        stability: tech-preview
+    key_flows:
+      - name: Authenticate
+        command: spin aka login
+        note: >-
+          Since v0.7.0 credentials are stored in the OS native secret store (macOS Keychain,
+          Linux secret service, Windows Credential Manager) rather than a plain-text config file.
+      - name: Deploy an application
+        command: spin aka deploy
+        flags: ['--skip-readiness-check (v0.6.0+)', '--account-name (v0.5.0+)']
+      - name: Inspect
+        command: spin aka info --format json
+        note: JSON output added in v0.5.0; the only machine-readable output documented.
+      - name: Filter logs
+        command: spin aka logs --component-id <id> --deployment-version <n> --region <region>
+notes:
+  - >-
+    There is no `spin aka` equivalent of `spin cloud sqlite` — Akamai Functions exposes a
+    Key Value store and cron triggers, not a managed SQLite database. The two products'
+    command surfaces are not interchangeable.
+  - >-
+    The plugin binaries are distributed through the Spin plugin system
+    (github.com/spinframework/spin-plugins manifests), not through a language package
+    registry. See packages/fermyon-packages.yml.

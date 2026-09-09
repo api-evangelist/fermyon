@@ -41,8 +41,12 @@ tags:
   - Functions
   - WebAssembly
   - Serverless
+  - Edge Computing
+  - Serverless Functions
+  - Spin
+  - Developer Tools
 created: '2025-02-08'
-modified: '2026-04-28'
+modified: '2026-09-09'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/fermyon/refs/heads/main/apis.yml
 specificationVersion: '0.23'
@@ -59,15 +63,30 @@ apis:
   - Functions
   - WebAssembly
   - Serverless
+  x-baseURL-note: >-
+    No public REST base URL is published for Fermyon Wasm Functions / Akamai Functions.
+    Its control plane is reachable only through the `spin aka` Spin CLI plugin; the
+    provider documents no HTTP API and serves no OpenAPI (probed 2026-09-09:
+    https://techdocs.akamai.com/akamai-functions/openapi/ returns an empty
+    "All OpenAPI Files for v1" listing). Recorded as absent rather than guessed.
   properties:
   - type: Documentation
-    url: https://developer.fermyon.com/
+    url: https://developer.fermyon.com/wasm-functions/index
   - type: GettingStarted
-    url: https://developer.fermyon.com/spin/v3/quickstart
+    url: https://techdocs.akamai.com/akamai-functions/docs/quickstart
+  - type: LLMsTxt
+    url: llms/fermyon-wasm-functions-llms.txt
+  - type: ChangeLog
+    url: https://techdocs.akamai.com/akamai-functions/changelog
+  - type: CLI
+    url: https://techdocs.akamai.com/akamai-functions/docs/aka-command-reference
+  - type: RateLimits
+    url: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
 - aid: fermyon:fermyon-accounts-api
   name: Fermyon accounts API
   description: The accounts API from Fermyon — 1 operation(s) for accounts.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Account
   tags_raw:
@@ -75,10 +94,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-accounts-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-accounts-api-overlay.yaml
+
 - aid: fermyon:fermyon-apps-api
   name: Fermyon apps API
   description: The apps API from Fermyon — 6 operation(s) for apps.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Application
   tags_raw:
@@ -86,10 +109,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-apps-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-apps-api-overlay.yaml
+
 - aid: fermyon:fermyon-auth-tokens-api
   name: Fermyon auth-tokens API
   description: The auth-tokens API from Fermyon — 2 operation(s) for auth-tokens.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Auth Tokens
   tags_raw:
@@ -97,10 +124,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-auth-tokens-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-auth-tokens-api-overlay.yaml
+
 - aid: fermyon:fermyon-channels-api
   name: Fermyon channels API
   description: The channels API from Fermyon — 6 operation(s) for channels.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Channels
   tags_raw:
@@ -108,10 +139,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-channels-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-channels-api-overlay.yaml
+
 - aid: fermyon:fermyon-custom-domains-api
   name: Fermyon custom-domains API
   description: The custom-domains API from Fermyon — 1 operation(s) for custom-domains.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Custom Domains
   tags_raw:
@@ -119,19 +154,27 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-custom-domains-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-custom-domains-api-overlay.yaml
+
 - aid: fermyon:fermyon-device-codes-api
   name: Fermyon device-codes API
   description: The device-codes API from Fermyon — 3 operation(s) for device-codes.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - device-codes
   properties:
   - type: OpenAPI
     url: openapi/fermyon-device-codes-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-device-codes-api-overlay.yaml
+
 - aid: fermyon:fermyon-key-value-pairs-api
   name: Fermyon key-value-pairs API
   description: The key-value-pairs API from Fermyon — 1 operation(s) for key-value-pairs.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Key-Value Pairs
   tags_raw:
@@ -139,10 +182,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-key-value-pairs-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-key-value-pairs-api-overlay.yaml
+
 - aid: fermyon:fermyon-key-value-stores-api
   name: Fermyon key-value-stores API
   description: The key-value-stores API from Fermyon — 4 operation(s) for key-value-stores.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Key-Value Stores
   tags_raw:
@@ -150,10 +197,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-key-value-stores-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-key-value-stores-api-overlay.yaml
+
 - aid: fermyon:fermyon-oci-api
   name: Fermyon oci API
   description: The oci API from Fermyon — 4 operation(s) for oci.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - OCI
   tags_raw:
@@ -161,10 +212,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-oci-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-oci-api-overlay.yaml
+
 - aid: fermyon:fermyon-payments-api
   name: Fermyon payments API
   description: The payments API from Fermyon — 3 operation(s) for payments.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Payments
   tags_raw:
@@ -172,10 +227,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-payments-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-payments-api-overlay.yaml
+
 - aid: fermyon:fermyon-personal-access-tokens-api
   name: Fermyon personal-access-tokens API
   description: The personal-access-tokens API from Fermyon — 2 operation(s) for personal-access-tokens.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Personal Access Tokens
   tags_raw:
@@ -183,10 +242,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-personal-access-tokens-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-personal-access-tokens-api-overlay.yaml
+
 - aid: fermyon:fermyon-revisions-api
   name: Fermyon revisions API
   description: The revisions API from Fermyon — 1 operation(s) for revisions.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - Revisions
   tags_raw:
@@ -194,10 +257,14 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-revisions-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-revisions-api-overlay.yaml
+
 - aid: fermyon:fermyon-sql-databases-api
   name: Fermyon sql-databases API
   description: The sql-databases API from Fermyon — 5 operation(s) for sql-databases.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - SqlDatabases
   tags_raw:
@@ -205,15 +272,21 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/fermyon-sql-databases-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-sql-databases-api-overlay.yaml
+
 - aid: fermyon:fermyon-variable-pairs-api
   name: Fermyon variable-pairs API
   description: The variable-pairs API from Fermyon — 1 operation(s) for variable-pairs.
   humanURL: https://developer.fermyon.com/
+  baseURL: https://cloud.fermyon.com
   tags:
   - variable-pairs
   properties:
   - type: OpenAPI
     url: openapi/fermyon-variable-pairs-api-openapi.yml
+  - type: Overlay
+    url: overlays/fermyon-variable-pairs-api-overlay.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/fermyon-agentic-access.yml
@@ -237,6 +310,65 @@ common:
     url: https://www.fermyon.com/blog/index
   - type: Website
     url: https://www.fermyon.com/
+  - type: Packages
+    url: packages/fermyon-packages.yml
+  - type: SDKs
+    url: packages/fermyon-packages.yml
+  - type: CLI
+    url: cli/fermyon-cli.yml
+  - type: WellKnown
+    url: well-known/fermyon-well-known.yml
+  - type: SecurityTxt
+    url: well-known/fermyon-security.txt
+  - type: Security
+    url: security/fermyon-vulnerability-disclosure.yml
+  - type: LLMsTxt
+    url: llms/fermyon-llms.txt
+  - type: X-MCPServerCandidate
+    url: mcp/fermyon-mcp.yml
+  - type: Conformance
+    url: conformance/fermyon-conformance.yml
+  - type: Conventions
+    url: conventions/fermyon-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/fermyon-lifecycle.yml
+  - type: DataModel
+    url: data-model/fermyon-data-model.yml
+  - type: ChangeLog
+    url: changelog/fermyon-changelog.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Plans
+    url: plans/fermyon-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/fermyon-rate-limits.yml
+  - type: FinOps
+    url: finops/fermyon-finops.yml
+  - type: Postman
+    url: collections/fermyon.postman_collection.json
+  - type: APIReference
+    url: https://developer.fermyon.com/cloud/rest-api
+  - type: DeveloperPortal
+    url: https://developer.fermyon.com/
+  - type: Quickstart
+    url: https://developer.fermyon.com/cloud/quickstart
+  - type: Support
+    url: https://developer.fermyon.com/cloud/support
+  - type: Pricing
+    url: https://www.fermyon.com/pricing
+  - type: SignUp
+    url: https://cloud.fermyon.com/?signup
+  - type: Login
+    url: https://cloud.fermyon.com/login
+  - type: TermsOfService
+    url: https://www.fermyon.com/legal
+  - type: PrivacyPolicy
+    url: https://www.fermyon.com/privacy-policy
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-09'
+  status: enriched
+  artifacts_added: 32
+  pass: local-v3

@@ -1,0 +1,66 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Fermyon channels-api API
+  version: 1.0.0
+extends: fermyon-channels-api-openapi.yml
+x-generated: '2026-09-09'
+x-method: generated
+x-source: API Evangelist enrichment pipeline; targets openapi/fermyon-channels-api-openapi.yml
+x-note: Fermyon publishes the Cloud API contract without a single operationId (verified against https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json
+  on 2026-09-09). These operationIds are computed deterministically from HTTP method + path by API Evangelist and
+  are NOT names Fermyon publishes. They are kept in this overlay rather than written into the spec so the provider
+  contract stays unmodified.
+actions:
+- target: $.paths['/api/channels'].get
+  description: Add a stable operationId for GET /api/channels; the published contract declares none.
+  update:
+    operationId: getChannels
+- target: $.paths['/api/channels'].post
+  description: Add a stable operationId for POST /api/channels; the published contract declares none.
+  update:
+    operationId: createChannels
+- target: $.paths['/api/channels/{id}'].get
+  description: Add a stable operationId for GET /api/channels/{id}; the published contract declares none.
+  update:
+    operationId: getChannelsById
+- target: $.paths['/api/channels/{id}'].put
+  description: Add a stable operationId for PUT /api/channels/{id}; the published contract declares none.
+  update:
+    operationId: replaceChannelsById
+- target: $.paths['/api/channels/{id}'].patch
+  description: Add a stable operationId for PATCH /api/channels/{id}; the published contract declares none.
+  update:
+    operationId: updateChannelsById
+- target: $.paths['/api/channels/{id}'].delete
+  description: Add a stable operationId for DELETE /api/channels/{id}; the published contract declares none.
+  update:
+    operationId: deleteChannelsById
+- target: $.paths['/api/channels/{channelId}/desired-status'].put
+  description: Add a stable operationId for PUT /api/channels/{channelId}/desired-status; the published contract
+    declares none.
+  update:
+    operationId: replaceChannelsByChannelidDesiredStatus
+- target: $.paths['/api/channels/{id}/logs'].get
+  description: Add a stable operationId for GET /api/channels/{id}/logs; the published contract declares none.
+  update:
+    operationId: getChannelsByIdLogs
+- target: $.paths['/api/channels/{id}/logs/raw'].get
+  description: Add a stable operationId for GET /api/channels/{id}/logs/raw; the published contract declares none.
+  update:
+    operationId: getChannelsByIdLogsRaw
+- target: $.paths['/api/channels/{id}/healthz'].get
+  description: Add a stable operationId for GET /api/channels/{id}/healthz; the published contract declares none.
+  update:
+    operationId: getChannelsByIdHealthz
+- target: $.info
+  description: Attach the provider documentation and contract source that the published document omits.
+  update:
+    contact:
+      name: Fermyon Cloud documentation
+      url: https://developer.fermyon.com/cloud/index
+- target: $
+  description: Attach externalDocs pointing at the Fermyon Cloud REST API reference page.
+  update:
+    externalDocs:
+      description: Fermyon Cloud REST API reference
+      url: https://developer.fermyon.com/cloud/rest-api

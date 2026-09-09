@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts personal-access-tokens API
+  title: Fermyon Cloud accounts Personal Access Tokens API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -122,6 +122,38 @@ paths:
           description: Success
 components:
   schemas:
+    CreatePersonalAccessTokenCommand:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    PersonalAccessTokenItem:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PersonalAccessTokenValue:
+      type: object
+      properties:
+        name:
+          type: string
+        token:
+          type: string
+        id:
+          type: string
+          format: uuid
+      additionalProperties: false
     PersonalAccessTokenItemPage:
       required:
       - isLastPage
@@ -147,38 +179,6 @@ components:
         isLastPage:
           type: boolean
           readOnly: true
-      additionalProperties: false
-    PersonalAccessTokenItem:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-      additionalProperties: false
-    PersonalAccessTokenValue:
-      type: object
-      properties:
-        name:
-          type: string
-        token:
-          type: string
-        id:
-          type: string
-          format: uuid
-      additionalProperties: false
-    CreatePersonalAccessTokenCommand:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:

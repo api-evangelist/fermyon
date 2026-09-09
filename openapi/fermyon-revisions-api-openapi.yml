@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts revisions API
+  title: Fermyon Cloud accounts Revisions API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -82,42 +82,6 @@ paths:
           description: Success
 components:
   schemas:
-    RevisionComponentDto:
-      required:
-      - id
-      - name
-      - source
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        source:
-          minLength: 1
-          type: string
-        name:
-          minLength: 1
-          type: string
-        route:
-          type: string
-          nullable: true
-        type:
-          type: string
-          nullable: true
-      additionalProperties: false
-    RegisterRevisionCommand:
-      required:
-      - appStorageId
-      - revisionNumber
-      type: object
-      properties:
-        appStorageId:
-          minLength: 1
-          type: string
-        revisionNumber:
-          minLength: 1
-          type: string
-      additionalProperties: false
     RevisionItem:
       required:
       - appId
@@ -169,6 +133,42 @@ components:
         isLastPage:
           type: boolean
           readOnly: true
+      additionalProperties: false
+    RegisterRevisionCommand:
+      required:
+      - appStorageId
+      - revisionNumber
+      type: object
+      properties:
+        appStorageId:
+          minLength: 1
+          type: string
+        revisionNumber:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    RevisionComponentDto:
+      required:
+      - id
+      - name
+      - source
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        source:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+        route:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
       additionalProperties: false
   securitySchemes:
     Bearer:

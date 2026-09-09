@@ -1,0 +1,136 @@
+generated: '2026-09-09'
+method: searched
+source: https://techdocs.akamai.com/akamai-functions/changelog
+provider: Fermyon
+providerId: fermyon
+description: >-
+  Fermyon maintains two dated changelogs, one per hosted product. The Akamai Functions
+  changelog (formerly Fermyon Wasm Functions) is the live one and tracks releases of the
+  `spin aka` CLI plugin. The Fermyon Cloud changelog tracks the `spin cloud` plugin and
+  Cloud service features and has not been updated since January 2024. Neither changelog
+  tracks the REST API contract itself — no changelog entry has ever announced an
+  operation, schema or version change to the Fermyon Cloud API.
+changelogs:
+  - id: akamai-functions
+    name: Akamai Functions changelog
+    url: https://techdocs.akamai.com/akamai-functions/changelog
+    machine_readable: https://techdocs.akamai.com/akamai-functions/changelog/llms.txt
+    format: dated entries, one per plugin release, each also served as .md
+    scheme: semver (of the `spin aka` plugin)
+    current_version: v0.7.0
+    latest_entry: '2026-03-20'
+    active: true
+  - id: fermyon-cloud
+    name: Fermyon Cloud changelog
+    url: https://developer.fermyon.com/cloud/changelog
+    format: dated entries on a single page
+    scheme: semver (of the `spin cloud` plugin)
+    current_version: v0.7.0
+    latest_entry: '2024-01-31'
+    active: false
+    note: >-
+      No entry since 2024-01-31, while the `spin cloud` plugin itself last shipped
+      v0.11.0 on 2025-03-25 — the changelog is behind the releases it documents.
+entries:
+  - changelog: akamai-functions
+    version: spin aka v0.7.0
+    date: '2026-03-20'
+    breaking: false
+    additions:
+      - >-
+        Login credentials moved into the operating system's native secret store (macOS
+        Keychain, Linux secret service, Windows Credential Manager), off disk and out of
+        plain-text config files. Existing credentials migrate automatically on first use.
+      - Rebranded to Akamai Functions across CLI help text and messaging.
+    url: https://techdocs.akamai.com/akamai-functions/changelog/mar-20-2026-spin-aka-v070-updates
+  - changelog: akamai-functions
+    version: spin aka v0.6.0
+    date: '2025-12-05'
+    breaking: false
+    additions:
+      - >-
+        `spin aka deploy --skip-readiness-check` returns immediately instead of waiting for
+        the deployment readiness check.
+    url: https://techdocs.akamai.com/akamai-functions/changelog/dec-5-2025-spin-aka-v060-updates
+  - changelog: akamai-functions
+    version: spin aka v0.5.0
+    date: '2025-09-16'
+    breaking: false
+    additions:
+      - '`spin aka info --format json` adds JSON output alongside plaintext.'
+      - >-
+        Log filtering by component ID, deployment version and handling region
+        (`--component-id`, `--deployment-version`, `--region`).
+      - Deploy to a named account with `spin aka deploy --account-name`.
+    url: https://techdocs.akamai.com/akamai-functions/changelog/sept-16-2025-spin-aka-v050-updates
+  - changelog: akamai-functions
+    version: spin aka v0.4.4
+    date: '2025-08-26'
+    breaking: false
+    url: https://techdocs.akamai.com/akamai-functions/changelog/aug-26-2025-spin-aka-v044-updates
+  - changelog: akamai-functions
+    version: spin aka v0.4.3
+    date: '2025-08-07'
+    breaking: false
+    url: https://techdocs.akamai.com/akamai-functions/changelog/aug-7-2025-spin-aka-v043-updates
+  - changelog: akamai-functions
+    version: spin aka v0.4.2
+    date: '2025-07-10'
+    breaking: false
+    url: https://techdocs.akamai.com/akamai-functions/changelog/july-10-2025-spin-aka-v042-updates
+  - changelog: akamai-functions
+    version: spin aka v0.4.1
+    date: '2025-05-30'
+    breaking: false
+    url: https://techdocs.akamai.com/akamai-functions/changelog/may-30-2025-spin-aka-v041-updates
+  - changelog: akamai-functions
+    version: spin aka v0.4.0
+    date: '2025-05-26'
+    breaking: false
+    url: https://techdocs.akamai.com/akamai-functions/changelog/may-262025-spin-aka-v040-updates
+  - changelog: fermyon-cloud
+    version: spin cloud v0.7.0
+    date: '2024-01-31'
+    breaking: false
+    additions:
+      - >-
+        Key-value stores can be shared between applications, multiple stores can be linked to
+        one application, and links can be updated dynamically. Backs the
+        /api/key-value-stores/{store}/links operations in the REST contract.
+    url: https://developer.fermyon.com/cloud/changelog
+  - changelog: fermyon-cloud
+    version: spin cloud v0.5.1
+    date: '2023-11-13'
+    breaking: false
+    fixes:
+      - Fixed allowed_http_hosts allow-listed domains still being unreachable (regression in v0.5.0).
+    url: https://developer.fermyon.com/cloud/changelog
+  - changelog: fermyon-cloud
+    version: Serverless AI open beta
+    date: '2023-11-06'
+    breaking: false
+    additions:
+      - Serverless AI available to Starter, Growth and Enterprise plans with no sign-up.
+    url: https://developer.fermyon.com/cloud/changelog
+  - changelog: fermyon-cloud
+    version: spin cloud v0.5.0
+    date: '2023-11-02'
+    breaking: false
+    additions:
+      - Component model support on Fermyon Cloud via the Spin 2.0 application manifest.
+      - '`spin cloud logs` streams application logs.'
+      - '"NoOps database" renamed to Fermyon Cloud SQLite database in CLI help text.'
+    url: https://developer.fermyon.com/cloud/changelog
+  - changelog: fermyon-cloud
+    version: spin cloud v0.3.0 / v0.4.0
+    date: '2023-10-12'
+    breaking: false
+    additions:
+      - >-
+        Fermyon Cloud dropped its Bindle dependency and moved to OCI as the default
+        registry. See conformance/fermyon-conformance.yml (oci-distribution).
+    url: https://developer.fermyon.com/cloud/changelog
+counts:
+  changelogs: 2
+  entries_recorded: 13
+  breaking_changes_recorded: 0

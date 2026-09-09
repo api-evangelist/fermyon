@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts apps API
+  title: Fermyon Cloud accounts Apps API
   version: '1.0'
   description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
 servers:
@@ -391,6 +391,45 @@ paths:
                   $ref: '#/components/schemas/AppEventItem'
 components:
   schemas:
+    ApiHealthStatus:
+      enum:
+      - Healthy
+      - Unhealthy
+      - Degraded
+      type: string
+    ValidationStatus:
+      enum:
+      - InProgress
+      - Error
+      - Ready
+      - Provisioning
+      type: string
+    GetAppRawLogsVm:
+      required:
+      - entries
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entry'
+      additionalProperties: false
+    Meta:
+      type: object
+      properties:
+        appId:
+          type: string
+        channelId:
+          type: string
+        deploymentId:
+          type: string
+        requestId:
+          type: string
+        triggerId:
+          type: string
+        componentId:
+          type: string
+      additionalProperties: false
     AppItemPage:
       required:
       - isLastPage
@@ -417,55 +456,25 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    Meta:
-      type: object
+    StringField:
+      type: string
       properties:
-        appId:
-          type: string
-        channelId:
-          type: string
-        deploymentId:
-          type: string
-        requestId:
-          type: string
-        triggerId:
-          type: string
-        componentId:
+        value:
           type: string
       additionalProperties: false
-    Entry:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        logLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/LogLine'
-      additionalProperties: false
-    GetAppLogsVm:
+    AppRequestPointItem:
       required:
-      - logs
+      - timestamp
+      - value
       type: object
       properties:
-        logs:
-          type: array
-          items:
-            type: string
+        timestamp:
+          type: integer
+          format: int64
+        value:
+          type: integer
+          format: int64
       additionalProperties: false
-    ApiHealthStatus:
-      enum:
-      - Healthy
-      - Unhealthy
-      - Degraded
-      type: string
-    AppEventType:
-      enum:
-      - Unknown
-      - Create
-      - Update
-      - Delete
-      type: string
     AppChannelListItem:
       required:
       - created
@@ -488,6 +497,145 @@ components:
           format: date-time
         healthStatus:
           $ref: '#/components/schemas/ApiHealthStatus'
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    LogLine:
+      type: object
+      properties:
+        time:
+          type: string
+        source:
+          type: string
+        line:
+          type: string
+      additionalProperties: false
+    AppEventItem:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/AppEventType'
+        name:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+      additionalProperties: false
+    AppRequestCountItem:
+      required:
+      - averagePerSecond
+      - end
+      - interval
+      - points
+      - start
+      - total
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int64
+        end:
+          type: integer
+          format: int64
+        interval:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        averagePerSecond:
+          type: number
+          format: double
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppRequestPointItem'
+      additionalProperties: false
+    AppEventType:
+      enum:
+      - Unknown
+      - Create
+      - Update
+      - Delete
+      type: string
+    Entry:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        logLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogLine'
+      additionalProperties: false
+    UpdateAppCommand:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    GetAppLogsVm:
+      required:
+      - logs
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    PatchAppCommand:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        domain:
+          $ref: '#/components/schemas/StringField'
+        hostname:
+          $ref: '#/components/schemas/StringField'
+      additionalProperties: false
+    CreateAppCommand:
+      required:
+      - name
+      - storageId
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        storageId:
+          minLength: 1
+          type: string
+        createDefaultDatabase:
+          type: boolean
+      additionalProperties: false
+    AppDomainItem:
+      required:
+      - name
+      - validationStatus
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        validationStatus:
+          $ref: '#/components/schemas/ValidationStatus'
         lastModified:
           type: string
           format: date-time
@@ -538,154 +686,6 @@ components:
         latestRevision:
           type: string
           nullable: true
-      additionalProperties: false
-    AppEventItem:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date-time
-        type:
-          $ref: '#/components/schemas/AppEventType'
-        name:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-      additionalProperties: false
-    GetAppRawLogsVm:
-      required:
-      - entries
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entry'
-      additionalProperties: false
-    CreateAppCommand:
-      required:
-      - name
-      - storageId
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        storageId:
-          minLength: 1
-          type: string
-        createDefaultDatabase:
-          type: boolean
-      additionalProperties: false
-    AppDomainItem:
-      required:
-      - name
-      - validationStatus
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        validationStatus:
-          $ref: '#/components/schemas/ValidationStatus'
-        lastModified:
-          type: string
-          format: date-time
-      additionalProperties: false
-    AppRequestCountItem:
-      required:
-      - averagePerSecond
-      - end
-      - interval
-      - points
-      - start
-      - total
-      type: object
-      properties:
-        start:
-          type: integer
-          format: int64
-        end:
-          type: integer
-          format: int64
-        interval:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int64
-        averagePerSecond:
-          type: number
-          format: double
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppRequestPointItem'
-      additionalProperties: false
-    UpdateAppCommand:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    LogLine:
-      type: object
-      properties:
-        time:
-          type: string
-        source:
-          type: string
-        line:
-          type: string
-      additionalProperties: false
-    AppRequestPointItem:
-      required:
-      - timestamp
-      - value
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        value:
-          type: integer
-          format: int64
-      additionalProperties: false
-    ValidationStatus:
-      enum:
-      - InProgress
-      - Error
-      - Ready
-      - Provisioning
-      type: string
-    PatchAppCommand:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        domain:
-          $ref: '#/components/schemas/StringField'
-        hostname:
-          $ref: '#/components/schemas/StringField'
-      additionalProperties: false
-    StringField:
-      type: string
-      properties:
-        value:
-          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:

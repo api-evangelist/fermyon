@@ -1,0 +1,65 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Fermyon apps-api API
+  version: 1.0.0
+extends: fermyon-apps-api-openapi.yml
+x-generated: '2026-09-09'
+x-method: generated
+x-source: API Evangelist enrichment pipeline; targets openapi/fermyon-apps-api-openapi.yml
+x-note: Fermyon publishes the Cloud API contract without a single operationId (verified against https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json
+  on 2026-09-09). These operationIds are computed deterministically from HTTP method + path by API Evangelist and
+  are NOT names Fermyon publishes. They are kept in this overlay rather than written into the spec so the provider
+  contract stays unmodified.
+actions:
+- target: $.paths['/api/apps'].get
+  description: Add a stable operationId for GET /api/apps; the published contract declares none.
+  update:
+    operationId: getApps
+- target: $.paths['/api/apps'].post
+  description: Add a stable operationId for POST /api/apps; the published contract declares none.
+  update:
+    operationId: createApps
+- target: $.paths['/api/apps/{id}'].get
+  description: Add a stable operationId for GET /api/apps/{id}; the published contract declares none.
+  update:
+    operationId: getAppsById
+- target: $.paths['/api/apps/{id}'].put
+  description: Add a stable operationId for PUT /api/apps/{id}; the published contract declares none.
+  update:
+    operationId: replaceAppsById
+- target: $.paths['/api/apps/{id}'].patch
+  description: Add a stable operationId for PATCH /api/apps/{id}; the published contract declares none.
+  update:
+    operationId: updateAppsById
+- target: $.paths['/api/apps/{id}'].delete
+  description: Add a stable operationId for DELETE /api/apps/{id}; the published contract declares none.
+  update:
+    operationId: deleteAppsById
+- target: $.paths['/api/apps/{id}/request-count'].get
+  description: Add a stable operationId for GET /api/apps/{id}/request-count; the published contract declares none.
+  update:
+    operationId: getAppsByIdRequestCount
+- target: $.paths['/api/apps/{id}/logs'].get
+  description: Add a stable operationId for GET /api/apps/{id}/logs; the published contract declares none.
+  update:
+    operationId: getAppsByIdLogs
+- target: $.paths['/api/apps/{id}/logs/raw'].get
+  description: Add a stable operationId for GET /api/apps/{id}/logs/raw; the published contract declares none.
+  update:
+    operationId: getAppsByIdLogsRaw
+- target: $.paths['/api/apps/{id}/events'].get
+  description: Add a stable operationId for GET /api/apps/{id}/events; the published contract declares none.
+  update:
+    operationId: getAppsByIdEvents
+- target: $.info
+  description: Attach the provider documentation and contract source that the published document omits.
+  update:
+    contact:
+      name: Fermyon Cloud documentation
+      url: https://developer.fermyon.com/cloud/index
+- target: $
+  description: Attach externalDocs pointing at the Fermyon Cloud REST API reference page.
+  update:
+    externalDocs:
+      description: Fermyon Cloud REST API reference
+      url: https://developer.fermyon.com/cloud/rest-api

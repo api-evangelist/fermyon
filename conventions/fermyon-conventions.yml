@@ -1,0 +1,214 @@
+generated: '2026-09-09'
+method: searched
+source: >-
+  openapi/_original/fermyon-openapi.yml (harvested from
+  https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json) plus the
+  Fermyon Cloud documentation at developer.fermyon.com, read 2026-09-09.
+provider: Fermyon
+providerId: fermyon
+api: Fermyon Cloud REST API
+base_url: https://cloud.fermyon.com
+description: >-
+  Cross-cutting runtime semantics for the Fermyon Cloud REST API — what an agent needs to
+  know that is not any single operation. The headline findings are that the contract is
+  strong on pagination and explicit versioning and completely silent on errors, replay
+  protection and rate-limit signalling.
+authentication:
+  style: bearer-jwt
+  scheme_name: Bearer
+  declared_as: apiKey in header (Authorization)
+  header: 'Authorization: Bearer {token}'
+  applies_to: all 61 operations (top-level `security` requirement)
+  token_sources:
+    - >-
+      Personal access token — POST /api/personal-access-tokens; list with GET, revoke with
+      DELETE /api/personal-access-tokens/{id}.
+    - >-
+      Device-code login — POST /api/device-codes returns deviceCode, userCode,
+      verificationUrl, expiresIn, interval; the user activates with POST
+      /api/device-codes/activate; this is what `spin cloud login` drives.
+    - >-
+      Token exchange and refresh — POST /api/auth-tokens and POST /api/auth-tokens/refresh
+      return a TokenInfo {token, refreshToken, expiration}.
+  scopes: none
+  scopes_note: >-
+    No oauth2 securityScheme and no scopes are declared. Authorization is all-or-nothing
+    per token. The Akamai Functions side says so explicitly: "Akamai Functions does not
+    support Role-Based Access Control (RBAC). Everyone has the same level of permissions
+    and any member can permanently delete any application in the account."
+    (https://techdocs.akamai.com/akamai-functions/docs/manage-accounts)
+  docs: https://developer.fermyon.com/cloud/user-settings
+idempotency:
+  coverage: none
+  supported: false
+  header: null
+  scope: []
+  retention: null
+  evidence: >-
+    No Idempotency-Key header, no idempotency query parameter, and no replay-protection
+    language in the contract or in any Fermyon Cloud documentation page. 38 of the 61
+    operations mutate state (17 POST, 5 PUT, 6 PATCH, 10 DELETE) and none of them is
+    documented as safe to retry.
+  agent_impact: >-
+    An agent that times out on POST /api/apps, POST /api/sql-databases/create or
+    POST /api/key-value-stores/{store} has no way to distinguish "not created" from
+    "created but the response was lost", and no key to replay with. It must read back
+    (GET /api/apps, GET /api/sql-databases, GET /api/key-value-stores) before retrying.
+reversibility:
+  grade: documented
+  summary: >-
+    Deployment rollback and upload cancellation exist and are real reversal paths.
+    Resource deletion is explicitly and permanently irreversible, and the provider says so
+    in plain words rather than leaving it unstated. No reversal WINDOW is published for any
+    operation, which is why this grades `documented` and not `verified`.
+  write_surfaces:
+    - surface: Application deployment (revision rollback)
+      reversal: >-
+        PATCH /api/channels/{id} with revisionSelectionStrategy=UseSpecifiedRevision and
+        activeRevisionId set to a prior revision, re-pointing the channel at an earlier
+        build. Revisions are first-class (GET/POST /api/revisions, RevisionItem carries
+        revisionNumber), so a previous deployment remains addressable.
+      operation: PATCH /api/channels/{id}
+      window: null
+      window_note: >-
+        Fermyon publishes no retention period for revisions, so how far back a rollback can
+        reach is not stated anywhere. Do not assume one.
+      docs: https://developer.fermyon.com/cloud/deployment-concepts
+    - surface: Channel run state
+      reversal: >-
+        PUT /api/channels/{channelId}/desired-status toggles DesiredStatus between Running
+        and Dead — stopping a channel is fully reversible by setting it back to Running.
+      operation: PUT /api/channels/{channelId}/desired-status
+      window: none-required
+      docs: https://developer.fermyon.com/cloud/deployment-concepts
+    - surface: OCI blob upload
+      reversal: >-
+        DELETE /api/oci/{name}/blobs/uploads/{digest} cancels an in-progress upload session
+        before it is completed by digest — the OCI Distribution cancel semantic.
+      operation: DELETE /api/oci/{name}/blobs/uploads/{digest}
+      window: before-completion
+      window_note: Bounded by the upload session, not by a published clock.
+    - surface: Application deletion
+      reversal: none
+      operation: DELETE /api/apps/{id}
+      window: null
+      quote: >-
+        "Note this is a permanent action and cannot be undone. The default key/value store
+        and all application variables will also be deleted."
+      docs: https://developer.fermyon.com/cloud/delete
+      agent_impact: >-
+        A single DELETE destroys the app, its default key-value store and every application
+        variable. There is no undo, no soft-delete, no restore window, and no dry-run. This
+        is the operation an agent must never take without explicit human confirmation.
+    - surface: Key-value store, SQL database, variable pair and personal access token deletion
+      reversal: none
+      operation: >-
+        DELETE /api/key-value-stores/{store}, DELETE /api/sql-databases,
+        DELETE /api/variable-pairs, DELETE /api/personal-access-tokens/{id}
+      window: null
+      window_note: >-
+        No restore path and no retention window is documented for any of these. Recorded as
+        absent, not assumed.
+    - surface: Account deletion
+      reversal: none
+      operation: DELETE /api/accounts/{id}
+      window: null
+dry_run_mode:
+  supported: false
+  evidence: >-
+    No dry-run, preview, validate or simulate parameter appears on any of the 61 operations,
+    and no such mode is documented. The nearest local equivalent is running the application
+    with `spin up` before `spin cloud deploy`, which exercises the app but not the control
+    plane.
+pagination:
+  style: page-index
+  parameters:
+    - name: pageIndex
+      in: query
+      type: integer
+      default: 0
+    - name: pageSize
+      in: query
+      type: integer
+      default: 50
+  sorting:
+    - name: sortBy
+      in: query
+      default: Name
+    - name: IsSortedAscending
+      in: query
+      default: true
+  filtering:
+    - name: searchText
+      in: query
+      default: ''
+    - name: exactMatch
+      in: query
+      default: false
+  response_fields:
+    - items
+    - totalItems
+    - pageIndex
+    - pageSize
+    - isLastPage
+  envelopes:
+    - AppItemPage
+    - ChannelItemPage
+    - PersonalAccessTokenItemPage
+  note: >-
+    Termination is explicit — isLastPage is a required, read-only boolean — so an agent can
+    stop paging without comparing counts. Not every list operation is paginated:
+    GET /api/key-value-stores, GET /api/sql-databases and GET /api/variable-pairs return
+    unbounded lists.
+versioning:
+  style: request-header
+  header: Api-Version
+  default: '1.0'
+  applies_to: every operation
+  note: >-
+    The version is a per-request header with a declared default, not a URL path segment.
+    The document's own info.version is "1.0". No second version has ever been published and
+    no deprecation of "1.0" is announced.
+field_expansion:
+  supported: false
+  note: No expand, fields, include or sparse-fieldset parameter exists on any operation.
+metadata:
+  supported: partial
+  note: >-
+    There is no free-form metadata bag on the core resources. Two typed mechanisms exist:
+    ResourceLabel {label, appId, appName} links key-value stores and SQL databases to
+    applications (POST/DELETE .../links), and the Meta object on log lines carries
+    appId, channelId, deploymentId, requestId, triggerId and componentId.
+request_id_tracing:
+  supported: partial
+  note: >-
+    No request-id request or response HEADER is documented for the control-plane API. A
+    requestId does appear inside application log lines (Meta.requestId, retrievable via
+    GET /api/apps/{id}/logs and /logs/raw), so runtime requests are traceable but
+    control-plane calls are not.
+error_envelope:
+  documented: false
+  format: null
+  evidence: >-
+    The published contract declares only 200 responses across all 61 operations. There is no
+    4xx or 5xx response, no error schema in components, no application/problem+json media
+    type, and no error reference page in the documentation. This is the single largest gap
+    in the contract: an agent calling this API cannot know what a failure looks like until it
+    sees one, and cannot branch on a documented code.
+  note: >-
+    No errors/ artifact was written for this provider precisely because there is nothing real
+    to derive. An empty error catalogue asserting RFC 9457 would be a fabrication.
+rate_limit_signaling:
+  headers_documented: false
+  status_code_documented: false
+  note: >-
+    See rate-limits/fermyon-rate-limits.yml. Quotas are published per subscription plan;
+    no response headers and no throttling status code are documented anywhere, and the
+    contract contains no 429.
+cross_links:
+  authentication: authentication/fermyon-authentication.yml
+  lifecycle: lifecycle/fermyon-lifecycle.yml
+  rate_limits: rate-limits/fermyon-rate-limits.yml
+  conformance: conformance/fermyon-conformance.yml
+  plans: plans/fermyon-plans-pricing.yml
+  data_model: data-model/fermyon-data-model.yml

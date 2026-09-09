@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Fermyon key-value-pairs-api API
+  version: 1.0.0
+extends: fermyon-key-value-pairs-api-openapi.yml
+x-generated: '2026-09-09'
+x-method: generated
+x-source: API Evangelist enrichment pipeline; targets openapi/fermyon-key-value-pairs-api-openapi.yml
+x-note: Fermyon publishes the Cloud API contract without a single operationId (verified against https://raw.githubusercontent.com/fermyon/cloud-openapi/main/swagger.json
+  on 2026-09-09). These operationIds are computed deterministically from HTTP method + path by API Evangelist and
+  are NOT names Fermyon publishes. They are kept in this overlay rather than written into the spec so the provider
+  contract stays unmodified.
+actions:
+- target: $.paths['/api/key-value-pairs'].post
+  description: Add a stable operationId for POST /api/key-value-pairs; the published contract declares none.
+  update:
+    operationId: createKeyValuePairs
+- target: $.info
+  description: Attach the provider documentation and contract source that the published document omits.
+  update:
+    contact:
+      name: Fermyon Cloud documentation
+      url: https://developer.fermyon.com/cloud/index
+- target: $
+  description: Attach externalDocs pointing at the Fermyon Cloud REST API reference page.
+  update:
+    externalDocs:
+      description: Fermyon Cloud REST API reference
+      url: https://developer.fermyon.com/cloud/rest-api

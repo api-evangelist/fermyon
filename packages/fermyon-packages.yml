@@ -1,0 +1,131 @@
+generated: '2026-09-09'
+method: searched
+source: >-
+  npm registry.npmjs.org, crates.io, pypi.org, proxy.golang.org, api.nuget.org and
+  the Fermyon / Spin Framework GitHub organizations, reached 2026-09-09.
+provider: Fermyon
+providerId: fermyon
+description: >-
+  First-party client libraries and plugins for the Fermyon surface. Two distinct
+  families live here. (1) The Fermyon Cloud control plane (cloud.fermyon.com), whose
+  only published client is the generated Rust client in fermyon/cloud-openapi plus
+  the `spin cloud` CLI plugin. (2) The Spin application SDKs — the libraries you write
+  a Spin/Wasm function with. Those SDKs were donated to the CNCF and now live under the
+  spinframework GitHub org, so their SOURCE has moved even though several are still
+  published under the @fermyon npm scope and the fermyon-authored crates.
+note: >-
+  Currency is the finding here. The Spin SDKs that migrated to the spinframework org
+  are current (Rust 7.0.0 Aug 2026, Python 4.0.0 Apr 2026). The packages still carried
+  under the Fermyon name are not: @fermyon/spin-sdk last published 2025-02-24, the
+  Fermyon Cloud `spin cloud` plugin last released 2025-03-25, and the cloud-openapi
+  repo that generates the Cloud REST client was last pushed 2024-05-10 — older than the
+  Cloud API it wraps. Fermyon.Spin.Sdk on NuGet has not moved since 2022 and is alpha.
+packages:
+  - name: '@fermyon/spin-sdk'
+    registry: npm
+    language: javascript
+    official: true
+    version: 3.2.0
+    published: '2025-02-24'
+    url: https://www.npmjs.com/package/@fermyon/spin-sdk
+    repository: https://github.com/spinframework/spin-js-sdk
+    description: >-
+      Spin SDK for JavaScript and TypeScript, built on ComponentizeJS. Still published
+      under the @fermyon npm scope; the source repo has moved to the spinframework org.
+  - name: spin-sdk
+    registry: crates.io
+    language: rust
+    official: true
+    version: 7.0.0
+    published: '2026-08-25'
+    url: https://crates.io/crates/spin-sdk
+    repository: https://github.com/spinframework/spin-rust-sdk
+    description: The Spin Rust SDK for building Spin components in Rust.
+  - name: spin-macro
+    registry: crates.io
+    language: rust
+    official: true
+    version: 7.0.0
+    published: '2026-08-25'
+    url: https://crates.io/crates/spin-macro
+    repository: https://github.com/spinframework/spin-rust-sdk
+    description: Procedural macros supporting the Spin Rust SDK.
+  - name: spin-sdk
+    registry: pypi
+    language: python
+    official: true
+    version: 4.0.0
+    published: '2026-04-23'
+    url: https://pypi.org/project/spin-sdk/
+    repository: https://github.com/spinframework/spin-python-sdk
+    description: Python SDK for Spin.
+  - name: github.com/spinframework/spin-go-sdk
+    registry: go
+    language: go
+    official: true
+    version: v0.0.0-20250411015808-ee0bd1e7d170
+    published: '2025-04-11'
+    url: https://pkg.go.dev/github.com/spinframework/spin-go-sdk
+    repository: https://github.com/spinframework/spin-go-sdk
+    description: >-
+      Spin Go SDK. Untagged — the Go module proxy resolves only a pseudo-version from
+      the 2025-04-11 commit, so consumers cannot pin a semantic release.
+  - name: Fermyon.Spin.Sdk
+    registry: nuget
+    language: dotnet
+    official: true
+    version: 0.1.0-alpha2
+    published: '2022-09-04'
+    url: https://www.nuget.org/packages/Fermyon.Spin.Sdk
+    repository: https://github.com/spinframework/spin-dotnet-sdk
+    description: >-
+      .NET SDK for Spin. Pre-release and unpublished since 2022 — four years behind the
+      Rust and Python SDKs.
+  - name: cloud-openapi
+    registry: git
+    language: rust
+    official: true
+    version: null
+    published: null
+    url: https://github.com/fermyon/cloud-openapi
+    repository: https://github.com/fermyon/cloud-openapi
+    description: >-
+      The generated Rust client for the Fermyon Cloud REST API. Distributed only as a git
+      dependency (`cloud-openapi = { git = "https://github.com/fermyon/cloud-openapi" }`,
+      per developer.fermyon.com/cloud/rest-api) — it is not on crates.io, so there is no
+      registry metadata endpoint and no published version or date to record. The repo's
+      last push was 2024-05-10.
+  - name: cloud-plugin (spin cloud)
+    registry: github-releases
+    language: rust
+    official: true
+    version: v0.11.0
+    published: '2025-03-25'
+    url: https://github.com/fermyon/cloud-plugin
+    repository: https://github.com/fermyon/cloud-plugin
+    description: >-
+      The `spin cloud` Spin CLI plugin — the supported way to deploy and manage apps on
+      Fermyon Cloud. Installed via `spin plugins install cloud`, not via a language registry.
+  - name: spin (CLI)
+    registry: github-releases
+    language: rust
+    official: true
+    version: v4.1.0
+    published: '2026-08-26'
+    url: https://github.com/spinframework/spin
+    repository: https://github.com/spinframework/spin
+    description: >-
+      The Spin CLI itself. Also distributed through the Homebrew taps fermyon/tap and
+      spinframework/tap. The `spin-cli` crate on crates.io is a stale 0.0.0 placeholder
+      from 2022 and is not the distribution channel.
+counts:
+  total: 10
+  official: 10
+  by_registry:
+    npm: 1
+    crates.io: 2
+    pypi: 1
+    go: 1
+    nuget: 1
+    git: 1
+    github-releases: 2
