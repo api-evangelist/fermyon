@@ -1,28 +1,31 @@
-# Kin Score artifact — fermyon — 2026-08-12T193225
+# Kin Score artifact — fermyon — 2026-09-10T204815
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: fermyon
-  schema_version: 0.11.0
-  scored_at: '2026-08-12'
-  run_ts: 2026-08-12T193225
-  composite: 29.9
+  schema_version: 0.20.0
+  scored_at: '2026-09-10'
+  run_ts: 2026-09-10T204815
+  composite: 27.4
   band: thin
   facets:
-    discoverability: 55.6
-    contract_quality: 44.8
-    governance: 0.0
-    operational_transparency: 13.2
-    developer_ergonomics: 41.3
-    commercial_clarity: 15.8
+    discoverability: 57.4
+    contract_quality: 1.6
+    governance: 4.5
+    operational_transparency: 34.2
+    developer_ergonomics: 45.2
+    commercial_clarity: 39.5
+    contract_governance: 4.5
+    access_clarity: 39.5
   agent_readiness:
-    score: 30.6
+    score: 19.8
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
+      reversibility_documented: false
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: bearer
       idempotency: false
       error_semantics: false
       openapi_examples: false
@@ -33,8 +36,15 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   provenance:
+    mcp: derived
+    skills: derived
     agentic_access: derived
+    conformance: derived
     contracts:
       total: 14
       derived: 0
