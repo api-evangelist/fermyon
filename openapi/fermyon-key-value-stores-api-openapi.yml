@@ -1,20 +1,16 @@
 openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts Key Value Stores API
+  title: Fermyon Cloud Key Value Stores API
   version: '1.0'
-  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
-servers:
-- url: https://cloud.fermyon.com
-  description: Fermyon Cloud production API
 security:
 - Bearer: []
 tags:
-- name: key-value-stores
+- name: Key Value Stores
 paths:
   /api/key-value-stores/{store}:
     post:
       tags:
-      - key-value-stores
+      - Key Value Stores
       parameters:
       - name: store
         in: path
@@ -44,9 +40,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api key value stores by store
+      x-summary-source: derived
+      operationId: postApiKeyValueStoresByStore
+      x-operation-id-source: derived
     delete:
       tags:
-      - key-value-stores
+      - Key Value Stores
       parameters:
       - name: store
         in: path
@@ -62,10 +62,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Delete api key value stores by store
+      x-summary-source: derived
+      operationId: deleteApiKeyValueStoresByStore
+      x-operation-id-source: derived
   /api/key-value-stores:
     get:
       tags:
-      - key-value-stores
+      - Key Value Stores
       parameters:
       - name: appId
         in: query
@@ -91,10 +95,14 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/KeyValueStoresList'
+      summary: Get api key value stores
+      x-summary-source: derived
+      operationId: getApiKeyValueStores
+      x-operation-id-source: derived
   /api/key-value-stores/{store}/links:
     post:
       tags:
-      - key-value-stores
+      - Key Value Stores
       parameters:
       - name: store
         in: path
@@ -125,9 +133,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api key value stores by store links
+      x-summary-source: derived
+      operationId: postApiKeyValueStoresByStoreLinks
+      x-operation-id-source: derived
     delete:
       tags:
-      - key-value-stores
+      - Key Value Stores
       parameters:
       - name: store
         in: path
@@ -158,10 +170,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Delete api key value stores by store links
+      x-summary-source: derived
+      operationId: deleteApiKeyValueStoresByStoreLinks
+      x-operation-id-source: derived
   /api/key-value-stores/{store}/rename:
     patch:
       tags:
-      - key-value-stores
+      - Key Value Stores
       parameters:
       - name: store
         in: path
@@ -192,8 +208,36 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Update api key value stores by store rename
+      x-summary-source: derived
+      operationId: patchApiKeyValueStoresByStoreRename
+      x-operation-id-source: derived
 components:
   schemas:
+    KeyValueStoreItem:
+      required:
+      - links
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+    KeyValueStoresList:
+      required:
+      - keyValueStores
+      type: object
+      properties:
+        keyValueStores:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueStoreItem'
+      additionalProperties: false
     ResourceLabel:
       required:
       - appId
@@ -208,30 +252,6 @@ components:
           format: uuid
         appName:
           type: string
-      additionalProperties: false
-    KeyValueStoresList:
-      required:
-      - keyValueStores
-      type: object
-      properties:
-        keyValueStores:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueStoreItem'
-      additionalProperties: false
-    KeyValueStoreItem:
-      required:
-      - links
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceLabel'
       additionalProperties: false
   securitySchemes:
     Bearer:

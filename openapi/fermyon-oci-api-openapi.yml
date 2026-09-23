@@ -1,20 +1,16 @@
 openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts Oci API
+  title: Fermyon Cloud Oci API
   version: '1.0'
-  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
-servers:
-- url: https://cloud.fermyon.com
-  description: Fermyon Cloud production API
 security:
 - Bearer: []
 tags:
-- name: oci
+- name: Oci
 paths:
   /api/oci:
     get:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: Api-Version
         in: header
@@ -25,10 +21,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Get api oci
+      x-summary-source: derived
+      operationId: getApiOci
+      x-operation-id-source: derived
   /api/oci/{name}/manifests/{reference}:
     head:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: name
         in: path
@@ -49,9 +49,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Check api oci by name manifests by reference
+      x-summary-source: derived
+      operationId: headApiOciByNameManifestsByReference
+      x-operation-id-source: derived
     put:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: name
         in: path
@@ -72,10 +76,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Replace api oci by name manifests by reference
+      x-summary-source: derived
+      operationId: putApiOciByNameManifestsByReference
+      x-operation-id-source: derived
   /api/oci/{name}/blobs/uploads:
     post:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: name
         in: path
@@ -91,10 +99,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api oci by name blobs uploads
+      x-summary-source: derived
+      operationId: postApiOciByNameBlobsUploads
+      x-operation-id-source: derived
   /api/oci/{name}/blobs/uploads/{digest}:
     get:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: digest
         in: path
@@ -115,9 +127,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Get api oci by name blobs uploads by digest
+      x-summary-source: derived
+      operationId: getApiOciByNameBlobsUploadsByDigest
+      x-operation-id-source: derived
     put:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: digest
         in: path
@@ -138,9 +154,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Replace api oci by name blobs uploads by digest
+      x-summary-source: derived
+      operationId: putApiOciByNameBlobsUploadsByDigest
+      x-operation-id-source: derived
     patch:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: digest
         in: path
@@ -161,9 +181,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Update api oci by name blobs uploads by digest
+      x-summary-source: derived
+      operationId: patchApiOciByNameBlobsUploadsByDigest
+      x-operation-id-source: derived
     delete:
       tags:
-      - oci
+      - Oci
       parameters:
       - name: digest
         in: path
@@ -184,6 +208,10 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Delete api oci by name blobs uploads by digest
+      x-summary-source: derived
+      operationId: deleteApiOciByNameBlobsUploadsByDigest
+      x-operation-id-source: derived
 components:
   securitySchemes:
     Bearer:

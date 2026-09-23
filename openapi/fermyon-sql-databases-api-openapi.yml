@@ -1,20 +1,16 @@
 openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts Sql Databases API
+  title: Fermyon Cloud Sql Databases API
   version: '1.0'
-  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
-servers:
-- url: https://cloud.fermyon.com
-  description: Fermyon Cloud production API
 security:
 - Bearer: []
 tags:
-- name: sql-databases
+- name: Sql Databases
 paths:
   /api/sql-databases/create:
     post:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: Api-Version
         in: header
@@ -40,10 +36,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api sql databases create
+      x-summary-source: derived
+      operationId: postApiSqlDatabasesCreate
+      x-operation-id-source: derived
   /api/sql-databases/execute:
     post:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: Api-Version
         in: header
@@ -69,10 +69,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api sql databases execute
+      x-summary-source: derived
+      operationId: postApiSqlDatabasesExecute
+      x-operation-id-source: derived
   /api/sql-databases:
     delete:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: Api-Version
         in: header
@@ -98,9 +102,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Delete api sql databases
+      x-summary-source: derived
+      operationId: deleteApiSqlDatabases
+      x-operation-id-source: derived
     get:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: appId
         in: query
@@ -140,10 +148,14 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/DatabasesList'
+      summary: Get api sql databases
+      x-summary-source: derived
+      operationId: getApiSqlDatabases
+      x-operation-id-source: derived
   /api/sql-databases/{database}/links:
     post:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: database
         in: path
@@ -174,9 +186,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api sql databases by database links
+      x-summary-source: derived
+      operationId: postApiSqlDatabasesByDatabaseLinks
+      x-operation-id-source: derived
     delete:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: database
         in: path
@@ -207,10 +223,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Delete api sql databases by database links
+      x-summary-source: derived
+      operationId: deleteApiSqlDatabasesByDatabaseLinks
+      x-operation-id-source: derived
   /api/sql-databases/{database}/rename:
     patch:
       tags:
-      - sql-databases
+      - Sql Databases
       parameters:
       - name: database
         in: path
@@ -241,8 +261,27 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Update api sql databases by database rename
+      x-summary-source: derived
+      operationId: patchApiSqlDatabasesByDatabaseRename
+      x-operation-id-source: derived
 components:
   schemas:
+    ResourceLabel:
+      required:
+      - appId
+      - label
+      type: object
+      properties:
+        label:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+        appName:
+          type: string
+      additionalProperties: false
     Database:
       required:
       - links
@@ -258,6 +297,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+    GetSqlDatabasesQuery:
+      type: object
+      properties:
+        appId:
+          type:
+          - string
+          - 'null'
+          format: uuid
       additionalProperties: false
     ExecuteSqlStatementCommand:
       required:
@@ -275,7 +323,7 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
-    DeleteSqlDatabaseCommand:
+    CreateSqlDatabaseCommand:
       required:
       - name
       type: object
@@ -283,29 +331,15 @@ components:
         name:
           minLength: 1
           type: string
-      additionalProperties: false
-    ResourceLabel:
-      required:
-      - appId
-      - label
-      type: object
-      properties:
+        appId:
+          type:
+          - string
+          - 'null'
+          format: uuid
         label:
-          minLength: 1
-          type: string
-        appId:
-          type: string
-          format: uuid
-        appName:
-          type: string
-      additionalProperties: false
-    GetSqlDatabasesQuery:
-      type: object
-      properties:
-        appId:
-          type: string
-          format: uuid
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     DatabasesList:
       required:
@@ -317,7 +351,7 @@ components:
           items:
             $ref: '#/components/schemas/Database'
       additionalProperties: false
-    CreateSqlDatabaseCommand:
+    DeleteSqlDatabaseCommand:
       required:
       - name
       type: object
@@ -325,13 +359,6 @@ components:
         name:
           minLength: 1
           type: string
-        appId:
-          type: string
-          format: uuid
-          nullable: true
-        label:
-          type: string
-          nullable: true
       additionalProperties: false
   securitySchemes:
     Bearer:

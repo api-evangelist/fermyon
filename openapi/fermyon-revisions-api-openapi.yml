@@ -1,20 +1,16 @@
 openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts Revisions API
+  title: Fermyon Cloud Revisions API
   version: '1.0'
-  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
-servers:
-- url: https://cloud.fermyon.com
-  description: Fermyon Cloud production API
 security:
 - Bearer: []
 tags:
-- name: revisions
+- name: Revisions
 paths:
   /api/revisions:
     get:
       tags:
-      - revisions
+      - Revisions
       parameters:
       - name: pageIndex
         in: query
@@ -52,9 +48,13 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/RevisionItemPage'
+      summary: Get api revisions
+      x-summary-source: derived
+      operationId: getApiRevisions
+      x-operation-id-source: derived
     post:
       tags:
-      - revisions
+      - Revisions
       parameters:
       - name: Api-Version
         in: header
@@ -80,34 +80,12 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Create api revisions
+      x-summary-source: derived
+      operationId: postApiRevisions
+      x-operation-id-source: derived
 components:
   schemas:
-    RevisionItem:
-      required:
-      - appId
-      - components
-      - id
-      - revisionNumber
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        appId:
-          type: string
-          format: uuid
-        revisionNumber:
-          minLength: 1
-          type: string
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/RevisionComponentDto'
-          readOnly: true
-        lastModified:
-          type: string
-          format: date-time
-      additionalProperties: false
     RevisionItemPage:
       required:
       - isLastPage
@@ -133,6 +111,32 @@ components:
         isLastPage:
           type: boolean
           readOnly: true
+      additionalProperties: false
+    RevisionItem:
+      required:
+      - appId
+      - components
+      - id
+      - revisionNumber
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        appId:
+          type: string
+          format: uuid
+        revisionNumber:
+          minLength: 1
+          type: string
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/RevisionComponentDto'
+          readOnly: true
+        lastModified:
+          type: string
+          format: date-time
       additionalProperties: false
     RegisterRevisionCommand:
       required:
@@ -164,11 +168,13 @@ components:
           minLength: 1
           type: string
         route:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
   securitySchemes:
     Bearer:

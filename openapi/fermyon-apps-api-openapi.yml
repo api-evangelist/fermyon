@@ -1,20 +1,16 @@
 openapi: 3.2.0
 info:
-  title: Fermyon Cloud accounts Apps API
+  title: Fermyon Cloud Apps API
   version: '1.0'
-  description: OpenAPI 3.1 specification for the Fermyon Cloud REST API, derived from the public swagger.json published in the fermyon/cloud-openapi repository on GitHub.
-servers:
-- url: https://cloud.fermyon.com
-  description: Fermyon Cloud production API
 security:
 - Bearer: []
 tags:
-- name: apps
+- name: Apps
 paths:
   /api/apps:
     get:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: searchText
         in: query
@@ -67,9 +63,13 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/AppItemPage'
+      summary: Get api apps
+      x-summary-source: derived
+      operationId: getApiApps
+      x-operation-id-source: derived
     post:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: Api-Version
         in: header
@@ -108,10 +108,14 @@ paths:
               schema:
                 type: string
                 format: uuid
+      summary: Create api apps
+      x-summary-source: derived
+      operationId: postApiApps
+      x-operation-id-source: derived
   /api/apps/{id}:
     get:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -138,9 +142,13 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/AppItem'
+      summary: Get api apps by id
+      x-summary-source: derived
+      operationId: getApiAppsById
+      x-operation-id-source: derived
     put:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -172,9 +180,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Replace api apps by id
+      x-summary-source: derived
+      operationId: putApiAppsById
+      x-operation-id-source: derived
     patch:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -206,9 +218,13 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Update api apps by id
+      x-summary-source: derived
+      operationId: patchApiAppsById
+      x-operation-id-source: derived
     delete:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -225,10 +241,14 @@ paths:
       responses:
         '200':
           description: Success
+      summary: Delete api apps by id
+      x-summary-source: derived
+      operationId: deleteApiAppsById
+      x-operation-id-source: derived
   /api/apps/{id}/request-count:
     get:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -265,10 +285,14 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/AppRequestCountItem'
+      summary: Get api apps by id request count
+      x-summary-source: derived
+      operationId: getApiAppsByIdRequestCount
+      x-operation-id-source: derived
   /api/apps/{id}/logs:
     get:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -304,10 +328,14 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/GetAppLogsVm'
+      summary: Get api apps by id logs
+      x-summary-source: derived
+      operationId: getApiAppsByIdLogs
+      x-operation-id-source: derived
   /api/apps/{id}/logs/raw:
     get:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -343,10 +371,14 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/GetAppRawLogsVm'
+      summary: Get api apps by id logs raw
+      x-summary-source: derived
+      operationId: getApiAppsByIdLogsRaw
+      x-operation-id-source: derived
   /api/apps/{id}/events:
     get:
       tags:
-      - apps
+      - Apps
       parameters:
       - name: id
         in: path
@@ -389,30 +421,111 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AppEventItem'
+      summary: Get api apps by id events
+      x-summary-source: derived
+      operationId: getApiAppsByIdEvents
+      x-operation-id-source: derived
 components:
   schemas:
+    Entry:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        logLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogLine'
+      additionalProperties: false
+    AppDomainItem:
+      required:
+      - name
+      - validationStatus
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        validationStatus:
+          $ref: '#/components/schemas/ValidationStatus'
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    UpdateAppCommand:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    PatchAppCommand:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        domain:
+          $ref: '#/components/schemas/StringField'
+        hostname:
+          $ref: '#/components/schemas/StringField'
+      additionalProperties: false
     ApiHealthStatus:
       enum:
       - Healthy
       - Unhealthy
       - Degraded
       type: string
-    ValidationStatus:
-      enum:
-      - InProgress
-      - Error
-      - Ready
-      - Provisioning
+    StringField:
       type: string
-    GetAppRawLogsVm:
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+    GetAppLogsVm:
       required:
-      - entries
+      - logs
       type: object
       properties:
-        entries:
+        logs:
           type: array
           items:
-            $ref: '#/components/schemas/Entry'
+            type: string
+      additionalProperties: false
+    LogLine:
+      type: object
+      properties:
+        time:
+          type: string
+        source:
+          type: string
+        line:
+          type: string
+      additionalProperties: false
+    AppEventItem:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/AppEventType'
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
       additionalProperties: false
     Meta:
       type: object
@@ -430,6 +543,13 @@ components:
         componentId:
           type: string
       additionalProperties: false
+    ValidationStatus:
+      enum:
+      - InProgress
+      - Error
+      - Ready
+      - Provisioning
+      type: string
     AppItemPage:
       required:
       - isLastPage
@@ -456,189 +576,15 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    StringField:
-      type: string
-      properties:
-        value:
-          type: string
-      additionalProperties: false
-    AppRequestPointItem:
+    GetAppRawLogsVm:
       required:
-      - timestamp
-      - value
+      - entries
       type: object
       properties:
-        timestamp:
-          type: integer
-          format: int64
-        value:
-          type: integer
-          format: int64
-      additionalProperties: false
-    AppChannelListItem:
-      required:
-      - created
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          minLength: 1
-          type: string
-        activeRevisionNumber:
-          type: string
-        domain:
-          type: string
-        created:
-          type: string
-          format: date-time
-        healthStatus:
-          $ref: '#/components/schemas/ApiHealthStatus'
-        lastModified:
-          type: string
-          format: date-time
-      additionalProperties: false
-    LogLine:
-      type: object
-      properties:
-        time:
-          type: string
-        source:
-          type: string
-        line:
-          type: string
-      additionalProperties: false
-    AppEventItem:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date-time
-        type:
-          $ref: '#/components/schemas/AppEventType'
-        name:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-      additionalProperties: false
-    AppRequestCountItem:
-      required:
-      - averagePerSecond
-      - end
-      - interval
-      - points
-      - start
-      - total
-      type: object
-      properties:
-        start:
-          type: integer
-          format: int64
-        end:
-          type: integer
-          format: int64
-        interval:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int64
-        averagePerSecond:
-          type: number
-          format: double
-        points:
+        entries:
           type: array
           items:
-            $ref: '#/components/schemas/AppRequestPointItem'
-      additionalProperties: false
-    AppEventType:
-      enum:
-      - Unknown
-      - Create
-      - Update
-      - Delete
-      type: string
-    Entry:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        logLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/LogLine'
-      additionalProperties: false
-    UpdateAppCommand:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    GetAppLogsVm:
-      required:
-      - logs
-      type: object
-      properties:
-        logs:
-          type: array
-          items:
-            type: string
-      additionalProperties: false
-    PatchAppCommand:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        domain:
-          $ref: '#/components/schemas/StringField'
-        hostname:
-          $ref: '#/components/schemas/StringField'
-      additionalProperties: false
-    CreateAppCommand:
-      required:
-      - name
-      - storageId
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        storageId:
-          minLength: 1
-          type: string
-        createDefaultDatabase:
-          type: boolean
-      additionalProperties: false
-    AppDomainItem:
-      required:
-      - name
-      - validationStatus
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        validationStatus:
-          $ref: '#/components/schemas/ValidationStatus'
-        lastModified:
-          type: string
-          format: date-time
+            $ref: '#/components/schemas/Entry'
       additionalProperties: false
     AppItem:
       required:
@@ -677,16 +623,109 @@ components:
           type: string
           format: date-time
         lastDeployed:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         created:
           type: string
           format: date-time
         latestRevision:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
+    AppRequestCountItem:
+      required:
+      - averagePerSecond
+      - end
+      - interval
+      - points
+      - start
+      - total
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int64
+        end:
+          type: integer
+          format: int64
+        interval:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        averagePerSecond:
+          type: number
+          format: double
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppRequestPointItem'
+      additionalProperties: false
+    AppRequestPointItem:
+      required:
+      - timestamp
+      - value
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        value:
+          type: integer
+          format: int64
+      additionalProperties: false
+    CreateAppCommand:
+      required:
+      - name
+      - storageId
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        storageId:
+          minLength: 1
+          type: string
+        createDefaultDatabase:
+          type: boolean
+      additionalProperties: false
+    AppChannelListItem:
+      required:
+      - created
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        activeRevisionNumber:
+          type: string
+        domain:
+          type: string
+        created:
+          type: string
+          format: date-time
+        healthStatus:
+          $ref: '#/components/schemas/ApiHealthStatus'
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    AppEventType:
+      enum:
+      - Unknown
+      - Create
+      - Update
+      - Delete
+      type: string
   securitySchemes:
     Bearer:
       type: apiKey
