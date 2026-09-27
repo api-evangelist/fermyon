@@ -83,7 +83,7 @@ apis:
   - type: RateLimits
     url: https://techdocs.akamai.com/akamai-functions/docs/quotas-and-limits
 - aid: fermyon:fermyon-accounts-api
-  name: Fermyon accounts API
+  name: Fermyon Accounts API
   description: The accounts API from Fermyon — 1 operation(s) for accounts.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -98,7 +98,7 @@ apis:
     url: overlays/fermyon-accounts-api-overlay.yaml
 
 - aid: fermyon:fermyon-apps-api
-  name: Fermyon apps API
+  name: Fermyon Apps API
   description: The apps API from Fermyon — 6 operation(s) for apps.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -113,7 +113,7 @@ apis:
     url: overlays/fermyon-apps-api-overlay.yaml
 
 - aid: fermyon:fermyon-auth-tokens-api
-  name: Fermyon auth-tokens API
+  name: Fermyon Auth Tokens API
   description: The auth-tokens API from Fermyon — 2 operation(s) for auth-tokens.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -128,7 +128,7 @@ apis:
     url: overlays/fermyon-auth-tokens-api-overlay.yaml
 
 - aid: fermyon:fermyon-channels-api
-  name: Fermyon channels API
+  name: Fermyon Channels API
   description: The channels API from Fermyon — 6 operation(s) for channels.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -143,7 +143,7 @@ apis:
     url: overlays/fermyon-channels-api-overlay.yaml
 
 - aid: fermyon:fermyon-custom-domains-api
-  name: Fermyon custom-domains API
+  name: Fermyon Custom Domains API
   description: The custom-domains API from Fermyon — 1 operation(s) for custom-domains.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -158,7 +158,7 @@ apis:
     url: overlays/fermyon-custom-domains-api-overlay.yaml
 
 - aid: fermyon:fermyon-device-codes-api
-  name: Fermyon device-codes API
+  name: Fermyon Device Codes API
   description: The device-codes API from Fermyon — 3 operation(s) for device-codes.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -171,7 +171,7 @@ apis:
     url: overlays/fermyon-device-codes-api-overlay.yaml
 
 - aid: fermyon:fermyon-key-value-pairs-api
-  name: Fermyon key-value-pairs API
+  name: Fermyon Key Value Pairs API
   description: The key-value-pairs API from Fermyon — 1 operation(s) for key-value-pairs.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -186,7 +186,7 @@ apis:
     url: overlays/fermyon-key-value-pairs-api-overlay.yaml
 
 - aid: fermyon:fermyon-key-value-stores-api
-  name: Fermyon key-value-stores API
+  name: Fermyon Key Value Stores API
   description: The key-value-stores API from Fermyon — 4 operation(s) for key-value-stores.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -201,7 +201,7 @@ apis:
     url: overlays/fermyon-key-value-stores-api-overlay.yaml
 
 - aid: fermyon:fermyon-oci-api
-  name: Fermyon oci API
+  name: Fermyon Oci API
   description: The oci API from Fermyon — 4 operation(s) for oci.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -216,7 +216,7 @@ apis:
     url: overlays/fermyon-oci-api-overlay.yaml
 
 - aid: fermyon:fermyon-payments-api
-  name: Fermyon payments API
+  name: Fermyon Payments API
   description: The payments API from Fermyon — 3 operation(s) for payments.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -231,7 +231,7 @@ apis:
     url: overlays/fermyon-payments-api-overlay.yaml
 
 - aid: fermyon:fermyon-personal-access-tokens-api
-  name: Fermyon personal-access-tokens API
+  name: Fermyon Personal Access Tokens API
   description: The personal-access-tokens API from Fermyon — 2 operation(s) for personal-access-tokens.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -246,7 +246,7 @@ apis:
     url: overlays/fermyon-personal-access-tokens-api-overlay.yaml
 
 - aid: fermyon:fermyon-revisions-api
-  name: Fermyon revisions API
+  name: Fermyon Revisions API
   description: The revisions API from Fermyon — 1 operation(s) for revisions.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -261,7 +261,7 @@ apis:
     url: overlays/fermyon-revisions-api-overlay.yaml
 
 - aid: fermyon:fermyon-sql-databases-api
-  name: Fermyon sql-databases API
+  name: Fermyon Sql Databases API
   description: The sql-databases API from Fermyon — 5 operation(s) for sql-databases.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com
@@ -276,7 +276,7 @@ apis:
     url: overlays/fermyon-sql-databases-api-overlay.yaml
 
 - aid: fermyon:fermyon-variable-pairs-api
-  name: Fermyon variable-pairs API
+  name: Fermyon Variable Pairs API
   description: The variable-pairs API from Fermyon — 1 operation(s) for variable-pairs.
   humanURL: https://developer.fermyon.com/
   baseURL: https://cloud.fermyon.com

@@ -282,46 +282,15 @@ components:
         appName:
           type: string
       additionalProperties: false
-    Database:
+    DatabasesList:
       required:
-      - links
-      - name
+      - databases
       type: object
       properties:
-        name:
-          minLength: 1
-          type: string
-        default:
-          type: boolean
-        links:
+        databases:
           type: array
           items:
-            $ref: '#/components/schemas/ResourceLabel'
-      additionalProperties: false
-    GetSqlDatabasesQuery:
-      type: object
-      properties:
-        appId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-      additionalProperties: false
-    ExecuteSqlStatementCommand:
-      required:
-      - database
-      - default
-      - statement
-      type: object
-      properties:
-        database:
-          minLength: 1
-          type: string
-        default:
-          type: boolean
-        statement:
-          minLength: 1
-          type: string
+            $ref: '#/components/schemas/Database'
       additionalProperties: false
     CreateSqlDatabaseCommand:
       required:
@@ -341,15 +310,46 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    DatabasesList:
-      required:
-      - databases
+    GetSqlDatabasesQuery:
       type: object
       properties:
-        databases:
+        appId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      additionalProperties: false
+    Database:
+      required:
+      - links
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        default:
+          type: boolean
+        links:
           type: array
           items:
-            $ref: '#/components/schemas/Database'
+            $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+    ExecuteSqlStatementCommand:
+      required:
+      - database
+      - default
+      - statement
+      type: object
+      properties:
+        database:
+          minLength: 1
+          type: string
+        default:
+          type: boolean
+        statement:
+          minLength: 1
+          type: string
       additionalProperties: false
     DeleteSqlDatabaseCommand:
       required:

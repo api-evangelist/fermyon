@@ -95,6 +95,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreateTokenCommand:
+      type: object
+      properties:
+        providerCode:
+          type: string
+        clientId:
+          type: string
+        provider:
+          $ref: '#/components/schemas/AccountProvider'
+        isMarketingEmailOn:
+          type: boolean
+      additionalProperties: false
     TokenInfo:
       required:
       - expiration
@@ -131,18 +143,6 @@ components:
       - GitHub
       - DeviceFlow
       type: string
-    CreateTokenCommand:
-      type: object
-      properties:
-        providerCode:
-          type: string
-        clientId:
-          type: string
-        provider:
-          $ref: '#/components/schemas/AccountProvider'
-        isMarketingEmailOn:
-          type: boolean
-      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

@@ -126,6 +126,15 @@ components:
           items:
             type: string
       additionalProperties: false
+    GetVariablesQuery:
+      required:
+      - appId
+      type: object
+      properties:
+        appId:
+          type: string
+          format: uuid
+      additionalProperties: false
     DeleteVariablePairCommand:
       required:
       - appId
@@ -138,15 +147,6 @@ components:
         variable:
           minLength: 1
           type: string
-      additionalProperties: false
-    GetVariablesQuery:
-      required:
-      - appId
-      type: object
-      properties:
-        appId:
-          type: string
-          format: uuid
       additionalProperties: false
     CreateVariablePairCommand:
       required:

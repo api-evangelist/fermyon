@@ -427,44 +427,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Entry:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        logLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/LogLine'
-      additionalProperties: false
-    AppDomainItem:
-      required:
-      - name
-      - validationStatus
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        validationStatus:
-          $ref: '#/components/schemas/ValidationStatus'
-        lastModified:
-          type: string
-          format: date-time
-      additionalProperties: false
-    UpdateAppCommand:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          minLength: 1
-          type: string
-      additionalProperties: false
     PatchAppCommand:
       required:
       - id
@@ -477,114 +439,6 @@ components:
           $ref: '#/components/schemas/StringField'
         hostname:
           $ref: '#/components/schemas/StringField'
-      additionalProperties: false
-    ApiHealthStatus:
-      enum:
-      - Healthy
-      - Unhealthy
-      - Degraded
-      type: string
-    StringField:
-      type: string
-      properties:
-        value:
-          type: string
-      additionalProperties: false
-    GetAppLogsVm:
-      required:
-      - logs
-      type: object
-      properties:
-        logs:
-          type: array
-          items:
-            type: string
-      additionalProperties: false
-    LogLine:
-      type: object
-      properties:
-        time:
-          type: string
-        source:
-          type: string
-        line:
-          type: string
-      additionalProperties: false
-    AppEventItem:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date-time
-        type:
-          $ref: '#/components/schemas/AppEventType'
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-      additionalProperties: false
-    Meta:
-      type: object
-      properties:
-        appId:
-          type: string
-        channelId:
-          type: string
-        deploymentId:
-          type: string
-        requestId:
-          type: string
-        triggerId:
-          type: string
-        componentId:
-          type: string
-      additionalProperties: false
-    ValidationStatus:
-      enum:
-      - InProgress
-      - Error
-      - Ready
-      - Provisioning
-      type: string
-    AppItemPage:
-      required:
-      - isLastPage
-      - items
-      - pageIndex
-      - pageSize
-      - totalItems
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppItem'
-        totalItems:
-          type: integer
-          format: int32
-        pageIndex:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        isLastPage:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
-    GetAppRawLogsVm:
-      required:
-      - entries
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entry'
       additionalProperties: false
     AppItem:
       required:
@@ -635,6 +489,21 @@ components:
           - string
           - 'null'
       additionalProperties: false
+    AppDomainItem:
+      required:
+      - name
+      - validationStatus
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        validationStatus:
+          $ref: '#/components/schemas/ValidationStatus'
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
     AppRequestCountItem:
       required:
       - averagePerSecond
@@ -665,33 +534,83 @@ components:
           items:
             $ref: '#/components/schemas/AppRequestPointItem'
       additionalProperties: false
-    AppRequestPointItem:
-      required:
-      - timestamp
-      - value
+    Meta:
       type: object
       properties:
-        timestamp:
-          type: integer
-          format: int64
-        value:
-          type: integer
-          format: int64
+        appId:
+          type: string
+        channelId:
+          type: string
+        deploymentId:
+          type: string
+        requestId:
+          type: string
+        triggerId:
+          type: string
+        componentId:
+          type: string
       additionalProperties: false
-    CreateAppCommand:
+    GetAppLogsVm:
       required:
-      - name
-      - storageId
+      - logs
       type: object
       properties:
+        logs:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    ValidationStatus:
+      enum:
+      - InProgress
+      - Error
+      - Ready
+      - Provisioning
+      type: string
+    UpdateAppCommand:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
         name:
           minLength: 1
           type: string
-        storageId:
-          minLength: 1
-          type: string
-        createDefaultDatabase:
+      additionalProperties: false
+    AppItemPage:
+      required:
+      - isLastPage
+      - items
+      - pageIndex
+      - pageSize
+      - totalItems
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppItem'
+        totalItems:
+          type: integer
+          format: int32
+        pageIndex:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        isLastPage:
           type: boolean
+          readOnly: true
+      additionalProperties: false
+    StringField:
+      type: string
+      properties:
+        value:
+          type: string
       additionalProperties: false
     AppChannelListItem:
       required:
@@ -719,6 +638,74 @@ components:
           type: string
           format: date-time
       additionalProperties: false
+    LogLine:
+      type: object
+      properties:
+        time:
+          type: string
+        source:
+          type: string
+        line:
+          type: string
+      additionalProperties: false
+    Entry:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        logLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogLine'
+      additionalProperties: false
+    AppEventItem:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        type:
+          $ref: '#/components/schemas/AppEventType'
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+      additionalProperties: false
+    CreateAppCommand:
+      required:
+      - name
+      - storageId
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        storageId:
+          minLength: 1
+          type: string
+        createDefaultDatabase:
+          type: boolean
+      additionalProperties: false
+    GetAppRawLogsVm:
+      required:
+      - entries
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entry'
+      additionalProperties: false
+    ApiHealthStatus:
+      enum:
+      - Healthy
+      - Unhealthy
+      - Degraded
+      type: string
     AppEventType:
       enum:
       - Unknown
@@ -726,6 +713,19 @@ components:
       - Update
       - Delete
       type: string
+    AppRequestPointItem:
+      required:
+      - timestamp
+      - value
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        value:
+          type: integer
+          format: int64
+      additionalProperties: false
   securitySchemes:
     Bearer:
       type: apiKey

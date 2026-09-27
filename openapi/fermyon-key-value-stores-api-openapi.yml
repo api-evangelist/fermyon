@@ -228,16 +228,6 @@ components:
           items:
             $ref: '#/components/schemas/ResourceLabel'
       additionalProperties: false
-    KeyValueStoresList:
-      required:
-      - keyValueStores
-      type: object
-      properties:
-        keyValueStores:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueStoreItem'
-      additionalProperties: false
     ResourceLabel:
       required:
       - appId
@@ -252,6 +242,16 @@ components:
           format: uuid
         appName:
           type: string
+      additionalProperties: false
+    KeyValueStoresList:
+      required:
+      - keyValueStores
+      type: object
+      properties:
+        keyValueStores:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueStoreItem'
       additionalProperties: false
   securitySchemes:
     Bearer:
