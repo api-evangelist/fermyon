@@ -102,12 +102,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AccountPlanType:
-      enum:
-      - Free
-      - Growth
-      - Enterprise
-      type: string
     AccountDetails:
       type: object
       properties:
@@ -120,6 +114,12 @@ components:
           - string
           - 'null'
           format: date-time
+      additionalProperties: false
+    PatchAccountDetailsCommand:
+      type: object
+      properties:
+        isMarketingEmailOn:
+          $ref: '#/components/schemas/BooleanField'
       additionalProperties: false
     AccountPlanRecord:
       type: object
@@ -147,17 +147,17 @@ components:
           - 'null'
           format: date-time
       additionalProperties: false
+    AccountPlanType:
+      enum:
+      - Free
+      - Growth
+      - Enterprise
+      type: string
     BooleanField:
       type: string
       properties:
         value:
           type: boolean
-      additionalProperties: false
-    PatchAccountDetailsCommand:
-      type: object
-      properties:
-        isMarketingEmailOn:
-          $ref: '#/components/schemas/BooleanField'
       additionalProperties: false
   securitySchemes:
     Bearer:

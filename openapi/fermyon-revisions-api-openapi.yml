@@ -86,30 +86,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RevisionComponentDto:
+    RevisionItem:
       required:
+      - appId
+      - components
       - id
-      - name
-      - source
+      - revisionNumber
       type: object
       properties:
         id:
           type: string
           format: uuid
-        source:
+        appId:
+          type: string
+          format: uuid
+        revisionNumber:
           minLength: 1
           type: string
-        name:
-          minLength: 1
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/RevisionComponentDto'
+          readOnly: true
+        lastModified:
           type: string
-        route:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
+          format: date-time
       additionalProperties: false
     RevisionItemPage:
       required:
@@ -137,31 +138,30 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    RevisionItem:
+    RevisionComponentDto:
       required:
-      - appId
-      - components
       - id
-      - revisionNumber
+      - name
+      - source
       type: object
       properties:
         id:
           type: string
           format: uuid
-        appId:
-          type: string
-          format: uuid
-        revisionNumber:
+        source:
           minLength: 1
           type: string
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/RevisionComponentDto'
-          readOnly: true
-        lastModified:
+        name:
+          minLength: 1
           type: string
-          format: date-time
+        route:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     RegisterRevisionCommand:
       required:

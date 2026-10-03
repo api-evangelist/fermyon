@@ -118,10 +118,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DeviceCodeDetails:
+    ActivateDeviceCodeCommand:
+      required:
+      - userCode
       type: object
       properties:
-        clientName:
+        userCode:
+          minLength: 1
           type: string
       additionalProperties: false
     DeviceCodeItem:
@@ -149,6 +152,12 @@ components:
           type: integer
           format: int32
       additionalProperties: false
+    DeviceCodeDetails:
+      type: object
+      properties:
+        clientName:
+          type: string
+      additionalProperties: false
     CreateDeviceCodeCommand:
       required:
       - clientId
@@ -157,15 +166,6 @@ components:
         clientId:
           type: string
           format: uuid
-      additionalProperties: false
-    ActivateDeviceCodeCommand:
-      required:
-      - userCode
-      type: object
-      properties:
-        userCode:
-          minLength: 1
-          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:

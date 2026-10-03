@@ -130,25 +130,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PersonalAccessTokenValue:
+    PersonalAccessTokenItem:
       type: object
       properties:
-        name:
-          type: string
-        token:
-          type: string
         id:
           type: string
           format: uuid
-      additionalProperties: false
-    CreatePersonalAccessTokenCommand:
-      required:
-      - name
-      type: object
-      properties:
         name:
-          minLength: 1
           type: string
+        createdAt:
+          type: string
+          format: date-time
       additionalProperties: false
     PersonalAccessTokenItemPage:
       required:
@@ -176,17 +168,25 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    PersonalAccessTokenItem:
+    CreatePersonalAccessTokenCommand:
+      required:
+      - name
       type: object
       properties:
+        name:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    PersonalAccessTokenValue:
+      type: object
+      properties:
+        name:
+          type: string
+        token:
+          type: string
         id:
           type: string
           format: uuid
-        name:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
       additionalProperties: false
   securitySchemes:
     Bearer:

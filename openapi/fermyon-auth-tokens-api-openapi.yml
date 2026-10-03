@@ -95,6 +95,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AccountProvider:
+      enum:
+      - GitHub
+      - DeviceFlow
+      type: string
     CreateTokenCommand:
       type: object
       properties:
@@ -138,11 +143,6 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
-    AccountProvider:
-      enum:
-      - GitHub
-      - DeviceFlow
-      type: string
   securitySchemes:
     Bearer:
       type: apiKey

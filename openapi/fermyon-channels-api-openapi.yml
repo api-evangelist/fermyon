@@ -401,135 +401,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GuidNullableField:
-      type: string
-      properties:
-        value:
-          type:
-          - string
-          - 'null'
-          format: uuid
-      additionalProperties: false
-    HealthCheckResult:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/ApiHealthStatus'
-      additionalProperties: false
-    GetChannelRawLogsVm:
-      required:
-      - entries
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entry'
-      additionalProperties: false
-    PatchChannelCommand:
-      type: object
-      properties:
-        channelId:
-          type: string
-          format: uuid
-        name:
-          $ref: '#/components/schemas/StringField'
-        domain:
-          $ref: '#/components/schemas/StringField'
-        revisionSelectionStrategy:
-          $ref: '#/components/schemas/ChannelRevisionSelectionStrategyField'
-        rangeRule:
-          $ref: '#/components/schemas/StringField'
-        activeRevisionId:
-          $ref: '#/components/schemas/GuidNullableField'
-      additionalProperties: false
-    EnvironmentVariableItem:
-      required:
-      - channelId
-      - key
-      - value
-      type: object
-      properties:
-        channelId:
-          type: string
-          format: uuid
-        key:
-          minLength: 1
-          type: string
-        value:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    Meta:
-      type: object
-      properties:
-        appId:
-          type: string
-        channelId:
-          type: string
-        deploymentId:
-          type: string
-        requestId:
-          type: string
-        triggerId:
-          type: string
-        componentId:
-          type: string
-      additionalProperties: false
-    CreateChannelCommand:
-      required:
-      - appId
-      - name
-      - revisionSelectionStrategy
-      type: object
-      properties:
-        appId:
-          type: string
-          format: uuid
-        name:
-          minLength: 1
-          type: string
-        revisionSelectionStrategy:
-          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
-        rangeRule:
-          type:
-          - string
-          - 'null'
-        activeRevisionId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-      additionalProperties: false
-    UpdateDesiredStatusCommand:
-      required:
-      - channelId
-      - desiredStatus
-      type: object
-      properties:
-        channelId:
-          type: string
-          format: uuid
-        desiredStatus:
-          $ref: '#/components/schemas/DesiredStatus'
-      additionalProperties: false
-    DesiredStatus:
-      enum:
-      - Running
-      - Dead
-      type: string
-    StringField:
-      type: string
-      properties:
-        value:
-          type: string
-      additionalProperties: false
-    ChannelRevisionSelectionStrategyField:
-      type: string
-      properties:
-        value:
-          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
-      additionalProperties: false
     UpdateChannelCommand:
       required:
       - id
@@ -555,51 +426,34 @@ components:
           - 'null'
           format: uuid
       additionalProperties: false
-    AppChannelListItem:
-      required:
-      - created
-      - id
-      - name
+    StringField:
+      type: string
+      properties:
+        value:
+          type: string
+      additionalProperties: false
+    HealthCheckResult:
       type: object
       properties:
-        id:
+        status:
+          $ref: '#/components/schemas/ApiHealthStatus'
+      additionalProperties: false
+    PatchChannelCommand:
+      type: object
+      properties:
+        channelId:
           type: string
           format: uuid
         name:
-          minLength: 1
-          type: string
-        activeRevisionNumber:
-          type: string
+          $ref: '#/components/schemas/StringField'
         domain:
-          type: string
-        created:
-          type: string
-          format: date-time
-        healthStatus:
-          $ref: '#/components/schemas/ApiHealthStatus'
-        lastModified:
-          type: string
-          format: date-time
-      additionalProperties: false
-    LogLine:
-      type: object
-      properties:
-        time:
-          type: string
-        source:
-          type: string
-        line:
-          type: string
-      additionalProperties: false
-    GetChannelLogsVm:
-      required:
-      - logs
-      type: object
-      properties:
-        logs:
-          type: array
-          items:
-            type: string
+          $ref: '#/components/schemas/StringField'
+        revisionSelectionStrategy:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategyField'
+        rangeRule:
+          $ref: '#/components/schemas/StringField'
+        activeRevisionId:
+          $ref: '#/components/schemas/GuidNullableField'
       additionalProperties: false
     ChannelItem:
       required:
@@ -650,15 +504,150 @@ components:
           items:
             $ref: '#/components/schemas/EnvironmentVariableItem'
       additionalProperties: false
-    Entry:
+    GetChannelRawLogsVm:
+      required:
+      - entries
       type: object
       properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        logLines:
+        entries:
           type: array
           items:
-            $ref: '#/components/schemas/LogLine'
+            $ref: '#/components/schemas/Entry'
+      additionalProperties: false
+    GuidNullableField:
+      type: string
+      properties:
+        value:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      additionalProperties: false
+    Meta:
+      type: object
+      properties:
+        appId:
+          type: string
+        channelId:
+          type: string
+        deploymentId:
+          type: string
+        requestId:
+          type: string
+        triggerId:
+          type: string
+        componentId:
+          type: string
+      additionalProperties: false
+    RevisionItem:
+      required:
+      - appId
+      - components
+      - id
+      - revisionNumber
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        appId:
+          type: string
+          format: uuid
+        revisionNumber:
+          minLength: 1
+          type: string
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/RevisionComponentDto'
+          readOnly: true
+        lastModified:
+          type: string
+          format: date-time
+      additionalProperties: false
+    RevisionComponentDto:
+      required:
+      - id
+      - name
+      - source
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        source:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+        route:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    EnvironmentVariableItem:
+      required:
+      - channelId
+      - key
+      - value
+      type: object
+      properties:
+        channelId:
+          type: string
+          format: uuid
+        key:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    UpdateDesiredStatusCommand:
+      required:
+      - channelId
+      - desiredStatus
+      type: object
+      properties:
+        channelId:
+          type: string
+          format: uuid
+        desiredStatus:
+          $ref: '#/components/schemas/DesiredStatus'
+      additionalProperties: false
+    ChannelRevisionSelectionStrategy:
+      enum:
+      - UseRangeRule
+      - UseSpecifiedRevision
+      type: string
+    AppSummaryDto:
+      required:
+      - channels
+      - id
+      - name
+      - storageId
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          minLength: 1
+          type: string
+        storageId:
+          minLength: 1
+          type: string
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppChannelListItem'
+        lastModified:
+          type: string
+          format: date-time
       additionalProperties: false
     ChannelItemPage:
       required:
@@ -686,12 +675,11 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    AppSummaryDto:
+    AppChannelListItem:
       required:
-      - channels
+      - created
       - id
       - name
-      - storageId
       type: object
       properties:
         id:
@@ -700,47 +688,54 @@ components:
         name:
           minLength: 1
           type: string
-        storageId:
-          minLength: 1
+        activeRevisionNumber:
           type: string
-        channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/AppChannelListItem'
+        domain:
+          type: string
+        created:
+          type: string
+          format: date-time
+        healthStatus:
+          $ref: '#/components/schemas/ApiHealthStatus'
         lastModified:
           type: string
           format: date-time
       additionalProperties: false
-    ChannelRevisionSelectionStrategy:
-      enum:
-      - UseRangeRule
-      - UseSpecifiedRevision
+    ChannelRevisionSelectionStrategyField:
       type: string
-    RevisionItem:
-      required:
-      - appId
-      - components
-      - id
-      - revisionNumber
+      properties:
+        value:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
+      additionalProperties: false
+    LogLine:
       type: object
       properties:
-        id:
+        time:
           type: string
-          format: uuid
-        appId:
+        source:
           type: string
-          format: uuid
-        revisionNumber:
-          minLength: 1
+        line:
           type: string
-        components:
+      additionalProperties: false
+    GetChannelLogsVm:
+      required:
+      - logs
+      type: object
+      properties:
+        logs:
           type: array
           items:
-            $ref: '#/components/schemas/RevisionComponentDto'
-          readOnly: true
-        lastModified:
-          type: string
-          format: date-time
+            type: string
+      additionalProperties: false
+    Entry:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        logLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogLine'
       additionalProperties: false
     ApiHealthStatus:
       enum:
@@ -748,30 +743,35 @@ components:
       - Unhealthy
       - Degraded
       type: string
-    RevisionComponentDto:
+    DesiredStatus:
+      enum:
+      - Running
+      - Dead
+      type: string
+    CreateChannelCommand:
       required:
-      - id
+      - appId
       - name
-      - source
+      - revisionSelectionStrategy
       type: object
       properties:
-        id:
+        appId:
           type: string
           format: uuid
-        source:
-          minLength: 1
-          type: string
         name:
           minLength: 1
           type: string
-        route:
+        revisionSelectionStrategy:
+          $ref: '#/components/schemas/ChannelRevisionSelectionStrategy'
+        rangeRule:
           type:
           - string
           - 'null'
-        type:
+        activeRevisionId:
           type:
           - string
           - 'null'
+          format: uuid
       additionalProperties: false
   securitySchemes:
     Bearer:
