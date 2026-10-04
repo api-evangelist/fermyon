@@ -214,21 +214,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ResourceLabel:
-      required:
-      - appId
-      - label
-      type: object
-      properties:
-        label:
-          minLength: 1
-          type: string
-        appId:
-          type: string
-          format: uuid
-        appName:
-          type: string
-      additionalProperties: false
     KeyValueStoresList:
       required:
       - keyValueStores
@@ -252,6 +237,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+    ResourceLabel:
+      required:
+      - appId
+      - label
+      type: object
+      properties:
+        label:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+        appName:
+          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:

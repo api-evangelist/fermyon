@@ -100,17 +100,18 @@ components:
       - GitHub
       - DeviceFlow
       type: string
-    CreateTokenCommand:
+    RefreshTokenCommand:
+      required:
+      - refreshToken
+      - token
       type: object
       properties:
-        providerCode:
+        token:
+          minLength: 1
           type: string
-        clientId:
+        refreshToken:
+          minLength: 1
           type: string
-        provider:
-          $ref: '#/components/schemas/AccountProvider'
-        isMarketingEmailOn:
-          type: boolean
       additionalProperties: false
     TokenInfo:
       required:
@@ -130,18 +131,17 @@ components:
           format: date-time
           readOnly: true
       additionalProperties: false
-    RefreshTokenCommand:
-      required:
-      - refreshToken
-      - token
+    CreateTokenCommand:
       type: object
       properties:
-        token:
-          minLength: 1
+        providerCode:
           type: string
-        refreshToken:
-          minLength: 1
+        clientId:
           type: string
+        provider:
+          $ref: '#/components/schemas/AccountProvider'
+        isMarketingEmailOn:
+          type: boolean
       additionalProperties: false
   securitySchemes:
     Bearer:

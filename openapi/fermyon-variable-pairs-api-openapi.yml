@@ -116,14 +116,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetVariablesQuery:
+    DeleteVariablePairCommand:
       required:
       - appId
+      - variable
       type: object
       properties:
         appId:
           type: string
           format: uuid
+        variable:
+          minLength: 1
+          type: string
       additionalProperties: false
     CreateVariablePairCommand:
       required:
@@ -142,19 +146,6 @@ components:
           minLength: 1
           type: string
       additionalProperties: false
-    DeleteVariablePairCommand:
-      required:
-      - appId
-      - variable
-      type: object
-      properties:
-        appId:
-          type: string
-          format: uuid
-        variable:
-          minLength: 1
-          type: string
-      additionalProperties: false
     VariablesList:
       required:
       - vars
@@ -164,6 +155,15 @@ components:
           type: array
           items:
             type: string
+      additionalProperties: false
+    GetVariablesQuery:
+      required:
+      - appId
+      type: object
+      properties:
+        appId:
+          type: string
+          format: uuid
       additionalProperties: false
   securitySchemes:
     Bearer:

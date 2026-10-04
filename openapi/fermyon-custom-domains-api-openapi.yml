@@ -42,27 +42,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DnsRecord:
-      required:
-      - name
-      - ttl
-      - type
-      - value
-      type: object
-      properties:
-        type:
-          minLength: 1
-          type: string
-        name:
-          minLength: 1
-          type: string
-        value:
-          minLength: 1
-          type: string
-        ttl:
-          type: integer
-          format: int32
-      additionalProperties: false
     DomainItem:
       required:
       - dnsRecords
@@ -88,6 +67,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DnsRecord'
+      additionalProperties: false
+    DnsRecord:
+      required:
+      - name
+      - ttl
+      - type
+      - value
+      type: object
+      properties:
+        type:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+        ttl:
+          type: integer
+          format: int32
       additionalProperties: false
   securitySchemes:
     Bearer:

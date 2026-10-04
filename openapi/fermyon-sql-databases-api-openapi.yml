@@ -267,34 +267,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ResourceLabel:
+    DeleteSqlDatabaseCommand:
       required:
-      - appId
-      - label
+      - name
       type: object
       properties:
-        label:
-          minLength: 1
-          type: string
-        appId:
-          type: string
-          format: uuid
-        appName:
-          type: string
-      additionalProperties: false
-    ExecuteSqlStatementCommand:
-      required:
-      - database
-      - default
-      - statement
-      type: object
-      properties:
-        database:
-          minLength: 1
-          type: string
-        default:
-          type: boolean
-        statement:
+        name:
           minLength: 1
           type: string
       additionalProperties: false
@@ -306,15 +284,6 @@ components:
           - string
           - 'null'
           format: uuid
-      additionalProperties: false
-    DeleteSqlDatabaseCommand:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
       additionalProperties: false
     CreateSqlDatabaseCommand:
       required:
@@ -333,6 +302,22 @@ components:
           type:
           - string
           - 'null'
+      additionalProperties: false
+    ExecuteSqlStatementCommand:
+      required:
+      - database
+      - default
+      - statement
+      type: object
+      properties:
+        database:
+          minLength: 1
+          type: string
+        default:
+          type: boolean
+        statement:
+          minLength: 1
+          type: string
       additionalProperties: false
     DatabasesList:
       required:
@@ -359,6 +344,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceLabel'
+      additionalProperties: false
+    ResourceLabel:
+      required:
+      - appId
+      - label
+      type: object
+      properties:
+        label:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+        appName:
+          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:
