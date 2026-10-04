@@ -288,6 +288,9 @@ apis:
   - type: Overlay
     url: overlays/fermyon-variable-pairs-api-overlay.yaml
 common:
+  - type: CapabilityMap
+    url: capabilities/fermyon-capability-edges.yml
+    name: Fermyon Business Capability Map
   - type: AgenticAccess
     url: agentic-access/fermyon-agentic-access.yml
   - type: VulnerabilityDisclosure
