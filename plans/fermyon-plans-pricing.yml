@@ -208,3 +208,38 @@ plans:
 plan_count: 4
 paid_plan_count: 1
 free_plan_available: true
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units: []
+  plans:
+  - name: Starter
+    access: free
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Growth
+    access: paid
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: negotiated
+    model: negotiated
+    model_how: stated
+    units: []
+    periods:
+    - month
+  - name: Fermyon Wasm Functions / Akamai Functions (Limited availability)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
