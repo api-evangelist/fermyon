@@ -2,6 +2,10 @@
   "repo": "fermyon",
   "feeds": [
     {
+      "source": "https://www.fermyon.com/blog/index",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://developer.fermyon.com/spin/v3/quickstart",
       "feed_url": "https://developer.fermyon.com/spin/v3/quickstart",
       "title": "",
@@ -16,6 +20,6 @@
       "method": "feed"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 50
 }
