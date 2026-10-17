@@ -99,6 +99,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PaymentIntegrationUrl:
+      type: object
+      properties:
+        url:
+          type: string
+      additionalProperties: false
     PlanItem:
       required:
       - accountPlanType
@@ -111,12 +117,6 @@ components:
         price:
           type: number
           format: double
-      additionalProperties: false
-    PaymentIntegrationUrl:
-      type: object
-      properties:
-        url:
-          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:

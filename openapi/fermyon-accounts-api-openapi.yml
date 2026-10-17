@@ -102,12 +102,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PatchAccountDetailsCommand:
-      type: object
-      properties:
-        isMarketingEmailOn:
-          $ref: '#/components/schemas/BooleanField'
-      additionalProperties: false
     AccountDetails:
       type: object
       properties:
@@ -120,6 +114,12 @@ components:
           - string
           - 'null'
           format: date-time
+      additionalProperties: false
+    PatchAccountDetailsCommand:
+      type: object
+      properties:
+        isMarketingEmailOn:
+          $ref: '#/components/schemas/BooleanField'
       additionalProperties: false
     BooleanField:
       type: string

@@ -95,24 +95,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AccountProvider:
-      enum:
-      - GitHub
-      - DeviceFlow
-      type: string
-    RefreshTokenCommand:
-      required:
-      - refreshToken
-      - token
-      type: object
-      properties:
-        token:
-          minLength: 1
-          type: string
-        refreshToken:
-          minLength: 1
-          type: string
-      additionalProperties: false
     TokenInfo:
       required:
       - expiration
@@ -131,6 +113,24 @@ components:
           format: date-time
           readOnly: true
       additionalProperties: false
+    RefreshTokenCommand:
+      required:
+      - refreshToken
+      - token
+      type: object
+      properties:
+        token:
+          minLength: 1
+          type: string
+        refreshToken:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    AccountProvider:
+      enum:
+      - GitHub
+      - DeviceFlow
+      type: string
     CreateTokenCommand:
       type: object
       properties:

@@ -267,42 +267,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DeleteSqlDatabaseCommand:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-      additionalProperties: false
-    GetSqlDatabasesQuery:
-      type: object
-      properties:
-        appId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-      additionalProperties: false
-    CreateSqlDatabaseCommand:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          minLength: 1
-          type: string
-        appId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        label:
-          type:
-          - string
-          - 'null'
-      additionalProperties: false
     ExecuteSqlStatementCommand:
       required:
       - database
@@ -329,6 +293,39 @@ components:
           items:
             $ref: '#/components/schemas/Database'
       additionalProperties: false
+    CreateSqlDatabaseCommand:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        appId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        label:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false
+    ResourceLabel:
+      required:
+      - appId
+      - label
+      type: object
+      properties:
+        label:
+          minLength: 1
+          type: string
+        appId:
+          type: string
+          format: uuid
+        appName:
+          type: string
+      additionalProperties: false
     Database:
       required:
       - links
@@ -345,20 +342,23 @@ components:
           items:
             $ref: '#/components/schemas/ResourceLabel'
       additionalProperties: false
-    ResourceLabel:
+    DeleteSqlDatabaseCommand:
       required:
-      - appId
-      - label
+      - name
       type: object
       properties:
-        label:
+        name:
           minLength: 1
           type: string
+      additionalProperties: false
+    GetSqlDatabasesQuery:
+      type: object
+      properties:
         appId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-        appName:
-          type: string
       additionalProperties: false
   securitySchemes:
     Bearer:

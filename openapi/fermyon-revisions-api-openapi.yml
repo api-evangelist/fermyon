@@ -111,32 +111,6 @@ components:
           - string
           - 'null'
       additionalProperties: false
-    RevisionItemPage:
-      required:
-      - isLastPage
-      - items
-      - pageIndex
-      - pageSize
-      - totalItems
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RevisionItem'
-        totalItems:
-          type: integer
-          format: int32
-        pageIndex:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        isLastPage:
-          type: boolean
-          readOnly: true
-      additionalProperties: false
     RevisionItem:
       required:
       - appId
@@ -175,6 +149,32 @@ components:
         revisionNumber:
           minLength: 1
           type: string
+      additionalProperties: false
+    RevisionItemPage:
+      required:
+      - isLastPage
+      - items
+      - pageIndex
+      - pageSize
+      - totalItems
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RevisionItem'
+        totalItems:
+          type: integer
+          format: int32
+        pageIndex:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        isLastPage:
+          type: boolean
+          readOnly: true
       additionalProperties: false
   securitySchemes:
     Bearer:
