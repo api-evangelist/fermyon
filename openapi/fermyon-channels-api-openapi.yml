@@ -779,3 +779,9 @@ components:
       description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token}"'
       name: Authorization
       in: header
+x-provenance:
+  method: harvested
+  publisher: Fermyon
+  source: https://cloud.fermyon.com/swagger/v1/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
