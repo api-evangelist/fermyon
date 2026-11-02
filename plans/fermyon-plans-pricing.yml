@@ -1,0 +1,79 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://www.fermyon.com/pricing
+sources:
+- https://www.fermyon.com/pricing
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T161713
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: open-core
+  method: page
+  read: '2026-10-28'
+  evidence: 'Deploy to Your Kubernetes: SpinKube CNCF Develop and operate Spin apps in your Kubernetes
+    cliuster.'
+  free_edition: SpinKube
+  managed_tier: Growth
+published: true
+note: Fermyon Cloud subscription tiers; Enterprise is custom/contact sales.
+plan_count: 3
+currency: USD
+plans:
+- name: Starter
+  price_text: $0 /month
+  price: 0
+  currency: USD
+  period: month
+  included_quota: Up to 5 applications, 100,000 requests, Up to 5 custom domains, Up to 5 subdomains,
+    Up to 5 Key Value data stores, 1GB Key Value storage, 1GB SQLite database storage, 5GB bandwidth (egress),
+    1 region deployment
+- name: Growth
+  price_text: $19.38 /month
+  price: 19.38
+  currency: USD
+  period: month
+  included_quota: Up to 100 applications, 1,000,000 requests, Up to 100 custom domains, Up to 100 subdomains,
+    Up to 100 Key Value data stores, 2GB Key Value storage, 2GB SQLite database storage, 50GB bandwidth
+    (egress), 1 region deployment
+- name: Enterprise
+  price_text: Custom
+  period: none
+  included_quota: Custom usage and support
+rate_limit_statements:
+- Up to 5
+- 100,000 requests
+- Up to 100
+- 1,000,000 requests
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Starter
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Growth
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
